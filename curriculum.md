@@ -2,7 +2,7 @@
 
 ## ARC 1 - how machines read text
 - [x] characters vs words, and why both fail (001)
-- [ ] what a token is
+- [x] what a token is (002)
 - [ ] BPE: merging by frequency
 - [ ] tokens are money: how pricing actually works
 - [ ] context window
@@ -85,7 +85,7 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 001 showed that word splitting has an infinite vocabulary problem and character splitting shreds meaning into pieces too small to use. 002 picks up right there: it has to introduce the token as the fix, a chunk smaller than a word but bigger than a letter.
-last visuals: comparison table (001)
+baton: 002 defined the token as a fixed-vocabulary chunk and showed that a model only ever receives an array of token ids, never the text itself. 003 picks up right there: it has to explain how that vocabulary gets built in the first place, the bpe merging trick that decides roti splits into rot and i.
+last visuals: annotated artifact (002), comparison table (001)
 
 ## NOTES
