@@ -33,7 +33,7 @@
 - [x] the model reads every parameter to write one token (026)
 - [x] what a bigger model actually buys, and what it doesnt (027)
 - [x] training vs inference: baked-in knowledge has a cutoff (028)
-- [ ] base model vs assistant: what tuning changed
+- [x] base model vs assistant: what tuning changed (029)
 - [ ] what fine-tuning can fix and what it cant
 - [ ] CAPSTONE: the box, closed. everything an applied engineer must know about internals and nothing more
 
@@ -110,8 +110,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 028 pulled training and inference apart. the visual was a two lane mermaid diagram, one lane that already ended writing the numbers file and one lane that runs on every call and only reads it, with the read arrow labelled never written. so the file carries the date its text pile stopped, and nothing a user sends writes back into it. two side debts got paid on the way. 025 had promised a note on who set those values, and 028 answered it at the when level with one honest sentence of how, 022s guessing game run over text where the answer is already there, numbers nudged whenever the guess is off. and the search hole is closed, pasted or retrieved text rides along in the request, the file doesnt move, so nobody reads the note and thinks their web-searching assistant disproves it. note prose refers to the lanes by name, never by position, because mermaid does not promise where a subgraph lands. the closing line is the baton: that pile was just text off the internet, nobody in it was answering me. the next checkbox is base model vs assistant: what tuning changed. 029 must pick that up directly, that a model trained only to continue text would carry on writing your question rather than answer it, and that a second much smaller pass over examples of answering is what turned a text continuer into something that replies to you. 029 stays on what tuning changed and leaves what fine-tuning can fix and what it cant to the checkbox after it. exits are open, 029 may end either way, but it cannot point forward if 030 does too.
-last visuals: mermaid (028), table (027), pseudocode (026)
-last exits: forward (028), stops (027), stops (026)
+baton: 029 split the file 028 froze into two versions of itself. the visual was an annotated artifact, one css question sent to two files, the base one continuing into a forum listing of more questions with a reply count, the tuned one answering with flexbox. so a model trained only to continue text does exactly that, and the pages it read put more questions after a question, not an answer. the fix is another round of 028s training, tiny next to the first, over examples all shaped heres a request heres a good reply, which makes answering the likely continuation. same size file, same 022 loop underneath, nothing structural moved. the preference round is paid for in one sentence, people rank two replies and the numbers get nudged toward the winner, and thats where tone and refusals come from, so 030 does not need to re-explain it. the closing line is the baton: a model drifting into writing your next message for you is the base model showing through. the next checkbox is what fine-tuning can fix and what it cant. 030 picks up that the second pass is a real, available lever, you can run one yourself on your own examples, and asks what moving those numbers a little can actually buy. it must land that tuning shifts shape, format and tone, and does not paste new facts in, which is the setup arc 6 needs. 029 stopped, so 030 may point forward. keep an eye on it not becoming arc 9s which-lever note, 030 stays on the one lever.
+last visuals: annotated artifact (029), mermaid (028), table (027)
+last exits: stops (029), forward (028), stops (027)
 
 ## NOTES
