@@ -15,7 +15,7 @@
 ## ARC 2 - meaning as numbers
 - [x] a vector is a list of numbers (011)
 - [x] dot product, by hand (012)
-- [ ] cosine similarity
+- [x] cosine similarity (013)
 - [ ] what an embedding is
 - [ ] nearby means similar
 - [ ] one word, many meanings: context changes the vector
@@ -106,8 +106,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 012 laid the loop 011 promised. walk two equal-width arrays together, multiply slot by slot, add the products into a running total, one number out. it taught what that number tracks: same lean in every slot gives a big positive, flipped signs give the negative of it, mixed agreement lands near zero. it used a = [2, -1, 3] against b = [3, -2, 4] (20), c = [-3, 2, -4] (-20) and d = [1, 3, 0] (-1), and those four arrays are now shared furniture, reuse them. the note deliberately left one hole open and named it in the last line: scaling b to [30, -20, 40] does not change direction at all but pushes the total from 20 to 200, so a raw dot product is not a fair score. 013, "cosine similarity", is exactly that fix. it must pick up the 20 versus 200 problem by name and show that dividing out the length gives b and the scaled b the same answer. it still must not say the word embedding or claim any of these numbers carry meaning, 014 and 015 do that. no meaning has been taught in this arc yet, only shape and arithmetic.
-last visuals: worked example (012), annotated artifact (011), mermaid flowchart (010)
-last exits: stops (012), forward (011), forward (010)
+baton: 013 closed the hole 012 left. an arrays own length is the 012 loop run against itself plus a square root, and dividing the dot product by both lengths kills the scale problem, b and b scaled ten times both score 0.99. the score now sits between -1 and 1 always, 1 same direction, -1 dead opposite, near 0 unrelated, and the note used the shared furniture again: a = [2, -1, 3], b = [3, -2, 4] (0.99), b x10 (0.99), c (-0.99), d = [1, 3, 0] (-0.08). len(a) = 3.74, len(b) = 5.39, len(d) = 3.16, reuse those. the last line said out loud what is still missing: every array so far is made up, nothing has said where a real row of floats comes from or why its numbers would mean anything. 014, "what an embedding is", has to answer exactly that, and it can now lean on comparison being a solved problem. arc 2 has taught shape and arithmetic only, no meaning yet, and the word embedding has still never appeared in a note.
+last visuals: worked example (013), worked example (012), annotated artifact (011)
+last exits: forward (013), stops (012), forward (011)
 
 ## NOTES
