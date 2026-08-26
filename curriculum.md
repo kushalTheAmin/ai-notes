@@ -13,7 +13,7 @@
 - [x] CAPSTONE: what the model sees, and what it costs, when i send a request (010)
 
 ## ARC 2 - meaning as numbers
-- [ ] a vector is a list of numbers
+- [x] a vector is a list of numbers (011)
 - [ ] dot product, by hand
 - [ ] cosine similarity
 - [ ] what an embedding is
@@ -106,8 +106,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 010 closed arc 1 by tracing one real request end to end. the string i type becomes ten pieces, then ten ids, and only the ids cross the wire. it landed the arcs whole point, that the price, the window ceiling, and the blind spots for letters and digits are all downstream of one decision, where the tokenizer cut. it exits by calling the id a lookup key that points at a list of numbers, which is the handoff into arc 2. so 011 has to pick up 5868 as a key and answer what it is a key to. the first checkbox is "a vector is a list of numbers", so 011 stays on the shape alone, an array of floats, something this reader already knows from code. no embeddings, no similarity, no talk of meaning yet, those are the next checkboxes and stealing them would collapse three notes into one. arc openers connect to the previous arcs capstone, so 011 builds on 010.
-last visuals: mermaid flowchart (010), comparison table (009), pseudocode (008)
-last exits: forward (010), stops (009), forward (008)
+baton: 011 answered what the id is a key to. it is a row index into one big table, one row per token in the vocabulary, and the row is a plain array of floats. that is all a vector is. the note stayed on shape and deliberately taught no meaning: it says outright that no single slot is readable on its own, and it flags that the row changes as it moves through the model without explaining how. the one thing it planted for the next note is equal width, that every row in a model is the same length, and it exits by saying two arrays of the same length can be walked together in one loop. so 012, "dot product, by hand", has to be that loop. it should use 3-element arrays, not 768, and show multiply-and-accumulate step by step with real small numbers. it must not reach for cosine similarity or normalising, that is 013. the ids 5868, 19, 72 and 285 are now shared furniture across 009, 010 and 011, reuse them where they fit.
+last visuals: annotated artifact (011), mermaid flowchart (010), comparison table (009)
+last exits: forward (011), forward (010), stops (009)
 
 ## NOTES

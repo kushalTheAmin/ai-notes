@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 10
+total notes: 11
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -16,3 +16,6 @@ total notes: 10
 - [008, numbers get chunked, so arithmetic gets shaky](./notes/008-numbers-get-chunked.md), digit chunks are cut left to right, but place value runs right to left, so the columns never line up
 - [009, a space and a capital letter change the ids](./notes/009-space-and-capital-change-ids.md), the vocabulary key is the exact bytes, so the same word tokenizes differently depending on what sits in front of it
 - [010, what the model sees, and what it costs, when i send a request](./notes/010-what-i-send-and-what-it-costs.md), one real request traced end to end, from the string i type to the ids, the bill, and the ceiling, with every earlier note tagged on the part it explains
+
+## ARC 2 - meaning as numbers
+- [011, a vector is just a list of numbers](./notes/011-a-vector-is-a-list-of-numbers.md), a token id is a row number into one big table, and the row is a fixed length array of floats
