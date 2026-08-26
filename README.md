@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 16
+total notes: 17
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -24,3 +24,4 @@ total notes: 16
 - [014, what an embedding is](./notes/014-what-an-embedding-is.md), send text to a model and one fixed width array of floats comes back, and the width is the same for two words or eight hundred, which is what makes any two texts comparable
 - [015, nearby means similar](./notes/015-nearby-means-similar.md), the cosine between two sentences tracks what they mean, not which words they share, and that high score is all anyone means by near
 - [016, one word, many meanings](./notes/016-one-word-many-meanings.md), the same word gets different floats depending on what surrounds it, because the array is computed from the whole string instead of looked up per word
+- [017, the embedding model is its own product](./notes/017-embedding-model-is-separate.md), a different endpoint with no messages and no temperature, billed on input only, and around 150x cheaper per token than the chat model

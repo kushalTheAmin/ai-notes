@@ -19,7 +19,7 @@
 - [x] what an embedding is (014)
 - [x] nearby means similar (015)
 - [x] one word, many meanings: context changes the vector (016)
-- [ ] embedding models are separate products from chat models
+- [x] embedding models are separate products from chat models (017)
 - [ ] embeddings arent just for search: classify, cluster, dedup with the same vectors
 - [ ] CAPSTONE: how search by meaning works end to end
 
@@ -106,8 +106,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 016 broke the lookup instinct 011 planted. the fixed table row for a token id is where the computation starts, not where it ends: embed() reads the whole string, mixes each word with its neighbours, and what comes back has context baked in, so "bank" in "we sat on the bank of the river" and "bank" in "i moved cash to the bank" land far apart. the line to keep is that there is no vector for a word anywhere, only a vector for a piece of text that happened to contain it. 016 also flagged word2vec as the real historical version of one-row-per-word that genuinely could not separate the two senses. the note ended by pointing at 017: the model doing that mixing is not the chat model. so 017, "embedding models are separate products from chat models", has its opening handed to it already and must cash out that promise, separate endpoint, separate pricing, no conversation. dont re-explain cosine, the 1536 width, or the bank example.
-last visuals: pseudocode (016), tiny comparison table (015), annotated artifact (014)
-last exits: forward (016), stops (015), stops (014)
+baton: 017 cashed out 016's closing promise. the model that does the mixing is a separate product: POST /v1/embeddings against a named embedding model, no messages array, no roles, no system, no temperature, nothing to prompt and no conversation to carry. billing is input tokens only, no output tokens exist, and per input token it ran 150x under the chat rate 004 set ($3 per million vs $0.02 per million). 017 also planted the constraint that matters for arc 6: vectors only mean something next to vectors from the same embedding model, so switching models means re-embedding everything. what 018 must pick up is that this cheap stateless call returns plain arrays that nothing has said are only for search. "embeddings arent just for search" should take those same arrays and show classify, cluster, dedup falling out of 013's cosine with no new machinery. dont re-explain the endpoint, the pricing, the 1536 width, or what cosine is.
+last visuals: annotated artifact (017), pseudocode (016), tiny comparison table (015)
+last exits: stops (017), forward (016), stops (015)
 
 ## NOTES
