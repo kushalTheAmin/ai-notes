@@ -7,7 +7,9 @@
 - [x] tokens are money: how pricing actually works (004)
 - [x] why hindi and gujarati cost more than english: tokens per word isnt equal (005)
 - [x] context window (006)
-- [ ] why tokenization causes weird failures
+- [ ] the model cant see inside a token: why it cant count letters
+- [ ] numbers get chunked, not counted: why arithmetic gets shaky
+- [ ] a space or a capital letter changes the ids
 - [ ] CAPSTONE: what the model sees, and what it costs, when i send a request
 
 ## ARC 2 - meaning as numbers
