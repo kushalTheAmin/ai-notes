@@ -8,7 +8,7 @@
 - [x] why hindi and gujarati cost more than english: tokens per word isnt equal (005)
 - [x] context window (006)
 - [x] the model cant see inside a token: why it cant count letters (007)
-- [ ] numbers get chunked, not counted: why arithmetic gets shaky
+- [x] numbers get chunked, not counted: why arithmetic gets shaky (008)
 - [ ] a space or a capital letter changes the ids
 - [ ] CAPSTONE: what the model sees, and what it costs, when i send a request
 
@@ -106,8 +106,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 007 established that a token is opaque. the model receives ids with no letters inside them, so anything letter level, counting, spelling, reversing, is recall from training rather than inspection, and the fix is to do that work in code. it used real ids from a real tokenizer to show the letters vanishing. 008 takes the same opacity and points it at digits: a number is cut into chunks by the same frequency rules from 003, and those chunk boundaries have nothing to do with place value, which is where arithmetic starts to wobble. it must not re-explain that ids hide their contents, 007 did that, it only has to show what changes when the contents are digits.
-last visuals: worked example (007), worked example (006), comparison table (005)
-last exits: stops (007), stops (006), forward (005)
+baton: 008 established that a run of digits gets cut left to right into groups of at most three, by a hardcoded rule rather than a frequency merge, and that those boundaries never line up with place value, which runs right to left. so arithmetic inside a model is pattern recall over chunks, not column addition, and it degrades as numbers get longer. 009 stays on token boundaries but shrinks the change to the smallest thing possible: a leading space or a capital letter turns what looks like the same word into different ids. it must not re-explain that ids are opaque, 007 and 008 both covered that. it has to show one visible string producing different id arrays depending on what sits next to it.
+last visuals: pseudocode (008), worked example (007), worked example (006)
+last exits: forward (008), stops (007), stops (006)
 
 ## NOTES

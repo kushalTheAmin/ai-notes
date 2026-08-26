@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 7
+total notes: 8
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -13,3 +13,4 @@ total notes: 7
 - [005, why hindi and gujarati cost more than english](./notes/005-hindi-gujarati-cost-more.md), the same sentence in another script turns into more tokens, so it quietly costs more
 - [006, the context window](./notes/006-context-window.md), the hard token ceiling on one request, and why your prompt and the reply share it
 - [007, why a model cant count letters](./notes/007-cant-count-letters.md), the ids a model receives have no letters in them, so spelling questions are recall, not reading
+- [008, numbers get chunked, so arithmetic gets shaky](./notes/008-numbers-get-chunked.md), digit chunks are cut left to right, but place value runs right to left, so the columns never line up
