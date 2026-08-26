@@ -3,7 +3,7 @@
 ## ARC 1 - how machines read text
 - [x] characters vs words, and why both fail (001)
 - [x] what a token is (002)
-- [ ] BPE: merging by frequency
+- [x] BPE: merging by frequency (003)
 - [ ] tokens are money: how pricing actually works
 - [ ] context window
 - [ ] why tokenization causes weird failures
@@ -85,7 +85,7 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 002 defined the token as a fixed-vocabulary chunk and showed that a model only ever receives an array of token ids, never the text itself. 003 picks up right there: it has to explain how that vocabulary gets built in the first place, the bpe merging trick that decides roti splits into rot and i.
-last visuals: annotated artifact (002), comparison table (001)
+baton: 003 showed the bpe merge loop by hand, characters fuse into rot because rot appeared together often enough in the corpus, while i never earned the same merge. 004 picks up right there: now that we know the vocabulary is frequency-built, it explains how those token counts turn into an actual dollar amount on an api bill.
+last visuals: worked example (003), annotated artifact (002)
 
 ## NOTES
