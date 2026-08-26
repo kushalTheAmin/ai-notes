@@ -10,7 +10,7 @@
 - [x] the model cant see inside a token: why it cant count letters (007)
 - [x] numbers get chunked, not counted: why arithmetic gets shaky (008)
 - [x] a space or a capital letter changes the ids (009)
-- [ ] CAPSTONE: what the model sees, and what it costs, when i send a request
+- [x] CAPSTONE: what the model sees, and what it costs, when i send a request (010)
 
 ## ARC 2 - meaning as numbers
 - [ ] a vector is a list of numbers
@@ -106,8 +106,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 009 established that the vocabulary key is the exact bytes, so a leading space or a capital letter gives a different id for what looks like the same word, and that the space rides on the front of the token rather than sitting in the gap between two tokens. arc 1 is now fully laid: what a token is, how bpe builds the vocabulary, what tokens cost, the ceiling they fill, and the three places token boundaries bite you (letters in 007, digits in 008, whitespace and case in 009). 010 is the arc capstone, so it introduces nothing new. its job is assembly: trace one real request from the string i type, through the cut, to the id array, the count, the price and the ceiling, linking every brick by note number across 001 to 009. the visual has to be an assembly diagram with the note numbers sitting on the parts, not another worked example.
-last visuals: comparison table (009), pseudocode (008), worked example (007)
-last exits: stops (009), forward (008), stops (007)
+baton: 010 closed arc 1 by tracing one real request end to end. the string i type becomes ten pieces, then ten ids, and only the ids cross the wire. it landed the arcs whole point, that the price, the window ceiling, and the blind spots for letters and digits are all downstream of one decision, where the tokenizer cut. it exits by calling the id a lookup key that points at a list of numbers, which is the handoff into arc 2. so 011 has to pick up 5868 as a key and answer what it is a key to. the first checkbox is "a vector is a list of numbers", so 011 stays on the shape alone, an array of floats, something this reader already knows from code. no embeddings, no similarity, no talk of meaning yet, those are the next checkboxes and stealing them would collapse three notes into one. arc openers connect to the previous arcs capstone, so 011 builds on 010.
+last visuals: mermaid flowchart (010), comparison table (009), pseudocode (008)
+last exits: forward (010), stops (009), forward (008)
 
 ## NOTES
