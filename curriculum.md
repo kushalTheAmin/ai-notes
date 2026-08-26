@@ -6,7 +6,7 @@
 - [x] BPE: merging by frequency (003)
 - [x] tokens are money: how pricing actually works (004)
 - [x] why hindi and gujarati cost more than english: tokens per word isnt equal (005)
-- [ ] context window
+- [x] context window (006)
 - [ ] why tokenization causes weird failures
 - [ ] CAPSTONE: what the model sees, and what it costs, when i send a request
 
@@ -104,8 +104,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 005 showed that the same sentence in a different script turns into a different number of tokens, because the merge vocabulary was built mostly from english text, and that a newer tokenizer narrows the gap without closing it. it ended on the idea that those extra tokens fill something up besides your bill. 006 picks up exactly there: that something is the context window, a hard ceiling on how many tokens one request can hold.
-last visuals: comparison table (005), annotated artifact (004), worked example (003)
-last exits: forward (005), stops (004), forward (003)
+baton: 006 established the context window, a hard ceiling on how many tokens one request can hold, and the twist that input and output share that one budget, so a long conversation shrinks the room left for the reply. it also established that going over is a rejected call, not a quiet trim, so dropping old messages is the callers job. that closes the accounting side of tokens: what they cost (004, 005) and how many fit (006). 007 turns to what tokens break. it should pick up from 002, the model receiving ids instead of letters, and show the failures that fall out of that, the ones where a model looks dumb at something trivial.
+last visuals: worked example (006), comparison table (005), annotated artifact (004)
+last exits: stops (006), forward (005), stops (004)
 
 ## NOTES
