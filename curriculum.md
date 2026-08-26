@@ -16,7 +16,7 @@
 - [x] a vector is a list of numbers (011)
 - [x] dot product, by hand (012)
 - [x] cosine similarity (013)
-- [ ] what an embedding is
+- [x] what an embedding is (014)
 - [ ] nearby means similar
 - [ ] one word, many meanings: context changes the vector
 - [ ] embedding models are separate products from chat models
@@ -106,8 +106,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 013 closed the hole 012 left. an arrays own length is the 012 loop run against itself plus a square root, and dividing the dot product by both lengths kills the scale problem, b and b scaled ten times both score 0.99. the score now sits between -1 and 1 always, 1 same direction, -1 dead opposite, near 0 unrelated, and the note used the shared furniture again: a = [2, -1, 3], b = [3, -2, 4] (0.99), b x10 (0.99), c (-0.99), d = [1, 3, 0] (-0.08). len(a) = 3.74, len(b) = 5.39, len(d) = 3.16, reuse those. the last line said out loud what is still missing: every array so far is made up, nothing has said where a real row of floats comes from or why its numbers would mean anything. 014, "what an embedding is", has to answer exactly that, and it can now lean on comparison being a solved problem. arc 2 has taught shape and arithmetic only, no meaning yet, and the word embedding has still never appeared in a note.
-last visuals: worked example (013), worked example (012), annotated artifact (011)
-last exits: forward (013), stops (012), forward (011)
+baton: 014 finally put a real array on the page. you POST text to an embeddings endpoint and one array of floats comes back for the whole input, not one per token like 011's table, and the width belongs to the model rather than to the text: 1536 for text-embedding-3-small, same 1536 whether you send "hi" (2 chars), "kadhi takes an hour" (19 chars) or an 800-word blog post (~4700 chars). that fixed width is the payoff the note landed on, because 012 demanded equal-width arrays and real text is never equal anything, so now any two strings are cosine-comparable with 013. what 014 only claimed and did not show is the meaning property, one plain sentence saying the floats are trained so text meaning similar things points similar ways. 015, "nearby means similar", owes the reader the demonstration: short real sentences, cosine run between them, high for a paraphrase that shares no words with the original, low for something unrelated. reuse 1536 and the kadhi example, dont re-explain the api call. 014 also introduced the word embedding for the first time and flagged that 011's table row carries the same name.
+last visuals: annotated artifact (014), worked example (013), worked example (012)
+last exits: stops (014), forward (013), stops (012)
 
 ## NOTES

@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 13
+total notes: 14
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -21,3 +21,4 @@ total notes: 13
 - [011, a vector is just a list of numbers](./notes/011-a-vector-is-a-list-of-numbers.md), a token id is a row number into one big table, and the row is a fixed length array of floats
 - [012, dot product, by hand](./notes/012-dot-product-by-hand.md), multiply two equal length arrays slot by slot, add up the products, and the one number that falls out tells you whether they lean the same way
 - [013, cosine similarity, a score that ignores size](./notes/013-cosine-similarity.md), divide the dot product by both arrays lengths and the score stops caring how big the numbers are
+- [014, what an embedding is](./notes/014-what-an-embedding-is.md), send text to a model and one fixed width array of floats comes back, and the width is the same for two words or eight hundred, which is what makes any two texts comparable
