@@ -29,7 +29,9 @@
 - [x] next-token prediction is the whole game (022)
 - [x] attention in one note: every token looks at every other token, the superpower and the cost (023)
 - [x] why compute scales badly with input length (024)
-- [ ] model size: what 8B parameters means, and what bigger actually buys
+- [ ] a parameter is one number the model learned, and 8B is how many
+- [ ] the model reads every parameter to write one token
+- [ ] what a bigger model actually buys, and what it doesnt
 - [ ] training vs inference: baked-in knowledge has a cutoff
 - [ ] base model vs assistant: what tuning changed
 - [ ] what fine-tuning can fix and what it cant
