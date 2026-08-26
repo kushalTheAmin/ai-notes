@@ -7,7 +7,7 @@
 - [x] tokens are money: how pricing actually works (004)
 - [x] why hindi and gujarati cost more than english: tokens per word isnt equal (005)
 - [x] context window (006)
-- [ ] the model cant see inside a token: why it cant count letters
+- [x] the model cant see inside a token: why it cant count letters (007)
 - [ ] numbers get chunked, not counted: why arithmetic gets shaky
 - [ ] a space or a capital letter changes the ids
 - [ ] CAPSTONE: what the model sees, and what it costs, when i send a request
@@ -106,8 +106,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 006 established the context window, a hard ceiling on how many tokens one request can hold, and the twist that input and output share that one budget, so a long conversation shrinks the room left for the reply. it also established that going over is a rejected call, not a quiet trim, so dropping old messages is the callers job. that closes the accounting side of tokens: what they cost (004, 005) and how many fit (006). 007 turns to what tokens break. it should pick up from 002, the model receiving ids instead of letters, and show the failures that fall out of that, the ones where a model looks dumb at something trivial.
-last visuals: worked example (006), comparison table (005), annotated artifact (004)
-last exits: stops (006), forward (005), stops (004)
+baton: 007 established that a token is opaque. the model receives ids with no letters inside them, so anything letter level, counting, spelling, reversing, is recall from training rather than inspection, and the fix is to do that work in code. it used real ids from a real tokenizer to show the letters vanishing. 008 takes the same opacity and points it at digits: a number is cut into chunks by the same frequency rules from 003, and those chunk boundaries have nothing to do with place value, which is where arithmetic starts to wobble. it must not re-explain that ids hide their contents, 007 did that, it only has to show what changes when the contents are digits.
+last visuals: worked example (007), worked example (006), comparison table (005)
+last exits: stops (007), stops (006), forward (005)
 
 ## NOTES
