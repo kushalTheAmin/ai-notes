@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 21
+total notes: 22
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -29,3 +29,6 @@ total notes: 21
 - [019, near-duplicates, and the one number you have to pick](./notes/019-near-duplicates-and-a-threshold.md), with no labels to rank against you have to commit to a threshold, you find it by scoring pairs you already know, and whatever you pick both merges non-dupes and misses real ones
 - [020, finding the groups nobody labeled](./notes/020-clustering-no-labels.md), with no labels at all the groups fall out of the scores themselves, by assigning every item to its closest center and moving each center to the average of what it caught, until nothing switches
 - [021, how search by meaning works, end to end](./notes/021-search-by-meaning-end-to-end.md), embed the whole folder once, embed the query at search time, cosine against every stored array and keep the top few, which finds the right note even when it shares no words with what you typed
+
+## ARC 3 - whats inside the box (enough to not be fooled, no more)
+- [022, all it does is guess the next token](./notes/022-guess-the-next-token.md), one call hands back a score for every token in the vocabulary, something picks one, it gets stuck on the end of the input, and the whole list runs through again

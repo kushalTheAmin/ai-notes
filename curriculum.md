@@ -26,7 +26,7 @@
 - [x] CAPSTONE: how search by meaning works end to end (021)
 
 ## ARC 3 - whats inside the box (enough to not be fooled, no more)
-- [ ] next-token prediction is the whole game
+- [x] next-token prediction is the whole game (022)
 - [ ] attention in one note: every token looks at every other token, the superpower and the cost
 - [ ] why compute scales badly with input length
 - [ ] model size: what 8B parameters means, and what bigger actually buys
@@ -108,8 +108,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 021 closed arc 2. it assembled search end to end, embed the whole corpus once and keep the arrays beside the text, embed the query at search time with the same model, cosine against every stored array, sort, take the top few, and it tagged every brick from 011 to 020 onto the part it explains. the capstone gap check ran and added nothing: the one thing arc 2 never covered is what you do when scanning every row per query stops being free, and that already sits in arc 6 as "where vectors live", so 021 states the limit in one line and points there rather than duplicating the checkbox. what 021 left open is the handoff to arc 3. every note in arc 2 treated the model as a thing that turns my text into floats, and 021 ends by asking what it does when it has to hand words back. 022 is the arc opener and must pick up exactly that: next-token prediction, the model picks one token, that token gets appended to the input, and the whole thing gets read again. the reader already has tokens and ids (002, 011), so dont rebuild those, and dont re-explain embeddings or cosine, arc 2 is finished and closed. arc 3 headers run (n of 8).
-last visuals: mermaid (021), pseudocode (020), worked example (019)
-last exits: forward (021), stops (020), forward (019)
+baton: 022 opened arc 3. it established the generation loop: one call gives back one score per token in the vocabulary, 011's table with a score on every row, something picks one of them, that token gets stuck on the end of the input and the whole list runs through again, until the token meaning done wins. it deliberately left two things closed. how the pick gets made is arc 4's, and 022 says so in one line rather than sneaking it in. what happens inside the call that produces those scores is 023's, and that is the next checkbox. attention is the answer: every token in the input looks at every other token, which is how "more" sitting after "the roti needs" ends up scoring ghee high at all. the reader already holds tokens and ids (002), the vocabulary table one row per token (011), and now the loop (022), so rebuild none of those. one thing for 023 to watch: its checkbox says superpower and the cost, but the checkbox right after it owns compute scaling with input length, so run the split test before writing and let 023 name the cost in a line if the draft starts to bulge.
+last visuals: worked example (022), mermaid (021), pseudocode (020)
+last exits: stops (022), forward (021), stops (020)
 
 ## NOTES
