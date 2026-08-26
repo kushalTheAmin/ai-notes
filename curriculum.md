@@ -30,7 +30,7 @@
 - [x] attention in one note: every token looks at every other token, the superpower and the cost (023)
 - [x] why compute scales badly with input length (024)
 - [x] a parameter is one number the model learned, and 8B is how many (025)
-- [ ] the model reads every parameter to write one token
+- [x] the model reads every parameter to write one token (026)
 - [ ] what a bigger model actually buys, and what it doesnt
 - [ ] training vs inference: baked-in knowledge has a cutoff
 - [ ] base model vs assistant: what tuning changed
@@ -110,8 +110,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 025 opened the box and found numbers. a parameter is one float at one position, "8B" is a count of eight billion of them, and at 2 bytes each that is roughly 16 billion bytes on disk. the visual was a real open model folder, tiny config.json, 003s tokenizer, then one huge weights file. the reveal was the absence: no grammar module, no facts table, no code deciding anything, and the arithmetic that runs over the numbers is the same for every prompt. 025 left two threads deliberately loose. first, it said nobody typed the values, they got set automatically, and pointed at training as its own note without explaining any of it, so the training checkbox still owns that whole story. second, it ended by promising the bill. the next checkbox is that promise: the model reads every parameter to write one token. 026 must pick up the eight billion figure literally, every one of those numbers gets read per token, and connect it back to 024, which measured cost by input length. 025 is the other axis, cost by model size, and 026 is where that axis actually costs something. useful material for 026: this is why an 8B model runs on a laptop and a huge one does not, and why bigger models are slower and pricier per token. do not drift into quantization or gpu memory bandwidth, neither is on the curriculum.
-last visuals: annotated artifact (025), table (024), worked example (023)
-last exits: forward (025), stops (024), forward (023)
+baton: 026 closed out the size axis. one token out means the arithmetic runs over all eight billion numbers, and the visual was the generation loop with touch_every_number sitting inside the while, 8,030,000,000 x 300 tokens = 2,409,000,000,000. it landed the two consequences the reader can act on: an 8B model runs on a laptop and a 405B one does not, and a bigger model bills more per output token because there are more numbers to walk. it carried one caveat, that some models are built to skip most of their numbers per token, without naming that design. so cost by model size is now fully paid off across 024, 025 and 026. the next checkbox is the other half of the trade: what a bigger model actually buys, and what it doesnt. 027 must pick up 026s "bigger costs more per token" and ask the obvious follow-up, more of what, exactly. it should be about capability, not cost, and the honest shape is that scale buys broader recall and steadier reasoning on harder inputs while buying nothing on the tokenizer limits from arc 1 (007, 008) and nothing on facts the model never saw. do not drift into benchmarks, leaderboards or model selection, arc 9 owns picking a model.
+last visuals: pseudocode (026), annotated artifact (025), table (024)
+last exits: stops (026), forward (025), stops (024)
 
 ## NOTES
