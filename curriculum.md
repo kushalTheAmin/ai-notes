@@ -9,7 +9,7 @@
 - [x] context window (006)
 - [x] the model cant see inside a token: why it cant count letters (007)
 - [x] numbers get chunked, not counted: why arithmetic gets shaky (008)
-- [ ] a space or a capital letter changes the ids
+- [x] a space or a capital letter changes the ids (009)
 - [ ] CAPSTONE: what the model sees, and what it costs, when i send a request
 
 ## ARC 2 - meaning as numbers
@@ -106,8 +106,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 008 established that a run of digits gets cut left to right into groups of at most three, by a hardcoded rule rather than a frequency merge, and that those boundaries never line up with place value, which runs right to left. so arithmetic inside a model is pattern recall over chunks, not column addition, and it degrades as numbers get longer. 009 stays on token boundaries but shrinks the change to the smallest thing possible: a leading space or a capital letter turns what looks like the same word into different ids. it must not re-explain that ids are opaque, 007 and 008 both covered that. it has to show one visible string producing different id arrays depending on what sits next to it.
-last visuals: pseudocode (008), worked example (007), worked example (006)
-last exits: forward (008), stops (007), stops (006)
+baton: 009 established that the vocabulary key is the exact bytes, so a leading space or a capital letter gives a different id for what looks like the same word, and that the space rides on the front of the token rather than sitting in the gap between two tokens. arc 1 is now fully laid: what a token is, how bpe builds the vocabulary, what tokens cost, the ceiling they fill, and the three places token boundaries bite you (letters in 007, digits in 008, whitespace and case in 009). 010 is the arc capstone, so it introduces nothing new. its job is assembly: trace one real request from the string i type, through the cut, to the id array, the count, the price and the ceiling, linking every brick by note number across 001 to 009. the visual has to be an assembly diagram with the note numbers sitting on the parts, not another worked example.
+last visuals: comparison table (009), pseudocode (008), worked example (007)
+last exits: stops (009), forward (008), stops (007)
 
 ## NOTES
