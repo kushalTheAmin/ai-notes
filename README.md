@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 22
+total notes: 23
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -32,3 +32,4 @@ total notes: 22
 
 ## ARC 3 - whats inside the box (enough to not be fooled, no more)
 - [022, all it does is guess the next token](./notes/022-guess-the-next-token.md), one call hands back a score for every token in the vocabulary, something picks one, it gets stuck on the end of the input, and the whole list runs through again
+- [023, attention, every token looks at every other token](./notes/023-attention-every-token-looks.md), each token scores itself against every other token in the input with a dot product, those scores become percentages, and the token gets rebuilt as a weighted blend of its neighbours

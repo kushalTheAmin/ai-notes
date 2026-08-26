@@ -27,7 +27,7 @@
 
 ## ARC 3 - whats inside the box (enough to not be fooled, no more)
 - [x] next-token prediction is the whole game (022)
-- [ ] attention in one note: every token looks at every other token, the superpower and the cost
+- [x] attention in one note: every token looks at every other token, the superpower and the cost (023)
 - [ ] why compute scales badly with input length
 - [ ] model size: what 8B parameters means, and what bigger actually buys
 - [ ] training vs inference: baked-in knowledge has a cutoff
@@ -108,8 +108,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 022 opened arc 3. it established the generation loop: one call gives back one score per token in the vocabulary, 011's table with a score on every row, something picks one of them, that token gets stuck on the end of the input and the whole list runs through again, until the token meaning done wins. it deliberately left two things closed. how the pick gets made is arc 4's, and 022 says so in one line rather than sneaking it in. what happens inside the call that produces those scores is 023's, and that is the next checkbox. attention is the answer: every token in the input looks at every other token, which is how "more" sitting after "the roti needs" ends up scoring ghee high at all. the reader already holds tokens and ids (002), the vocabulary table one row per token (011), and now the loop (022), so rebuild none of those. one thing for 023 to watch: its checkbox says superpower and the cost, but the checkbox right after it owns compute scaling with input length, so run the split test before writing and let 023 name the cost in a line if the draft starts to bulge.
-last visuals: worked example (022), mermaid (021), pseudocode (020)
-last exits: stops (022), forward (021), stops (020)
+baton: 023 opened the box one layer and showed attention as a dot product loop. every token scores itself against every other token in the input with 012's multiply-and-add, those raw scores become percentages, and the token is rebuilt as a weighted average of everything it scored, so " more" walks out of the loop carrying roti and needs. that finally explains 016 mechanically instead of just asserting it. 023 flagged three simplifications on purpose and none of them are debts the next note has to pay: the three transforms per vector, the real percentage formula, and the fact that a generating token only looks backwards. it deliberately did not spend words on the cost, it just planted the number. four tokens made sixteen scores, and the closing line handed "what happens at four thousand" straight to 024. so 024 does not need to re-derive attention at all, it needs to take that sixteen and show why every-token-against-every-token means doubling the input roughly quadruples the work, then connect it to what the reader already pays for: the context window ceiling (006) and the per-token bill (004). thats the whole note. resist pulling in kv caching or flash attention, neither is on the curriculum and both are the kind of prop that means a brick is missing.
+last visuals: worked example (023), worked example (022), mermaid (021)
+last exits: forward (023), stops (022), forward (021)
 
 ## NOTES
