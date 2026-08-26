@@ -20,7 +20,9 @@
 - [x] nearby means similar (015)
 - [x] one word, many meanings: context changes the vector (016)
 - [x] embedding models are separate products from chat models (017)
-- [ ] embeddings arent just for search: classify, cluster, dedup with the same vectors
+- [ ] classify with no training: nearest labeled example wins
+- [ ] near-duplicates: the same score, with a threshold on it
+- [ ] clustering: finding the groups when nothing is labeled
 - [ ] CAPSTONE: how search by meaning works end to end
 
 ## ARC 3 - whats inside the box (enough to not be fooled, no more)
