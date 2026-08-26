@@ -4,7 +4,7 @@
 - [x] characters vs words, and why both fail (001)
 - [x] what a token is (002)
 - [x] BPE: merging by frequency (003)
-- [ ] tokens are money: how pricing actually works
+- [x] tokens are money: how pricing actually works (004)
 - [ ] why hindi and gujarati cost more than english: tokens per word isnt equal
 - [ ] context window
 - [ ] why tokenization causes weird failures
@@ -104,7 +104,7 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 003 showed the bpe merge loop by hand, characters fuse into rot because rot appeared together often enough in the corpus, while i never earned the same merge. 004 picks up right there: now that we know the vocabulary is frequency-built, it explains how those token counts turn into an actual dollar amount on an api bill.
-last visuals: worked example (003), annotated artifact (002)
+baton: 004 showed that input and output tokens are billed at different rates, output costs more per token than input, and walked a real usage block through the math to a dollar figure. 005 picks up right there: pricing assumed english, but the same sentence in hindi or gujarati tokenizes into more pieces, so it quietly costs more to run the exact same prompt.
+last visuals: annotated artifact (004), worked example (003)
 
 ## NOTES
