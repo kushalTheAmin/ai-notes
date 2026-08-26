@@ -29,7 +29,7 @@
 - [x] next-token prediction is the whole game (022)
 - [x] attention in one note: every token looks at every other token, the superpower and the cost (023)
 - [x] why compute scales badly with input length (024)
-- [ ] a parameter is one number the model learned, and 8B is how many
+- [x] a parameter is one number the model learned, and 8B is how many (025)
 - [ ] the model reads every parameter to write one token
 - [ ] what a bigger model actually buys, and what it doesnt
 - [ ] training vs inference: baked-in knowledge has a cutoff
@@ -110,8 +110,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 024 turned 023's sixteen scores into the growth curve. the score count is tokens times tokens, so doubling the input quadruples the attention work, and the table walked that from 4 tokens up to 200,000 tokens making forty billion scores. that gave 006's context window ceiling a reason to exist and explained why a long prompt sits there before the first word appears. 024 kept two caveats live: the rest of the model's work grows in a straight line with tokens so attention only dominates at long inputs, and the loop runs many times per request rather than once. it deliberately stayed away from kv caching and flash attention, neither is on the curriculum. 024 ended on a stop, no forward pointer, so 025 does not inherit a cliffhanger. the next checkbox is model size, what 8B parameters means and what bigger actually buys. that is the first note in this arc that talks about the model's own weights rather than the input, so it needs a clean handoff: 024 measured cost by input length, 025 measures the other axis, the size of the box itself. useful hook if it fits, 011 already established that a vector is an array of floats and that the model holds one big table of them, so a parameter is a number in a table the reader has already seen.
-last visuals: table (024), worked example (023), worked example (022)
-last exits: stops (024), forward (023), stops (022)
+baton: 025 opened the box and found numbers. a parameter is one float at one position, "8B" is a count of eight billion of them, and at 2 bytes each that is roughly 16 billion bytes on disk. the visual was a real open model folder, tiny config.json, 003s tokenizer, then one huge weights file. the reveal was the absence: no grammar module, no facts table, no code deciding anything, and the arithmetic that runs over the numbers is the same for every prompt. 025 left two threads deliberately loose. first, it said nobody typed the values, they got set automatically, and pointed at training as its own note without explaining any of it, so the training checkbox still owns that whole story. second, it ended by promising the bill. the next checkbox is that promise: the model reads every parameter to write one token. 026 must pick up the eight billion figure literally, every one of those numbers gets read per token, and connect it back to 024, which measured cost by input length. 025 is the other axis, cost by model size, and 026 is where that axis actually costs something. useful material for 026: this is why an 8B model runs on a laptop and a huge one does not, and why bigger models are slower and pricier per token. do not drift into quantization or gpu memory bandwidth, neither is on the curriculum.
+last visuals: annotated artifact (025), table (024), worked example (023)
+last exits: forward (025), stops (024), forward (023)
 
 ## NOTES

@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 24
+total notes: 25
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -34,3 +34,4 @@ total notes: 24
 - [022, all it does is guess the next token](./notes/022-guess-the-next-token.md), one call hands back a score for every token in the vocabulary, something picks one, it gets stuck on the end of the input, and the whole list runs through again
 - [023, attention, every token looks at every other token](./notes/023-attention-every-token-looks.md), each token scores itself against every other token in the input with a dot product, those scores become percentages, and the token gets rebuilt as a weighted blend of its neighbours
 - [024, why twice the input is four times the work](./notes/024-twice-the-input-four-times-the-work.md), every token scoring every other token means the score count is tokens times tokens, so doubling the input quadruples the work, which is where the context window ceiling and the wait before the first word both come from
+- [025, a parameter is one number the model learned](./notes/025-a-parameter-is-one-number.md), an open models folder is a tiny config, a tokenizer, and one huge file of eight billion numbers, with no rules or facts table anywhere in it
