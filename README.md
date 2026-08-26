@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 19
+total notes: 20
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -27,3 +27,4 @@ total notes: 19
 - [017, the embedding model is its own product](./notes/017-embedding-model-is-separate.md), a different endpoint with no messages and no temperature, billed on input only, and around 150x cheaper per token than the chat model
 - [018, classify with no training](./notes/018-classify-with-no-training.md), embed one example sentence per label, cosine a new string against each, take the highest, and thats an entire classifier with no training run in it
 - [019, near-duplicates, and the one number you have to pick](./notes/019-near-duplicates-and-a-threshold.md), with no labels to rank against you have to commit to a threshold, you find it by scoring pairs you already know, and whatever you pick both merges non-dupes and misses real ones
+- [020, finding the groups nobody labeled](./notes/020-clustering-no-labels.md), with no labels at all the groups fall out of the scores themselves, by assigning every item to its closest center and moving each center to the average of what it caught, until nothing switches

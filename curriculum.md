@@ -22,7 +22,7 @@
 - [x] embedding models are separate products from chat models (017)
 - [x] classify with no training: nearest labeled example wins (018)
 - [x] near-duplicates: the same score, with a threshold on it (019)
-- [ ] clustering: finding the groups when nothing is labeled
+- [x] clustering: finding the groups when nothing is labeled (020)
 - [ ] CAPSTONE: how search by meaning works end to end
 
 ## ARC 3 - whats inside the box (enough to not be fooled, no more)
@@ -108,8 +108,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 019 spent the escape hatch. with only two strings and no labels to rank against, the cosine has to stand alone, so you commit to one absolute number. 019 established how you get that number, by hand: score thirty pairs you already know the answer for, sort them, and put the line where the two groups roughly separate. it also established that they never fully separate, so every line you pick both merges things that arent dupes and misses things that are, and moving it only swaps which mistake you make. the threshold belongs to one model, swap the embedding model and you redo it. what 020 must pick up is the step where even those hand labels are gone. clustering has no known-dupe pairs to calibrate against and no label sentences either, just a pile of arrays, so the groups have to fall out of the scores themselves. dont re-explain cosine, embed(), the endpoint, what the arrays are, or that absolute scores drift by model.
-last visuals: worked example (019), worked example (018), annotated artifact (017)
-last exits: forward (019), stops (018), stops (017)
+baton: 020 got rid of the last hand-written input. no label sentences, no scored pairs, just a pile of arrays, and the groups fall out of the scores on their own. 020 established the loop that does it: pick a few tickets at random as centers, assign every ticket to the center it scores highest against, move each center to the slot-by-slot average of its members, repeat until nobody switches. it named clustering and k-means, and landed on the catch, that the threshold is gone but a group count takes its place, picked by hand before you have seen a single group, and the loop always returns exactly that many groups whether or not the data has them. 021 is the arc capstone, so its job is assembly, not new mechanism: one picture of search by meaning end to end with every brick from 011 to 020 tagged on the part it explains, each labelled with its note number. the arc built the pieces in order, array (011), dot product (012), cosine (013), embed a string (014), near means similar (015), context changes the vector (016), a separate cheap endpoint (017), then the three things you actually do with the scores, classify (018), dedupe (019), cluster (020). before writing it, run the capstone gap check: the assembly walks a query and a corpus through embed then score then rank, and nothing in 011 to 020 has yet said what happens when the corpus is large enough that scoring every row per query stops being free, so decide whether that brick is needed here or whether it genuinely belongs to arc 6. dont re-explain cosine, embed(), or that scores drift by model.
+last visuals: pseudocode (020), worked example (019), worked example (018)
+last exits: stops (020), forward (019), stops (018)
 
 ## NOTES
