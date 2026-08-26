@@ -5,7 +5,7 @@
 - [x] what a token is (002)
 - [x] BPE: merging by frequency (003)
 - [x] tokens are money: how pricing actually works (004)
-- [ ] why hindi and gujarati cost more than english: tokens per word isnt equal
+- [x] why hindi and gujarati cost more than english: tokens per word isnt equal (005)
 - [ ] context window
 - [ ] why tokenization causes weird failures
 - [ ] CAPSTONE: what the model sees, and what it costs, when i send a request
@@ -104,7 +104,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 004 showed that input and output tokens are billed at different rates, output costs more per token than input, and walked a real usage block through the math to a dollar figure. 005 picks up right there: pricing assumed english, but the same sentence in hindi or gujarati tokenizes into more pieces, so it quietly costs more to run the exact same prompt.
-last visuals: annotated artifact (004), worked example (003)
+baton: 005 showed that the same sentence in a different script turns into a different number of tokens, because the merge vocabulary was built mostly from english text, and that a newer tokenizer narrows the gap without closing it. it ended on the idea that those extra tokens fill something up besides your bill. 006 picks up exactly there: that something is the context window, a hard ceiling on how many tokens one request can hold.
+last visuals: comparison table (005), annotated artifact (004), worked example (003)
+last exits: forward (005), stops (004), forward (003)
 
 ## NOTES
