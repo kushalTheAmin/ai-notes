@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 20
+total notes: 21
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -28,3 +28,4 @@ total notes: 20
 - [018, classify with no training](./notes/018-classify-with-no-training.md), embed one example sentence per label, cosine a new string against each, take the highest, and thats an entire classifier with no training run in it
 - [019, near-duplicates, and the one number you have to pick](./notes/019-near-duplicates-and-a-threshold.md), with no labels to rank against you have to commit to a threshold, you find it by scoring pairs you already know, and whatever you pick both merges non-dupes and misses real ones
 - [020, finding the groups nobody labeled](./notes/020-clustering-no-labels.md), with no labels at all the groups fall out of the scores themselves, by assigning every item to its closest center and moving each center to the average of what it caught, until nothing switches
+- [021, how search by meaning works, end to end](./notes/021-search-by-meaning-end-to-end.md), embed the whole folder once, embed the query at search time, cosine against every stored array and keep the top few, which finds the right note even when it shares no words with what you typed

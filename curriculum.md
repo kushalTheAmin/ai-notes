@@ -23,7 +23,7 @@
 - [x] classify with no training: nearest labeled example wins (018)
 - [x] near-duplicates: the same score, with a threshold on it (019)
 - [x] clustering: finding the groups when nothing is labeled (020)
-- [ ] CAPSTONE: how search by meaning works end to end
+- [x] CAPSTONE: how search by meaning works end to end (021)
 
 ## ARC 3 - whats inside the box (enough to not be fooled, no more)
 - [ ] next-token prediction is the whole game
@@ -108,8 +108,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 020 got rid of the last hand-written input. no label sentences, no scored pairs, just a pile of arrays, and the groups fall out of the scores on their own. 020 established the loop that does it: pick a few tickets at random as centers, assign every ticket to the center it scores highest against, move each center to the slot-by-slot average of its members, repeat until nobody switches. it named clustering and k-means, and landed on the catch, that the threshold is gone but a group count takes its place, picked by hand before you have seen a single group, and the loop always returns exactly that many groups whether or not the data has them. 021 is the arc capstone, so its job is assembly, not new mechanism: one picture of search by meaning end to end with every brick from 011 to 020 tagged on the part it explains, each labelled with its note number. the arc built the pieces in order, array (011), dot product (012), cosine (013), embed a string (014), near means similar (015), context changes the vector (016), a separate cheap endpoint (017), then the three things you actually do with the scores, classify (018), dedupe (019), cluster (020). before writing it, run the capstone gap check: the assembly walks a query and a corpus through embed then score then rank, and nothing in 011 to 020 has yet said what happens when the corpus is large enough that scoring every row per query stops being free, so decide whether that brick is needed here or whether it genuinely belongs to arc 6. dont re-explain cosine, embed(), or that scores drift by model.
-last visuals: pseudocode (020), worked example (019), worked example (018)
-last exits: stops (020), forward (019), stops (018)
+baton: 021 closed arc 2. it assembled search end to end, embed the whole corpus once and keep the arrays beside the text, embed the query at search time with the same model, cosine against every stored array, sort, take the top few, and it tagged every brick from 011 to 020 onto the part it explains. the capstone gap check ran and added nothing: the one thing arc 2 never covered is what you do when scanning every row per query stops being free, and that already sits in arc 6 as "where vectors live", so 021 states the limit in one line and points there rather than duplicating the checkbox. what 021 left open is the handoff to arc 3. every note in arc 2 treated the model as a thing that turns my text into floats, and 021 ends by asking what it does when it has to hand words back. 022 is the arc opener and must pick up exactly that: next-token prediction, the model picks one token, that token gets appended to the input, and the whole thing gets read again. the reader already has tokens and ids (002, 011), so dont rebuild those, and dont re-explain embeddings or cosine, arc 2 is finished and closed. arc 3 headers run (n of 8).
+last visuals: mermaid (021), pseudocode (020), worked example (019)
+last exits: forward (021), stops (020), forward (019)
 
 ## NOTES
