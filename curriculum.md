@@ -21,7 +21,7 @@
 - [x] one word, many meanings: context changes the vector (016)
 - [x] embedding models are separate products from chat models (017)
 - [x] classify with no training: nearest labeled example wins (018)
-- [ ] near-duplicates: the same score, with a threshold on it
+- [x] near-duplicates: the same score, with a threshold on it (019)
 - [ ] clustering: finding the groups when nothing is labeled
 - [ ] CAPSTONE: how search by meaning works end to end
 
@@ -108,8 +108,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 018 took 017's cheap stateless arrays and did something with them that isnt search. a handful of example sentences, one per label, embedded once and kept around, then 013's cosine against a new string and a max() on top, and thats a whole classifier with no training run anywhere in it. the key move was ranking rather than measuring: max only compares the candidate scores to each other, so the absolute-number drift 015 warned about never bites. what 019 must pick up is the case where that escape hatch is gone. near-duplicate detection has no set of labels to rank against, just two strings and the question of whether theyre the same thing, so this is the one place you have to commit to an absolute number and calibrate it on your own data with your own model. dont re-explain cosine, embed(), the endpoint, or what the arrays are.
-last visuals: worked example (018), annotated artifact (017), pseudocode (016)
-last exits: stops (018), stops (017), forward (016)
+baton: 019 spent the escape hatch. with only two strings and no labels to rank against, the cosine has to stand alone, so you commit to one absolute number. 019 established how you get that number, by hand: score thirty pairs you already know the answer for, sort them, and put the line where the two groups roughly separate. it also established that they never fully separate, so every line you pick both merges things that arent dupes and misses things that are, and moving it only swaps which mistake you make. the threshold belongs to one model, swap the embedding model and you redo it. what 020 must pick up is the step where even those hand labels are gone. clustering has no known-dupe pairs to calibrate against and no label sentences either, just a pile of arrays, so the groups have to fall out of the scores themselves. dont re-explain cosine, embed(), the endpoint, what the arrays are, or that absolute scores drift by model.
+last visuals: worked example (019), worked example (018), annotated artifact (017)
+last exits: forward (019), stops (018), stops (017)
 
 ## NOTES
