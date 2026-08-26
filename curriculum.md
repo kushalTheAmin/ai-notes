@@ -28,7 +28,7 @@
 ## ARC 3 - whats inside the box (enough to not be fooled, no more)
 - [x] next-token prediction is the whole game (022)
 - [x] attention in one note: every token looks at every other token, the superpower and the cost (023)
-- [ ] why compute scales badly with input length
+- [x] why compute scales badly with input length (024)
 - [ ] model size: what 8B parameters means, and what bigger actually buys
 - [ ] training vs inference: baked-in knowledge has a cutoff
 - [ ] base model vs assistant: what tuning changed
@@ -108,8 +108,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 023 opened the box one layer and showed attention as a dot product loop. every token scores itself against every other token in the input with 012's multiply-and-add, those raw scores become percentages, and the token is rebuilt as a weighted average of everything it scored, so " more" walks out of the loop carrying roti and needs. that finally explains 016 mechanically instead of just asserting it. 023 flagged three simplifications on purpose and none of them are debts the next note has to pay: the three transforms per vector, the real percentage formula, and the fact that a generating token only looks backwards. it deliberately did not spend words on the cost, it just planted the number. four tokens made sixteen scores, and the closing line handed "what happens at four thousand" straight to 024. so 024 does not need to re-derive attention at all, it needs to take that sixteen and show why every-token-against-every-token means doubling the input roughly quadruples the work, then connect it to what the reader already pays for: the context window ceiling (006) and the per-token bill (004). thats the whole note. resist pulling in kv caching or flash attention, neither is on the curriculum and both are the kind of prop that means a brick is missing.
-last visuals: worked example (023), worked example (022), mermaid (021)
-last exits: forward (023), stops (022), forward (021)
+baton: 024 turned 023's sixteen scores into the growth curve. the score count is tokens times tokens, so doubling the input quadruples the attention work, and the table walked that from 4 tokens up to 200,000 tokens making forty billion scores. that gave 006's context window ceiling a reason to exist and explained why a long prompt sits there before the first word appears. 024 kept two caveats live: the rest of the model's work grows in a straight line with tokens so attention only dominates at long inputs, and the loop runs many times per request rather than once. it deliberately stayed away from kv caching and flash attention, neither is on the curriculum. 024 ended on a stop, no forward pointer, so 025 does not inherit a cliffhanger. the next checkbox is model size, what 8B parameters means and what bigger actually buys. that is the first note in this arc that talks about the model's own weights rather than the input, so it needs a clean handoff: 024 measured cost by input length, 025 measures the other axis, the size of the box itself. useful hook if it fits, 011 already established that a vector is an array of floats and that the model holds one big table of them, so a parameter is a number in a table the reader has already seen.
+last visuals: table (024), worked example (023), worked example (022)
+last exits: stops (024), forward (023), stops (022)
 
 ## NOTES
