@@ -18,7 +18,7 @@
 - [x] cosine similarity (013)
 - [x] what an embedding is (014)
 - [x] nearby means similar (015)
-- [ ] one word, many meanings: context changes the vector
+- [x] one word, many meanings: context changes the vector (016)
 - [ ] embedding models are separate products from chat models
 - [ ] embeddings arent just for search: classify, cluster, dedup with the same vectors
 - [ ] CAPSTONE: how search by meaning works end to end
@@ -106,8 +106,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 015 finally demonstrated the meaning property instead of claiming it. three sentences, A "kadhi takes an hour", B "this dish needs sixty minutes on the stove", C "my typescript build takes an hour", scored with 013's cosine: A vs B lands around 0.55 with zero words in common, A vs C around 0.41 even though it shares three words (takes, an, hour), B vs C around 0.18. so the score tracks meaning, not overlap. 015 also named the vocabulary the rest of the repo will lean on, high cosine means near, and near is direction rather than distance on a map, plus the caveat that absolute values drift by model (some bunch everything into the high 0.7s) so you rank scores against each other and never hardcode a threshold. the digits were labelled approx in the note and should stay approx anywhere they get reused. what 015 quietly assumed is that a piece of text has one settled meaning to encode. 016, "one word, many meanings", is where that breaks: the same word carries a different meaning depending on what sits around it, and 014 already said the array is computed from the whole input rather than per token without ever cashing that out. reuse the A/B/C sentences if they earn their place, dont re-explain cosine or the embeddings api call.
-last visuals: tiny comparison table (015), annotated artifact (014), worked example (013)
-last exits: stops (015), stops (014), forward (013)
+baton: 016 broke the lookup instinct 011 planted. the fixed table row for a token id is where the computation starts, not where it ends: embed() reads the whole string, mixes each word with its neighbours, and what comes back has context baked in, so "bank" in "we sat on the bank of the river" and "bank" in "i moved cash to the bank" land far apart. the line to keep is that there is no vector for a word anywhere, only a vector for a piece of text that happened to contain it. 016 also flagged word2vec as the real historical version of one-row-per-word that genuinely could not separate the two senses. the note ended by pointing at 017: the model doing that mixing is not the chat model. so 017, "embedding models are separate products from chat models", has its opening handed to it already and must cash out that promise, separate endpoint, separate pricing, no conversation. dont re-explain cosine, the 1536 width, or the bank example.
+last visuals: pseudocode (016), tiny comparison table (015), annotated artifact (014)
+last exits: forward (016), stops (015), stops (014)
 
 ## NOTES

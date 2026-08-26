@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 15
+total notes: 16
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -23,3 +23,4 @@ total notes: 15
 - [013, cosine similarity, a score that ignores size](./notes/013-cosine-similarity.md), divide the dot product by both arrays lengths and the score stops caring how big the numbers are
 - [014, what an embedding is](./notes/014-what-an-embedding-is.md), send text to a model and one fixed width array of floats comes back, and the width is the same for two words or eight hundred, which is what makes any two texts comparable
 - [015, nearby means similar](./notes/015-nearby-means-similar.md), the cosine between two sentences tracks what they mean, not which words they share, and that high score is all anyone means by near
+- [016, one word, many meanings](./notes/016-one-word-many-meanings.md), the same word gets different floats depending on what surrounds it, because the array is computed from the whole string instead of looked up per word
