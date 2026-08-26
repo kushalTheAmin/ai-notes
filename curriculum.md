@@ -20,7 +20,7 @@
 - [x] nearby means similar (015)
 - [x] one word, many meanings: context changes the vector (016)
 - [x] embedding models are separate products from chat models (017)
-- [ ] classify with no training: nearest labeled example wins
+- [x] classify with no training: nearest labeled example wins (018)
 - [ ] near-duplicates: the same score, with a threshold on it
 - [ ] clustering: finding the groups when nothing is labeled
 - [ ] CAPSTONE: how search by meaning works end to end
@@ -108,8 +108,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 017 cashed out 016's closing promise. the model that does the mixing is a separate product: POST /v1/embeddings against a named embedding model, no messages array, no roles, no system, no temperature, nothing to prompt and no conversation to carry. billing is input tokens only, no output tokens exist, and per input token it ran 150x under the chat rate 004 set ($3 per million vs $0.02 per million). 017 also planted the constraint that matters for arc 6: vectors only mean something next to vectors from the same embedding model, so switching models means re-embedding everything. what 018 must pick up is that this cheap stateless call returns plain arrays that nothing has said are only for search. "embeddings arent just for search" should take those same arrays and show classify, cluster, dedup falling out of 013's cosine with no new machinery. dont re-explain the endpoint, the pricing, the 1536 width, or what cosine is.
-last visuals: annotated artifact (017), pseudocode (016), tiny comparison table (015)
-last exits: stops (017), forward (016), stops (015)
+baton: 018 took 017's cheap stateless arrays and did something with them that isnt search. a handful of example sentences, one per label, embedded once and kept around, then 013's cosine against a new string and a max() on top, and thats a whole classifier with no training run anywhere in it. the key move was ranking rather than measuring: max only compares the candidate scores to each other, so the absolute-number drift 015 warned about never bites. what 019 must pick up is the case where that escape hatch is gone. near-duplicate detection has no set of labels to rank against, just two strings and the question of whether theyre the same thing, so this is the one place you have to commit to an absolute number and calibrate it on your own data with your own model. dont re-explain cosine, embed(), the endpoint, or what the arrays are.
+last visuals: worked example (018), annotated artifact (017), pseudocode (016)
+last exits: stops (018), stops (017), forward (016)
 
 ## NOTES
