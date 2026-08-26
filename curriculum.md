@@ -14,7 +14,7 @@
 
 ## ARC 2 - meaning as numbers
 - [x] a vector is a list of numbers (011)
-- [ ] dot product, by hand
+- [x] dot product, by hand (012)
 - [ ] cosine similarity
 - [ ] what an embedding is
 - [ ] nearby means similar
@@ -106,8 +106,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 011 answered what the id is a key to. it is a row index into one big table, one row per token in the vocabulary, and the row is a plain array of floats. that is all a vector is. the note stayed on shape and deliberately taught no meaning: it says outright that no single slot is readable on its own, and it flags that the row changes as it moves through the model without explaining how. the one thing it planted for the next note is equal width, that every row in a model is the same length, and it exits by saying two arrays of the same length can be walked together in one loop. so 012, "dot product, by hand", has to be that loop. it should use 3-element arrays, not 768, and show multiply-and-accumulate step by step with real small numbers. it must not reach for cosine similarity or normalising, that is 013. the ids 5868, 19, 72 and 285 are now shared furniture across 009, 010 and 011, reuse them where they fit.
-last visuals: annotated artifact (011), mermaid flowchart (010), comparison table (009)
-last exits: forward (011), forward (010), stops (009)
+baton: 012 laid the loop 011 promised. walk two equal-width arrays together, multiply slot by slot, add the products into a running total, one number out. it taught what that number tracks: same lean in every slot gives a big positive, flipped signs give the negative of it, mixed agreement lands near zero. it used a = [2, -1, 3] against b = [3, -2, 4] (20), c = [-3, 2, -4] (-20) and d = [1, 3, 0] (-1), and those four arrays are now shared furniture, reuse them. the note deliberately left one hole open and named it in the last line: scaling b to [30, -20, 40] does not change direction at all but pushes the total from 20 to 200, so a raw dot product is not a fair score. 013, "cosine similarity", is exactly that fix. it must pick up the 20 versus 200 problem by name and show that dividing out the length gives b and the scaled b the same answer. it still must not say the word embedding or claim any of these numbers carry meaning, 014 and 015 do that. no meaning has been taught in this arc yet, only shape and arithmetic.
+last visuals: worked example (012), annotated artifact (011), mermaid flowchart (010)
+last exits: stops (012), forward (011), forward (010)
 
 ## NOTES

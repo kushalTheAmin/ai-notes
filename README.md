@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 11
+total notes: 12
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -19,3 +19,4 @@ total notes: 11
 
 ## ARC 2 - meaning as numbers
 - [011, a vector is just a list of numbers](./notes/011-a-vector-is-a-list-of-numbers.md), a token id is a row number into one big table, and the row is a fixed length array of floats
+- [012, dot product, by hand](./notes/012-dot-product-by-hand.md), multiply two equal length arrays slot by slot, add up the products, and the one number that falls out tells you whether they lean the same way
