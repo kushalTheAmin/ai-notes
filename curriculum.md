@@ -31,7 +31,7 @@
 - [x] why compute scales badly with input length (024)
 - [x] a parameter is one number the model learned, and 8B is how many (025)
 - [x] the model reads every parameter to write one token (026)
-- [ ] what a bigger model actually buys, and what it doesnt
+- [x] what a bigger model actually buys, and what it doesnt (027)
 - [ ] training vs inference: baked-in knowledge has a cutoff
 - [ ] base model vs assistant: what tuning changed
 - [ ] what fine-tuning can fix and what it cant
@@ -110,8 +110,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 026 closed out the size axis. one token out means the arithmetic runs over all eight billion numbers, and the visual was the generation loop with touch_every_number sitting inside the while, 8,030,000,000 x 300 tokens = 2,409,000,000,000. it landed the two consequences the reader can act on: an 8B model runs on a laptop and a 405B one does not, and a bigger model bills more per output token because there are more numbers to walk. it carried one caveat, that some models are built to skip most of their numbers per token, without naming that design. so cost by model size is now fully paid off across 024, 025 and 026. the next checkbox is the other half of the trade: what a bigger model actually buys, and what it doesnt. 027 must pick up 026s "bigger costs more per token" and ask the obvious follow-up, more of what, exactly. it should be about capability, not cost, and the honest shape is that scale buys broader recall and steadier reasoning on harder inputs while buying nothing on the tokenizer limits from arc 1 (007, 008) and nothing on facts the model never saw. do not drift into benchmarks, leaderboards or model selection, arc 9 owns picking a model.
-last visuals: pseudocode (026), annotated artifact (025), table (024)
-last exits: stops (026), forward (025), stops (024)
+baton: 027 answered what the extra numbers buy. the visual was a five row table, 8B against 405B on the same five asks, and the split it drew is the thing to carry forward. scale buys exactly two things, more text memorized and more of a long instruction held together while writing, and everything else in the table either was already handled by the small model or never had size as its blocker. it folded the strawberry row back into memorizing rather than letting it look like a third win, so 007 and 008 stay intact at any size. it closed on 022 still holding at 405B, a big model is wrong less often and much more convincingly. that closing line is the baton. the next checkbox is training vs inference: baked-in knowledge has a cutoff. 028 must pick up "more text memorized" and ask when that memorizing happened, landing that training is a one time expensive pass that froze the numbers and inference is every call afterwards reading those frozen numbers, so the knowledge has a date on it and your chat cannot add to it. 027 deliberately did not touch the cutoff, it is 028s to build. 028 should end pointing forward, two stops in a row already.
+last visuals: table (027), pseudocode (026), annotated artifact (025)
+last exits: stops (027), stops (026), forward (025)
 
 ## NOTES
