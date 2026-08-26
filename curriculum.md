@@ -17,7 +17,7 @@
 - [x] dot product, by hand (012)
 - [x] cosine similarity (013)
 - [x] what an embedding is (014)
-- [ ] nearby means similar
+- [x] nearby means similar (015)
 - [ ] one word, many meanings: context changes the vector
 - [ ] embedding models are separate products from chat models
 - [ ] embeddings arent just for search: classify, cluster, dedup with the same vectors
@@ -106,8 +106,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 014 finally put a real array on the page. you POST text to an embeddings endpoint and one array of floats comes back for the whole input, not one per token like 011's table, and the width belongs to the model rather than to the text: 1536 for text-embedding-3-small, same 1536 whether you send "hi" (2 chars), "kadhi takes an hour" (19 chars) or an 800-word blog post (~4700 chars). that fixed width is the payoff the note landed on, because 012 demanded equal-width arrays and real text is never equal anything, so now any two strings are cosine-comparable with 013. what 014 only claimed and did not show is the meaning property, one plain sentence saying the floats are trained so text meaning similar things points similar ways. 015, "nearby means similar", owes the reader the demonstration: short real sentences, cosine run between them, high for a paraphrase that shares no words with the original, low for something unrelated. reuse 1536 and the kadhi example, dont re-explain the api call. 014 also introduced the word embedding for the first time and flagged that 011's table row carries the same name.
-last visuals: annotated artifact (014), worked example (013), worked example (012)
-last exits: stops (014), forward (013), stops (012)
+baton: 015 finally demonstrated the meaning property instead of claiming it. three sentences, A "kadhi takes an hour", B "this dish needs sixty minutes on the stove", C "my typescript build takes an hour", scored with 013's cosine: A vs B lands around 0.55 with zero words in common, A vs C around 0.41 even though it shares three words (takes, an, hour), B vs C around 0.18. so the score tracks meaning, not overlap. 015 also named the vocabulary the rest of the repo will lean on, high cosine means near, and near is direction rather than distance on a map, plus the caveat that absolute values drift by model (some bunch everything into the high 0.7s) so you rank scores against each other and never hardcode a threshold. the digits were labelled approx in the note and should stay approx anywhere they get reused. what 015 quietly assumed is that a piece of text has one settled meaning to encode. 016, "one word, many meanings", is where that breaks: the same word carries a different meaning depending on what sits around it, and 014 already said the array is computed from the whole input rather than per token without ever cashing that out. reuse the A/B/C sentences if they earn their place, dont re-explain cosine or the embeddings api call.
+last visuals: tiny comparison table (015), annotated artifact (014), worked example (013)
+last exits: stops (015), stops (014), forward (013)
 
 ## NOTES
