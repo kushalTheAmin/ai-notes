@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 27
+total notes: 28
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -37,3 +37,4 @@ total notes: 27
 - [025, a parameter is one number the model learned](./notes/025-a-parameter-is-one-number.md), an open models folder is a tiny config, a tokenizer, and one huge file of eight billion numbers, with no rules or facts table anywhere in it
 - [026, every number, for every token](./notes/026-every-number-every-token.md), the model runs arithmetic over all eight billion of its numbers to produce a single token, once per token and not once per request, which is why big models are slow to serve and cost more per token out
 - [027, what a bigger model actually buys](./notes/027-what-bigger-actually-buys.md), the same five asks at 8B and 405B, where the extra numbers buy more memorized text and a longer instruction held together, and where they buy nothing at all
+- [028, the numbers got frozen on a date](./notes/028-numbers-frozen-on-a-date.md), training wrote the file once and then it ended, every call since only reads it, so the knowledge carries the date its pile of text stopped and no amount of chatting adds to it

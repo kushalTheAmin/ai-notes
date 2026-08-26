@@ -32,7 +32,7 @@
 - [x] a parameter is one number the model learned, and 8B is how many (025)
 - [x] the model reads every parameter to write one token (026)
 - [x] what a bigger model actually buys, and what it doesnt (027)
-- [ ] training vs inference: baked-in knowledge has a cutoff
+- [x] training vs inference: baked-in knowledge has a cutoff (028)
 - [ ] base model vs assistant: what tuning changed
 - [ ] what fine-tuning can fix and what it cant
 - [ ] CAPSTONE: the box, closed. everything an applied engineer must know about internals and nothing more
@@ -110,8 +110,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 027 answered what the extra numbers buy. the visual was a five row table, 8B against 405B on the same five asks, and the split it drew is the thing to carry forward. scale buys exactly two things, more text memorized and more of a long instruction held together while writing, and everything else in the table either was already handled by the small model or never had size as its blocker. it folded the strawberry row back into memorizing rather than letting it look like a third win, so 007 and 008 stay intact at any size. it closed on 022 still holding at 405B, a big model is wrong less often and much more convincingly. that closing line is the baton. the next checkbox is training vs inference: baked-in knowledge has a cutoff. 028 must pick up "more text memorized" and ask when that memorizing happened, landing that training is a one time expensive pass that froze the numbers and inference is every call afterwards reading those frozen numbers, so the knowledge has a date on it and your chat cannot add to it. 027 deliberately did not touch the cutoff, it is 028s to build. 028 should end pointing forward, two stops in a row already.
-last visuals: table (027), pseudocode (026), annotated artifact (025)
-last exits: stops (027), stops (026), forward (025)
+baton: 028 pulled training and inference apart. the visual was a two lane mermaid diagram, one lane that already ended writing the numbers file and one lane that runs on every call and only reads it, with the read arrow labelled never written. so the file carries the date its text pile stopped, and nothing a user sends writes back into it. two side debts got paid on the way. 025 had promised a note on who set those values, and 028 answered it at the when level with one honest sentence of how, 022s guessing game run over text where the answer is already there, numbers nudged whenever the guess is off. and the search hole is closed, pasted or retrieved text rides along in the request, the file doesnt move, so nobody reads the note and thinks their web-searching assistant disproves it. note prose refers to the lanes by name, never by position, because mermaid does not promise where a subgraph lands. the closing line is the baton: that pile was just text off the internet, nobody in it was answering me. the next checkbox is base model vs assistant: what tuning changed. 029 must pick that up directly, that a model trained only to continue text would carry on writing your question rather than answer it, and that a second much smaller pass over examples of answering is what turned a text continuer into something that replies to you. 029 stays on what tuning changed and leaves what fine-tuning can fix and what it cant to the checkbox after it. exits are open, 029 may end either way, but it cannot point forward if 030 does too.
+last visuals: mermaid (028), table (027), pseudocode (026)
+last exits: forward (028), stops (027), stops (026)
 
 ## NOTES
