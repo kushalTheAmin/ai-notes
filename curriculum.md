@@ -38,7 +38,7 @@
 - [x] CAPSTONE: the box, closed. everything an applied engineer must know about internals and nothing more (031)
 
 ## ARC 4 - how it writes, and the knobs you own
-- [ ] logits to probabilities
+- [x] logits to probabilities (032)
 - [ ] temperature
 - [ ] greedy vs sampling, top-p
 - [ ] why models make things up, and why its not a bug you can patch
@@ -110,8 +110,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 031 closed arc 3 by assembling 022 through 030 into one assembly diagram with two boxes. the top box is built once and already finished, an enormous pile of internet text plus a tiny pile of request/reply pairs going into one file of 8B numbers (025, 027, 028, 029, 030). the bottom box is your request, the same loop forever, every token scoring every other token (023, 024), out comes one score per token in the vocabulary, something picks one, glue it on, run it again until the done token wins (022). the arrow between them is the line the note called the most useful in the arc, read, all of it, once per token, never written back (026). the closing frame is that cost has two axes (what you send, how big the box is), quality is a bigger pile of the same guessing with no threshold where it starts understanding, and what it knows froze on a date. the note deliberately stops rather than pointing forward, so arc 4s opener has to reach back and grab its own hook. that hook already exists and is sharp: both 022 and 031 say the model does not pick, it hands back the full list of scores and the picking happens after, a knob you own. the next checkbox is arc 4s first, logits to probabilities, and it builds on 031 as the previous arcs capstone. it should pick up exactly there, the raw scores that come out of the box are not percentages yet, and turning them into percentages that sum to 1 is the step everything in arc 4 gets to twist. keep it to that one step, temperature is the very next checkbox and must not leak in early. 031 stops, so arc 4s opener may point forward.
-last visuals: mermaid (031), worked example (030), annotated artifact (029)
-last exits: stops (031), forward (030), stops (029)
+baton: 032 opened arc 4 by taking the one line 022 and 031 both ended on, the model hands back a score per token and the picking happens after, and showing what those raw scores actually are. named them logits, unbounded numbers where the only meaning is which is bigger, some of them negative. then the two steps that make them usable, Math.exp on every row (fixes the sign, keeps the order, stretches the gaps) and divide each by the total (now they add to 100%). worked it on four rows, 3.2 / 2.1 / 1.0 / -0.4 becoming 68.0 / 22.6 / 7.5 / 1.9 percent. named the pair softmax. the line the next note has to pick up is the gap stretching: 1.1 points of raw score turned into a 3x difference in probability, and the note ends saying theres a knob that squeezes or stretches those gaps before the exp step even runs. that knob is temperature, the next checkbox, and it is deliberately unexplained so far, only pointed at. temperature divides every logit before softmax, so 032s worked example is the exact table it should reuse and re-run. what 032 explicitly did NOT do is pick a token, we still have 100,000 percentages and no choice made, which is what greedy vs sampling and top-p pick up after temperature. 032 points forward, so 033 may too but the note after it must just stop.
+last visuals: worked example (032), mermaid (031), worked example (030)
+last exits: forward (032), stops (031), forward (030)
 
 ## NOTES
