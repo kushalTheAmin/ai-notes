@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 47
+total notes: 48
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -61,3 +61,4 @@ total notes: 47
 - [045, roles are markers inside one stream of tokens](./notes/045-roles-are-markers.md), the messages array i post gets flattened into one flat list of tokens with small markers for who said what, and it ends on the assistant marker with nothing after it, which is where the guessing starts
 - [046, system vs user, and why system usually wins](./notes/046-system-vs-user.md), there is no code anywhere comparing the two messages, the model follows the system one because tuning made that the habit, which makes it a strong default and never a guarantee
 - [047, the model remembers nothing, your code fakes it](./notes/047-your-code-fakes-the-memory.md), the endpoint keeps nothing between calls, so multi-turn chat is my own code re-posting the whole transcript every turn and paying for the older messages again each time
+- [048, few-shot, showing beats telling](./notes/048-showing-beats-telling.md), nothing in the array proves who wrote what, so a couple of assistant turns i made up myself set the shape of the answer better than a sentence of rules describing it

@@ -56,7 +56,7 @@
 - [x] the request is a list of role-tagged messages, and it all becomes one token stream (045)
 - [x] system vs user: what outranking buys you, and what it doesnt (046)
 - [x] conversation state: the model remembers nothing, your code fakes the memory (047)
-- [ ] few-shot: showing beats telling
+- [x] few-shot: showing beats telling (048)
 - [ ] structured output: getting json you can actually parse
 - [ ] when json breaks: validation and retry
 - [ ] tool calling: the model asks, your code acts
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 047 answered the question 046 left hanging, which was how the system lean survives past turn one. it does not survive anything, the endpoint keeps nothing between calls and the transcript array in my code is the entire memory. the visual ran three turns side by side, showing my code appending the models own reply back into the array tagged assistant, then re-posting the whole thing, with 2 then 4 then 6 messages going out and 20 + 40 + 60 = 120 input tokens paid on 60 tokens of actual text. established as the takeaway: multi-turn chat is a replay your code performs, the older messages are billed again on every call (004), and the array only grows so it eventually meets the ceiling from 006. the caveat that some apis now store the transcript server side is in, framed as the same replay with the storage moved. context budgeting was deliberately left alone, it is its own checkbox later in this arc.
+baton: 048 used what 047 handed over, that i am the one filling the messages array, and pointed out the array carries no proof of who wrote what. so i can write assistant turns the model never said, and few-shot is exactly that. the visual put the same task twice, once as four formatting rules crammed into a system sentence, once as two fake user/assistant pairs answering in the shape i want, with the fabricated lines marked as mine. established as the takeaway: showing works because 022 has the model continuing a pattern rather than reading a rule, the examples ride along on every call and get billed again (004), and the copying is literal so a one-word example gets one-word answers back. the note also said in one clause that the examples can sit inside a single user message instead, same idea, different packaging.
 
-the next checkbox is "few-shot: showing beats telling". it picks up from 047 hard, because 047 just showed that i am the one filling that array, including the assistant items. so nothing stops me writing assistant turns the model never said, and that is the whole trick of few-shot: the examples are fake earlier turns sitting in the same array from 045. why showing beats telling then falls out of 022 and 029, the model is continuing a pattern rather than reading a rule, so a pattern it can see beats a description of one. the honest caveat is that the examples are re-sent and re-billed on every call exactly like the transcript in 047, so a big example block is a standing cost, and that the model can copy the shape of a bad example just as happily as a good one.
+the next checkbox is "structured output: getting json you can actually parse". it picks up from 048 directly, because 048 ended by admitting few-shot only nudges the shape. the examples make the right output likely, they make nothing certain, and 037 already established that something always wins a row so a stray friendly sentence in front of the json is always a live possibility. this note is about what pins it instead: the api level ways of demanding a shape, a schema or a json mode, and what that actually does to the token picking versus what an example does. the honest caveat is that valid json and correct json are different things, the shape can pass and the values inside can still be wrong per 038. keep parse failures and what to do about them out of it, that is the next checkbox after this one.
 
-process note: 047 came in at 185 prose words, deliberately shorter after four notes sat between 190 and 210. that reset the uniformity. 048 can sit anywhere in the range.
+process note: 047 was 185 words, 048 came in at 231. keep 049 nearer the middle of the range so the last three arent all over the ceiling.
 
-last visuals: worked example (047), pseudocode (046), annotated artifact (045). 048 is barred from repeating a worked example. a real prompt with two fabricated example turns marked up would suit few-shot well, and mermaid has not been used since 044 if a flow fits better.
-last exits: forward (047), stops (046), stops (045). 048 may point forward, but then 049 has to just stop.
+last visuals: annotated artifact (048), worked example (047), pseudocode (046). 049 is not barred from anything by the three-in-a-row rule, but two artifacts running means a comparison table or mermaid would freshen it, and mermaid has not appeared since 044.
+last exits: forward (048), forward (047), stops (046). 049 must just stop, no pointing forward.
 
 ## NOTES
