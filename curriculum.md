@@ -54,7 +54,7 @@
 
 ## ARC 5 - the prompt is the program
 - [x] the request is a list of role-tagged messages, and it all becomes one token stream (045)
-- [ ] system vs user: what outranking buys you, and what it doesnt
+- [x] system vs user: what outranking buys you, and what it doesnt (046)
 - [ ] conversation state: the model remembers nothing, your code fakes the memory
 - [ ] few-shot: showing beats telling
 - [ ] structured output: getting json you can actually parse
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 045 opened arc 5 by taking the "system vs user messages" checkbox and splitting it, since the roles and the outranking are two separate jobs. 045 did the first one. it established that the request body is an array where every item carries a role, that the provider flattens that array into one ordinary token stream (002) with small marker tokens for where each message starts, whose it is and where it ends, and that the stream stops on the assistant marker with nothing after it, so the model is running the plain 022 loop over everything above. the line that carries the weight, roles are labels inside one sequence, not channels or fields. it also noted markers differ per model, that hosted apis dont publish theirs, and that some apis take system as its own field but it lands in the same stream anyway.
+baton: 046 closed the hole 045 left open. 045 said roles are markers in one flat stream, so 046 asked what is actually making the model obey the system message, and the answer is nothing in the code. the visual put the rule i imagined (an if that compares the two messages and obeys system) next to what really runs, which is the flatten from 045 and the guess loop from 022, with the role only deciding which marker token goes in. the lean toward system comes from the second tuning pass in 029 and the ranking round after it, so following the system message is the likely continuation. established as the takeaway: system is a strong trained default, newer models hold it better, and it is never a guarantee, a very specific user instruction can beat a vague system line. injection was deliberately not touched, it is still its own checkbox later in this arc.
 
-the next checkbox is "system vs user: what outranking buys you, and what it doesnt". it picks up directly from 045, if system is just a marker in the same stream that the user text sits in, then nothing in the serving code is enforcing a hierarchy. the honest answer is that outranking is trained behaviour, the tuning pass from 029 and 030 shaped the assistant to follow whatever sits after the system marker, and it holds most of the time because thats the habit that got baked in, not because a rule is checked. so a firm enough instruction in a user message can still win, and that caveat belongs in this note rather than being deferred to the prompt injection checkbox later in the arc. do not write injection itself, that brick is already on the list. 029 and 030 are the builds-on to lean on here, and the note should not re-explain what tuning is, only point at it.
+the next checkbox is "conversation state: the model remembers nothing, your code fakes the memory". it picks up cleanly from 046, because the obvious follow-on question is how the system message keeps applying on turn five. the answer is that it does not persist anywhere, your code re-posts the whole array every single call, and the model has no memory between calls at all. lean on 045 for the array and the flattening, and 028 is available for the point that the file of numbers is frozen and never learns from a chat. the honest caveat is that the transcript you resend is the entire memory, so it grows every turn and it is billed every turn, which lands on 006 (the context window) and 004 (input tokens are money) without needing to re-explain either. do not write context budgeting here, that is its own checkbox further down the arc.
 
-process note: 045 landed at 193 prose words. three notes in a row have now sat in the 140 to 200 band, which is good, but the ceiling is 250 and a note that needs the room should take it rather than getting squeezed.
+process note: 046 landed at 204 prose words. the last four notes have all sat between 190 and 210, which is starting to look uniform. one of the next few should deliberately come in short, around 150, or take the room up to 250 if the concept genuinely needs it.
 
-last visuals: annotated artifact (045), mermaid diagram (044), annotated artifact (043). artifact has now run twice in three, so 046 must not be an annotated artifact. the outranking note wants a demonstration rather than a diagram, so a small comparison table of what the system role does and does not get you, or a worked example of two requests with the instruction moved between roles, would both fit and both break the run.
-last exits: stops (045), forward (044), stops (043). only one of the last three points forward, so 046 may go either way.
+last visuals: pseudocode (046), annotated artifact (045), mermaid diagram (044). all three differ, so 047 is only barred from repeating pseudocode. the conversation state note wants to show the same array growing across turns, so a worked example of three consecutive requests side by side, or a small table of what gets re-sent each turn, would both fit.
+last exits: stops (046), stops (045), forward (044). two of the last three just stop, so 047 may point forward.
 
 ## NOTES
