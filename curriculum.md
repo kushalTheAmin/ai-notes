@@ -48,7 +48,8 @@
 - [x] asking the model how sure it is, and why you cant trust the answer (039)
 - [x] stop sequences and max tokens (040)
 - [x] determinism: why the same prompt varies and what that breaks (041)
-- [ ] reasoning models: when the model thinks first, and what those tokens cost
+- [ ] reasoning models: the model does its working out in the open
+- [ ] thinking tokens on the bill: paying for output you dont get to read
 - [ ] CAPSTONE: one tokens journey out, and every knob you control
 
 ## ARC 5 - the prompt is the program
