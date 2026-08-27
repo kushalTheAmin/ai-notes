@@ -40,7 +40,8 @@
 ## ARC 4 - how it writes, and the knobs you own
 - [x] logits to probabilities (032)
 - [x] temperature (033)
-- [ ] greedy vs sampling, top-p
+- [ ] greedy vs sampling: two ways to pick a row
+- [ ] top-k and top-p: trimming the tail before the roll
 - [ ] why models make things up, and why its not a bug you can patch
 - [ ] asking the model how sure it is, and why you cant trust the answer
 - [ ] stop sequences and max tokens
