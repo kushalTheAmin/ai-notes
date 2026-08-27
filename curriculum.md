@@ -62,7 +62,7 @@
 - [x] tool calling: the model asks, your code acts (051)
 - [x] prompt injection: user input IS code now (052)
 - [x] context budget: what to include when you cant include everything (053)
-- [ ] images in: multimodal requests without the mystery
+- [x] images in: multimodal requests without the mystery (054)
 - [ ] CAPSTONE: anatomy of a production prompt
 
 ## ARC 6 - RAG: giving the model your data
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 053 established that the array is a budget with named line items, and that leaving something out is a decision my code has to make on purpose. the visual was a worked example, one turn of a support bot against an 8,000 token window: system prompt 400, four few-shot examples 800, eighteen turns of history 2,600, a fetched ticket 3,900, this turns question 100, so 7,800 in and only 200 left for the answer, then three cuts (drop 2 examples, keep the last 6 turns, truncate the ticket) taking input to 2,600 and leaving 5,400. the things it laid down: the system prompt and the current question are not in the cuttable pool, the ranking is room gained against damage done rather than importance, the biggest fetched blob is usually the cheapest thing to cut and not the chat history i expected, and trimming that blob also shrinks the untrusted surface from 052.
+baton: 054 established that an image is not an attachment sitting outside the prompt. it rides inside the same messages array from 045, as a second content part in a user message next to the text part, so the content field goes from a string to a list of parts and nothing else about the request changes. the visual was an annotated request body with the cost worked out under it: a 900 x 1200 screenshot cut into 28 pixel squares, 33 across by 43 down, 1,419 tokens for the image and about 7 for the question, and the same shot at 600 x 800 down to 638. the things it laid down: the giant base64 string is not what you pay for, cost tracks pixel area so a blank screenshot and a busy photo of the same size cost the same, an image is just another line in the 053 budget table, and resizing before you send is the cheapest cut in that table. the caveats already stated: 28 is one providers square and others use bigger tiles, and something enormous gets scaled down first so there is a ceiling per image.
 
-the next checkbox is "images in: multimodal requests without the mystery". the baton it picks up from 053 is that an image is not free and not outside the budget, it becomes tokens in the same array and lands in the same line-item table. 045 is the shape it arrives in (a message with parts, still role-tagged, still flattened) and 002 is what a token is. keep it to how an image enters the request and what it costs, dont drift into how vision models see, arc 3 already closed the box.
+the next checkbox is the arc 5 CAPSTONE, "anatomy of a production prompt". every brick in the arc is now checked, so it is assembly only. it should build one real request and label every part of it with the note that laid it: the role-tagged array and its flattening (045), system vs user (046), the transcript my own code re-posts each turn (047), the made-up example turns that set the shape (048), the schema that deletes illegal tokens (049), the validate and retry loop around the call (050), the tool call the model emits and my code runs (051), the untrusted customer text sitting in the same flat stream (052), the line item budget and what gets cut (053), and the image part and its pixel-area price (054). visual must be an assembly diagram with note numbers on the parts. run the capstone gap check before drafting.
 
-process note: 051 landed at 235, 052 at 197, 053 at 216. all three sit mid-to-high, so 054 should aim low, somewhere in the 140 to 190 band, to keep the length from flattening out.
+process note: 052 landed at 197, 053 at 216, 054 at 193. the capstone gets a wider budget (up to 350) but should not use all of it just because it can, aim for tight assembly around 280 to 320.
 
-last visuals: worked example (053), annotated artifact (052), mermaid sequence diagram (051). no type has repeated, and 054 is a good place for a mermaid flowchart or an annotated artifact showing a real request body with an image part in it.
-last exits: stops (053), stops (052), forward (051). two of the last three stopped, so 054 can point forward at the capstone without it reading as a formula.
+last visuals: annotated request body with the cost worked under it (054), worked example (053), annotated artifact (052). two annotated bodies in the last three, so the capstone must not be a third. it needs an assembly diagram anyway, a mermaid flowchart of the request being built part by part with note numbers on the parts.
+last exits: forward (054), stops (053), stops (052). the capstone closes an arc so it can point forward at arc 6, but keep it one plain sentence, not a teaser.
 
 ## NOTES
