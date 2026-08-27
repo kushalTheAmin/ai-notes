@@ -42,7 +42,7 @@
 - [x] temperature (033)
 - [x] greedy vs sampling: two ways to pick a row (034)
 - [x] top-k: keep the best few rows, then rescale what survives (035)
-- [ ] top-p: cut by running total, and why a fixed k gets it wrong
+- [x] top-p: cut by running total, and why a fixed k gets it wrong (036)
 - [ ] why models make things up, and why its not a bug you can patch
 - [ ] asking the model how sure it is, and why you cant trust the answer
 - [ ] stop sequences and max tokens
@@ -112,8 +112,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 035 put the knife in. top-k sorts the rows, keeps k of them, deletes the rest, and rolls only on whats left, and the whole note hinged on the second half of that, the rescale. cut to k = 2 on 033s temperature 1.0 row and the survivors add to 0.906 instead of 1, so a roll of 0.95 walks off the end of the list and returns nothing, which is the concrete reason you divide each survivor by 0.906 (0.680 / 0.906 = 0.751, 0.226 / 0.906 = 0.249). landed the trade too: deleting the tail hands its probability to the rows you kept, so " ghee" went 68.0 to 75.1, small k is safer and duller, big k lets the tail back in. the cut is per token, fresh scores and a fresh cut every time. the exact thing 036 must pick up is the last line of 035, that k is a FIXED COUNT, the same count whether the model is dead certain or torn between two words. 036 is top-p and it cuts by running total instead of by count, so the number of survivors changes with the shape of the list. it needs two contrasting lists to make the point, one peaked (ghee at 68% where k = 2 keeps a row nobody wanted) and one flat (four rows near 25% where k = 2 throws away good options), then the same p walking down each until the total passes it. the running total walk is already built in 034 and the rescale is already built in 035, so 036 only has to show that the survivor count moves.
-last visuals: comparison table (035), pseudocode (034), worked example (033). 036 is free of the three-running rule, and a worked example is back on the table there.
-last exits: forward (035), stops (034), forward (033). two of the last three point forward, so 036 must just stop.
+baton: 036 established that top-p cuts by running total instead of by count. add percentages down the sorted list, stop the moment the total passes p, keep everything you touched, rescale. the mechanics were borrowed whole, 034s running-total walk and 035s divide, so the only new thing is where the walk stops. the payoff was the survivor count moving with the shape of the list, same p = 0.9 keeping 2 rows on the peaked ghee list and 4 on a flat one where the model had no favourite, and k = 2 on that flat list deleting 46% of the list by percentage. also landed that p and k can both be set and both filters apply, so the tighter one decides. arc 4 now holds the whole picking pipeline: scores to percentages (032), temperature squeezing the gaps (033), greedy or a roll choosing a row (034), two different cuts narrowing the list before that roll (035, 036). the exact thing 037 must pick up is what every note from 032 to 036 quietly assumed and never said out loud: the model always hands back a full list of percentages and something always gets picked, no matter how little it knows. there is no row for "i dont know" and no score floor under which it declines to answer. thats the opening 037 needs, because the reason models make things up is that the machinery cannot abstain, so a confident wrong token comes out of exactly the same arithmetic as a confident right one. dont let 037 drift into fixes, its about why the fix isnt a patch.
+last visuals: worked example (036), comparison table (035), pseudocode (034). all three differ, so 037 is free of the three-running rule.
+last exits: stops (036), forward (035), stops (034). only one of the last three points forward, so 037 may go either way.
 
 ## NOTES
