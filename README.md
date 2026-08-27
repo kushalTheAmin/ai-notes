@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 52
+total notes: 53
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -66,3 +66,4 @@ total notes: 52
 - [050, when the json breaks, validating and retrying](./notes/050-when-the-json-breaks.md), the loop my own code has to run around the call, one loud failure the parser throws and one quiet failure only i can catch, with the error text appended to the messages so the retry can read its own mistake
 - [051, tool calling, the model asks and your code acts](./notes/051-the-model-asks-your-code-acts.md), the model has no shell and no network, it emits json naming a tool and stops, so running it is my decision and the result goes back into the array as a message for the second call
 - [052, prompt injection, when the text isnt mine](./notes/052-when-the-text-isnt-mine.md), a sentence a customer typed into a support form arrives in the same flat stream as my system message, with nothing marking it as data, and no character escapes it the way it would in sql
+- [053, the context budget, deciding what to leave out](./notes/053-what-to-leave-out.md), one turn of a support bot costed out line by line against an 8,000 token window, where the fetched ticket eats nearly half of it and the chat history i blamed turns out to be the cheap row
