@@ -34,7 +34,7 @@
 - [x] what a bigger model actually buys, and what it doesnt (027)
 - [x] training vs inference: baked-in knowledge has a cutoff (028)
 - [x] base model vs assistant: what tuning changed (029)
-- [ ] what fine-tuning can fix and what it cant
+- [x] what fine-tuning can fix and what it cant (030)
 - [ ] CAPSTONE: the box, closed. everything an applied engineer must know about internals and nothing more
 
 ## ARC 4 - how it writes, and the knobs you own
@@ -110,8 +110,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 029 split the file 028 froze into two versions of itself. the visual was an annotated artifact, one css question sent to two files, the base one continuing into a forum listing of more questions with a reply count, the tuned one answering with flexbox. so a model trained only to continue text does exactly that, and the pages it read put more questions after a question, not an answer. the fix is another round of 028s training, tiny next to the first, over examples all shaped heres a request heres a good reply, which makes answering the likely continuation. same size file, same 022 loop underneath, nothing structural moved. the preference round is paid for in one sentence, people rank two replies and the numbers get nudged toward the winner, and thats where tone and refusals come from, so 030 does not need to re-explain it. the closing line is the baton: a model drifting into writing your next message for you is the base model showing through. the next checkbox is what fine-tuning can fix and what it cant. 030 picks up that the second pass is a real, available lever, you can run one yourself on your own examples, and asks what moving those numbers a little can actually buy. it must land that tuning shifts shape, format and tone, and does not paste new facts in, which is the setup arc 6 needs. 029 stopped, so 030 may point forward. keep an eye on it not becoming arc 9s which-lever note, 030 stays on the one lever.
-last visuals: annotated artifact (029), mermaid (028), table (027)
-last exits: stops (029), forward (028), stops (027)
+baton: 030 took 029s second pass and made it a lever you run yourself, on your own examples, and then drew the line around what it moves. the visual was a worked example, a tuning file of 60 request/reply pairs with 3 shown, all sharing one shape (bullets, terse, a ticket line) while each fact sat in exactly one example, then a question it never saw coming back in perfect house style with an invented ticket number. that ratio is the whole mechanism, the shape got nudged 60 times and each fact once, so tuning teaches form reliably and knowledge unreliably. the caveat is already in place, you can push a fact in by repeating it, but 025s no-facts-table means you get a lean toward some wording rather than a lookup, and updating it means running the tuning again. the closing line is the baton: what a model knows has to arrive at request time instead, which is the door arc 6 walks through. the next checkbox is the arc 3 capstone, the box closed. it assembles 022 through 030 into one picture of the internals an applied engineer needs, every brick labeled by note number: the guessing loop (022), attention and its cost (023, 024), the file of numbers (025, 026, 027), the freeze date (028), the second pass that made it answer (029), and the tuning lever with its limit (030). capstone budget is up to 350 words and the visual should be an assembly diagram. run the gap check before drafting, though nothing looks missing right now. 030 pointed forward, so let the capstone just stop.
+last visuals: worked example (030), annotated artifact (029), mermaid (028)
+last exits: forward (030), stops (029), forward (028)
 
 ## NOTES
