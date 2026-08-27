@@ -53,7 +53,7 @@
 - [x] CAPSTONE: one tokens journey out, and every knob you control (044)
 
 ## ARC 5 - the prompt is the program
-- [ ] the request is a list of role-tagged messages, and it all becomes one token stream
+- [x] the request is a list of role-tagged messages, and it all becomes one token stream (045)
 - [ ] system vs user: what outranking buys you, and what it doesnt
 - [ ] conversation state: the model remembers nothing, your code fakes the memory
 - [ ] few-shot: showing beats telling
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 044 closed arc 4. it established the knobs as an ordered pipeline over one list of scores, temperature divide first (033), then exp and divide into percentages (032), then the k cut (035), then the p cut (036), then rescale, then take the top row or roll (034), then glue on and check the stop (040). it landed on the arc framing, no knob in that path can add a row that wasnt already on the list (037), nothing in it asks whether the winner is true (038), and the winners percentage moves when you set k so it isnt a gauge (039). the last line handed the problem upward, if none of these knobs fixes a wrong answer then the only thing left to change is what you send in, and named arc 5 as where that goes.
+baton: 045 opened arc 5 by taking the "system vs user messages" checkbox and splitting it, since the roles and the outranking are two separate jobs. 045 did the first one. it established that the request body is an array where every item carries a role, that the provider flattens that array into one ordinary token stream (002) with small marker tokens for where each message starts, whose it is and where it ends, and that the stream stops on the assistant marker with nothing after it, so the model is running the plain 022 loop over everything above. the line that carries the weight, roles are labels inside one sequence, not channels or fields. it also noted markers differ per model, that hosted apis dont publish theirs, and that some apis take system as its own field but it lands in the same stream anyway.
 
-the next checkbox is the first brick of arc 5, "system vs user messages: who outranks whom". per the arc-opener rule it builds on 044, the arc 4 capstone, and the baton it must pick up is that last line, the lever moved from the sampling knobs to the text you send. arc 5 is called "the prompt is the program" so this first note should quietly establish that the thing you send is not one string, its a list of role tagged messages, and then do the one atomic job on the checkbox, what system outranking user actually means and what it does not mean. careful on that second half, the honest version is that role separation is trained behaviour and not enforcement, a strong instruction in a user message can still win, so the caveat belongs in the note rather than being saved for the prompt injection checkbox later in the arc. do not spend the note on injection itself, that brick is already on the list. the split test is worth running before drafting, "what the roles are" and "what outranking really buys you" might be two notes.
+the next checkbox is "system vs user: what outranking buys you, and what it doesnt". it picks up directly from 045, if system is just a marker in the same stream that the user text sits in, then nothing in the serving code is enforcing a hierarchy. the honest answer is that outranking is trained behaviour, the tuning pass from 029 and 030 shaped the assistant to follow whatever sits after the system marker, and it holds most of the time because thats the habit that got baked in, not because a rule is checked. so a firm enough instruction in a user message can still win, and that caveat belongs in this note rather than being deferred to the prompt injection checkbox later in the arc. do not write injection itself, that brick is already on the list. 029 and 030 are the builds-on to lean on here, and the note should not re-explain what tuning is, only point at it.
 
-process note: 044 came in at 308 prose words against a 350 capstone ceiling. arc 5s bricks are back on the 120 to 250 budget, and after two runs in the 140 to 190 band it would be good to land there again.
+process note: 045 landed at 193 prose words. three notes in a row have now sat in the 140 to 200 band, which is good, but the ceiling is 250 and a note that needs the room should take it rather than getting squeezed.
 
-last visuals: mermaid diagram (044), annotated artifact (043), mermaid diagram (042). mermaid has now run twice in three notes, so 045 must not be mermaid. an annotated artifact fits the roles note naturally, a real messages array dissected, though that would be an artifact twice in three too. a small comparison table or a worked example would break the run cleanly.
-last exits: forward (044), stops (043), forward (042). two of the last three point forward, so 045 must just stop.
+last visuals: annotated artifact (045), mermaid diagram (044), annotated artifact (043). artifact has now run twice in three, so 046 must not be an annotated artifact. the outranking note wants a demonstration rather than a diagram, so a small comparison table of what the system role does and does not get you, or a worked example of two requests with the instruction moved between roles, would both fit and both break the run.
+last exits: stops (045), forward (044), stops (043). only one of the last three points forward, so 046 may go either way.
 
 ## NOTES
