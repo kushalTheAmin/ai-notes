@@ -35,7 +35,7 @@
 - [x] training vs inference: baked-in knowledge has a cutoff (028)
 - [x] base model vs assistant: what tuning changed (029)
 - [x] what fine-tuning can fix and what it cant (030)
-- [ ] CAPSTONE: the box, closed. everything an applied engineer must know about internals and nothing more
+- [x] CAPSTONE: the box, closed. everything an applied engineer must know about internals and nothing more (031)
 
 ## ARC 4 - how it writes, and the knobs you own
 - [ ] logits to probabilities
@@ -110,8 +110,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 030 took 029s second pass and made it a lever you run yourself, on your own examples, and then drew the line around what it moves. the visual was a worked example, a tuning file of 60 request/reply pairs with 3 shown, all sharing one shape (bullets, terse, a ticket line) while each fact sat in exactly one example, then a question it never saw coming back in perfect house style with an invented ticket number. that ratio is the whole mechanism, the shape got nudged 60 times and each fact once, so tuning teaches form reliably and knowledge unreliably. the caveat is already in place, you can push a fact in by repeating it, but 025s no-facts-table means you get a lean toward some wording rather than a lookup, and updating it means running the tuning again. the closing line is the baton: what a model knows has to arrive at request time instead, which is the door arc 6 walks through. the next checkbox is the arc 3 capstone, the box closed. it assembles 022 through 030 into one picture of the internals an applied engineer needs, every brick labeled by note number: the guessing loop (022), attention and its cost (023, 024), the file of numbers (025, 026, 027), the freeze date (028), the second pass that made it answer (029), and the tuning lever with its limit (030). capstone budget is up to 350 words and the visual should be an assembly diagram. run the gap check before drafting, though nothing looks missing right now. 030 pointed forward, so let the capstone just stop.
-last visuals: worked example (030), annotated artifact (029), mermaid (028)
-last exits: forward (030), stops (029), forward (028)
+baton: 031 closed arc 3 by assembling 022 through 030 into one assembly diagram with two boxes. the top box is built once and already finished, an enormous pile of internet text plus a tiny pile of request/reply pairs going into one file of 8B numbers (025, 027, 028, 029, 030). the bottom box is your request, the same loop forever, every token scoring every other token (023, 024), out comes one score per token in the vocabulary, something picks one, glue it on, run it again until the done token wins (022). the arrow between them is the line the note called the most useful in the arc, read, all of it, once per token, never written back (026). the closing frame is that cost has two axes (what you send, how big the box is), quality is a bigger pile of the same guessing with no threshold where it starts understanding, and what it knows froze on a date. the note deliberately stops rather than pointing forward, so arc 4s opener has to reach back and grab its own hook. that hook already exists and is sharp: both 022 and 031 say the model does not pick, it hands back the full list of scores and the picking happens after, a knob you own. the next checkbox is arc 4s first, logits to probabilities, and it builds on 031 as the previous arcs capstone. it should pick up exactly there, the raw scores that come out of the box are not percentages yet, and turning them into percentages that sum to 1 is the step everything in arc 4 gets to twist. keep it to that one step, temperature is the very next checkbox and must not leak in early. 031 stops, so arc 4s opener may point forward.
+last visuals: mermaid (031), worked example (030), annotated artifact (029)
+last exits: stops (031), forward (030), stops (029)
 
 ## NOTES

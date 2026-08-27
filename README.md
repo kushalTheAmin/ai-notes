@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 30
+total notes: 31
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -40,3 +40,4 @@ total notes: 30
 - [028, the numbers got frozen on a date](./notes/028-numbers-frozen-on-a-date.md), training wrote the file once and then it ended, every call since only reads it, so the knowledge carries the date its pile of text stopped and no amount of chatting adds to it
 - [029, a base model doesnt answer, it continues](./notes/029-base-model-doesnt-answer.md), straight out of training the model just carries on writing the page your question came from, and a second much smaller pass over request and reply examples is what makes answering the likely continuation
 - [030, fine-tuning moves the shape, not the facts](./notes/030-fine-tuning-shape-not-facts.md), you can run that second pass on your own examples, and the shape every example shares gets learned while the fact sitting in just one of them comes back confidently wrong
+- [031, the box, closed](./notes/031-the-box-closed.md), the whole arc in one picture, a file built once out of two training passes and read whole on every single token, with the guessing loop running on top of it
