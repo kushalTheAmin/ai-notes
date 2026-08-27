@@ -43,7 +43,8 @@
 - [x] greedy vs sampling: two ways to pick a row (034)
 - [x] top-k: keep the best few rows, then rescale what survives (035)
 - [x] top-p: cut by running total, and why a fixed k gets it wrong (036)
-- [ ] why models make things up, and why its not a bug you can patch
+- [ ] theres no row for "i dont know": the list always adds to 100 and something always wins
+- [ ] why the made-up answer sounds right, and why its not a bug you can patch
 - [ ] asking the model how sure it is, and why you cant trust the answer
 - [ ] stop sequences and max tokens
 - [ ] determinism: why the same prompt varies and what that breaks
