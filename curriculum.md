@@ -57,7 +57,7 @@
 - [x] system vs user: what outranking buys you, and what it doesnt (046)
 - [x] conversation state: the model remembers nothing, your code fakes the memory (047)
 - [x] few-shot: showing beats telling (048)
-- [ ] structured output: getting json you can actually parse
+- [x] structured output: getting json you can actually parse (049)
 - [ ] when json breaks: validation and retry
 - [ ] tool calling: the model asks, your code acts
 - [ ] prompt injection: user input IS code now
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 048 used what 047 handed over, that i am the one filling the messages array, and pointed out the array carries no proof of who wrote what. so i can write assistant turns the model never said, and few-shot is exactly that. the visual put the same task twice, once as four formatting rules crammed into a system sentence, once as two fake user/assistant pairs answering in the shape i want, with the fabricated lines marked as mine. established as the takeaway: showing works because 022 has the model continuing a pattern rather than reading a rule, the examples ride along on every call and get billed again (004), and the copying is literal so a one-word example gets one-word answers back. the note also said in one clause that the examples can sit inside a single user message instead, same idea, different packaging.
+baton: 049 established that the shape gets pinned below the prompt rather than inside it. attaching a schema zeroes every next-token candidate that would break it and rescales what survives, which is the same cut and rescale as 035 except the cut is legality instead of a count i set. the visual was 035s table rebuilt, four candidate rows for the first output token where "Sure" at 41% is legal until a schema is attached and then isnt, leaving the brace row alone to take the whole 100. the note also said it runs again at every step, so after the opening brace the only legal key is the one key in the schema. two things left standing on purpose: a plain json mode with no schema only promises the braces balance, and valid json can still carry wrong values (038).
 
-the next checkbox is "structured output: getting json you can actually parse". it picks up from 048 directly, because 048 ended by admitting few-shot only nudges the shape. the examples make the right output likely, they make nothing certain, and 037 already established that something always wins a row so a stray friendly sentence in front of the json is always a live possibility. this note is about what pins it instead: the api level ways of demanding a shape, a schema or a json mode, and what that actually does to the token picking versus what an example does. the honest caveat is that valid json and correct json are different things, the shape can pass and the values inside can still be wrong per 038. keep parse failures and what to do about them out of it, that is the next checkbox after this one.
+the next checkbox is "when json breaks: validation and retry". it picks up from the gap 049 left open. 049 covered what a strict schema mode does when you have one, it said nothing about what my code does when the parse still fails, and that was deliberate. this note is the code around the call: parse inside a try, check the values against what i actually expected rather than trusting that a passing shape means a passing answer, and feed the error text back in a retry so the second attempt has the failure sitting in its context. 047 is why that retry costs a whole fresh re-post of the transcript, worth one clause. the honest caveat is that the loop needs a hard cap, because 041 already established the same prompt can fail twice in a row for no new reason.
 
-process note: 047 was 185 words, 048 came in at 231. keep 049 nearer the middle of the range so the last three arent all over the ceiling.
+process note: 047 was 185 words, 048 came in at 231, 049 landed at 210. 050 should sit lower, somewhere near 170, so the arc isnt four notes all crowding the ceiling.
 
-last visuals: annotated artifact (048), worked example (047), pseudocode (046). 049 is not barred from anything by the three-in-a-row rule, but two artifacts running means a comparison table or mermaid would freshen it, and mermaid has not appeared since 044.
-last exits: forward (048), forward (047), stops (046). 049 must just stop, no pointing forward.
+last visuals: comparison table (049), annotated artifact (048), worked example (047). nothing is barred by the three-in-a-row rule, but a table just ran and mermaid has not appeared since 044, so a diagram or a pseudocode block is the fresher pick for 050.
+last exits: stops (049), forward (048), forward (047). 050 is free to point forward.
 
 ## NOTES
