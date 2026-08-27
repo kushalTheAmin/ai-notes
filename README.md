@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 36
+total notes: 37
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -48,3 +48,4 @@ total notes: 36
 - [034, greedy takes the top row, sampling rolls for it](./notes/034-greedy-vs-sampling.md), greedy returns the favourite every time and kills temperature, sampling rolls one number and walks the rows until the running total passes it, so each token wins as often as its percentage says
 - [035, top-k cuts the list before the roll](./notes/035-top-k-cuts-the-tail.md), keep the k best rows and delete the rest, then rescale the survivors so they add back to 1, which quietly hands the deleted tails probability to the favourite
 - [036, top-p cuts by running total, not by count](./notes/036-top-p-cuts-by-running-total.md), add percentages down the list until the total passes p and keep whatever you touched, so a certain model keeps two rows and a torn one keeps four at the very same setting
+- [037, theres no row for "i dont know"](./notes/037-no-row-for-i-dont-know.md), the same two steps run on a prompt the model has seen a million times and on a class i invented while writing the note, and both lists come back adding to 100.0% with a winner on top
