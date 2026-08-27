@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 34
+total notes: 35
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -46,3 +46,4 @@ total notes: 34
 - [032, raw scores arent percentages yet](./notes/032-raw-scores-arent-percentages.md), what the model hands back is unbounded numbers, some of them negative, and two steps turn them into percentages that add to 1
 - [033, temperature is one divide](./notes/033-temperature-is-one-divide.md), the same four scores run at 0.4, 1.0 and 2.0, where a small divisor spreads them apart and a big one squashes them together, and the ranking never moves either way
 - [034, greedy takes the top row, sampling rolls for it](./notes/034-greedy-vs-sampling.md), greedy returns the favourite every time and kills temperature, sampling rolls one number and walks the rows until the running total passes it, so each token wins as often as its percentage says
+- [035, top-k cuts the list before the roll](./notes/035-top-k-cuts-the-tail.md), keep the k best rows and delete the rest, then rescale the survivors so they add back to 1, which quietly hands the deleted tails probability to the favourite

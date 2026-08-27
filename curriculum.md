@@ -41,7 +41,7 @@
 - [x] logits to probabilities (032)
 - [x] temperature (033)
 - [x] greedy vs sampling: two ways to pick a row (034)
-- [ ] top-k: keep the best few rows, then rescale what survives
+- [x] top-k: keep the best few rows, then rescale what survives (035)
 - [ ] top-p: cut by running total, and why a fixed k gets it wrong
 - [ ] why models make things up, and why its not a bug you can patch
 - [ ] asking the model how sure it is, and why you cant trust the answer
@@ -112,8 +112,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 034 finally picked something, and it closed the hole 033 dug. two pickers exist. greedy returns the top row and nothing else, so under greedy temperature is dead, and temperature 0 is exactly greedy because you cant divide by zero and providers just skip the roll. sampling rolls one random number between 0 and 1, then walks down the rows adding percentages until the running total passes the roll, which means every row owns a slice of the 0 to 1 line as wide as its own percentage. traced it on 033s temperature 1.0 row (0.680 / 0.226 / 0.075 / 0.019, running totals 0.680, 0.906, 0.981, 1.000) with a roll of 0.83, and it landed on " time" instead of the favourite " ghee". framed the loop as the weighted random pick every dev has already written. the exact thing the next checkbox must pick up: that walk covers the WHOLE vocabulary, all 100,000 rows, and " flour" at 0.019 still owns a real slice of the line, which means garbage tokens keep a live chance on every single roll. top-k and top-p are the cut. the next note keeps only the top rows, throws the tail away before the roll, and renormalizes whats left so it still adds to 1. the roll and the slice picture are both built now, so 035 only has to show where the knife goes and what renormalizing does to the survivors.
-last visuals: pseudocode (034), worked example (033), worked example (032). nothing is three running so 035 is free, but a third worked example inside four notes would read samey.
-last exits: stops (034), forward (033), forward (032). 035 may point forward.
+baton: 035 put the knife in. top-k sorts the rows, keeps k of them, deletes the rest, and rolls only on whats left, and the whole note hinged on the second half of that, the rescale. cut to k = 2 on 033s temperature 1.0 row and the survivors add to 0.906 instead of 1, so a roll of 0.95 walks off the end of the list and returns nothing, which is the concrete reason you divide each survivor by 0.906 (0.680 / 0.906 = 0.751, 0.226 / 0.906 = 0.249). landed the trade too: deleting the tail hands its probability to the rows you kept, so " ghee" went 68.0 to 75.1, small k is safer and duller, big k lets the tail back in. the cut is per token, fresh scores and a fresh cut every time. the exact thing 036 must pick up is the last line of 035, that k is a FIXED COUNT, the same count whether the model is dead certain or torn between two words. 036 is top-p and it cuts by running total instead of by count, so the number of survivors changes with the shape of the list. it needs two contrasting lists to make the point, one peaked (ghee at 68% where k = 2 keeps a row nobody wanted) and one flat (four rows near 25% where k = 2 throws away good options), then the same p walking down each until the total passes it. the running total walk is already built in 034 and the rescale is already built in 035, so 036 only has to show that the survivor count moves.
+last visuals: comparison table (035), pseudocode (034), worked example (033). 036 is free of the three-running rule, and a worked example is back on the table there.
+last exits: forward (035), stops (034), forward (033). two of the last three point forward, so 036 must just stop.
 
 ## NOTES
