@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 43
+total notes: 44
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -55,3 +55,4 @@ total notes: 43
 - [041, the same prompt, twice, two different answers](./notes/041-same-prompt-two-answers.md), two calls at temperature 0 come back with the scores nudged in the 4th decimal, which is enough to swap a near-tied top row and send the rest of the answer down a different sentence
 - [042, the model thinks by writing](./notes/042-thinking-by-writing.md), one sum forked two ways, where a plain model has to commit to the first digit of the answer before doing any working out, and a reasoning model spends tokens on the steps instead, because the text already written is the only scratch space it has
 - [043, the thinking shows up on the bill](./notes/043-thinking-on-the-bill.md), one usage block where 1100 of 1200 output tokens went on thinking i never got to read, billed at the same rate as the answer, and a max_tokens ceiling that counts those tokens too
+- [044, one tokens journey out, and every knob you own](./notes/044-one-token-on-the-way-out.md), the whole arc as one pipeline, where temperature divides before the exp step, k and p cut the list, and something takes the top row or rolls for it, with no step anywhere in it that can add a row the model didnt already have
