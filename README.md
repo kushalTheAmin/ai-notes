@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 49
+total notes: 50
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -63,3 +63,4 @@ total notes: 49
 - [047, the model remembers nothing, your code fakes it](./notes/047-your-code-fakes-the-memory.md), the endpoint keeps nothing between calls, so multi-turn chat is my own code re-posting the whole transcript every turn and paying for the older messages again each time
 - [048, few-shot, showing beats telling](./notes/048-showing-beats-telling.md), nothing in the array proves who wrote what, so a couple of assistant turns i made up myself set the shape of the answer better than a sentence of rules describing it
 - [049, structured output, getting json you can actually parse](./notes/049-json-you-can-parse.md), attaching a schema doesnt reword the instruction, it deletes every candidate token that would break the shape before the pick happens, so the friendly sentence in front of the json stops being a legal move
+- [050, when the json breaks, validating and retrying](./notes/050-when-the-json-breaks.md), the loop my own code has to run around the call, one loud failure the parser throws and one quiet failure only i can catch, with the error text appended to the messages so the retry can read its own mistake

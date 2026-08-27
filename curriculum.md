@@ -58,7 +58,7 @@
 - [x] conversation state: the model remembers nothing, your code fakes the memory (047)
 - [x] few-shot: showing beats telling (048)
 - [x] structured output: getting json you can actually parse (049)
-- [ ] when json breaks: validation and retry
+- [x] when json breaks: validation and retry (050)
 - [ ] tool calling: the model asks, your code acts
 - [ ] prompt injection: user input IS code now
 - [ ] context budget: what to include when you cant include everything
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 049 established that the shape gets pinned below the prompt rather than inside it. attaching a schema zeroes every next-token candidate that would break it and rescales what survives, which is the same cut and rescale as 035 except the cut is legality instead of a count i set. the visual was 035s table rebuilt, four candidate rows for the first output token where "Sure" at 41% is legal until a schema is attached and then isnt, leaving the brace row alone to take the whole 100. the note also said it runs again at every step, so after the opening brace the only legal key is the one key in the schema. two things left standing on purpose: a plain json mode with no schema only promises the braces balance, and valid json can still carry wrong values (038).
+baton: 050 established the loop my own code runs around the call. the visual was a flowchart, send messages, parse, check the values, and two ways out of it, use it or give up after 3 tries, with the retry edge carrying the broken reply and the error text back into the messages array. the two failures were kept separate on purpose: the parse throwing is loud and happens even under a schema when the max tokens ceiling (040) cuts the object mid-string, and the quiet one is json that parses clean while carrying a wrong value, which nothing but my own check will catch (038). the cap came from 041, the same prompt can fail twice for no new reason.
 
-the next checkbox is "when json breaks: validation and retry". it picks up from the gap 049 left open. 049 covered what a strict schema mode does when you have one, it said nothing about what my code does when the parse still fails, and that was deliberate. this note is the code around the call: parse inside a try, check the values against what i actually expected rather than trusting that a passing shape means a passing answer, and feed the error text back in a retry so the second attempt has the failure sitting in its context. 047 is why that retry costs a whole fresh re-post of the transcript, worth one clause. the honest caveat is that the loop needs a hard cap, because 041 already established the same prompt can fail twice in a row for no new reason.
+the next checkbox is "tool calling: the model asks, your code acts". it picks up the retry edge directly. 050 already has my code reading a json reply, deciding something about it, and posting a message back into the array, so tool calling is that same loop with the json meaning "run this for me" instead of "here is your answer", and the thing i append being a result rather than an error. 045 is the note to lean on for where a tool result sits in the stream, and 047 for why every one of these round trips re-posts the whole transcript. the honest caveat is that the model never runs anything, it only asks, and the deciding whether to actually run it stays in my code.
 
-process note: 047 was 185 words, 048 came in at 231, 049 landed at 210. 050 should sit lower, somewhere near 170, so the arc isnt four notes all crowding the ceiling.
+process note: 048 came in at 231, 049 landed at 210, 050 came down to 179. the arc is varying properly now, so 051 has room to run longer if tool calling needs it, just not two long ones back to back.
 
-last visuals: comparison table (049), annotated artifact (048), worked example (047). nothing is barred by the three-in-a-row rule, but a table just ran and mermaid has not appeared since 044, so a diagram or a pseudocode block is the fresher pick for 050.
-last exits: stops (049), forward (048), forward (047). 050 is free to point forward.
+last visuals: mermaid flowchart (050), comparison table (049), annotated artifact (048). a flowchart just ran, so 051 wants something else. tool calling is two sides passing messages back and forth, which is what a mermaid sequence diagram is for, and that is a different shape from a flowchart. a worked example of the message array is the other candidate.
+last exits: stops (050), stops (049), forward (048). two stops in a row, so 051 should point forward.
 
 ## NOTES
