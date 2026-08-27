@@ -40,7 +40,7 @@
 ## ARC 4 - how it writes, and the knobs you own
 - [x] logits to probabilities (032)
 - [x] temperature (033)
-- [ ] greedy vs sampling: two ways to pick a row
+- [x] greedy vs sampling: two ways to pick a row (034)
 - [ ] top-k and top-p: trimming the tail before the roll
 - [ ] why models make things up, and why its not a bug you can patch
 - [ ] asking the model how sure it is, and why you cant trust the answer
@@ -111,8 +111,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 033 took the gap 032 ended on and named the knob that controls it. temperature is one divide, applied to every raw score before the exp step, and thats the entire mechanism, there is nothing else to it. re-ran 032s exact four rows (3.2 / 2.1 / 1.0 / -0.4) at three settings: 0.4 gives 93.6 / 6.0 / 0.4 / 0.0, 1.0 gives 032s original 68.0 / 22.6 / 7.5 / 1.9, 2.0 gives 48.2 / 27.8 / 16.0 / 8.0. small divisor spreads the scores apart so the leader runs away with it, big divisor squashes them together so the losers get real odds. also paid off the promise from 017 where temperature sat unexplained in a request json. the caveat 033 planted, and the exact thing the next note must pick up: dividing every score by the same positive number cannot reorder them, so the ranking is identical at every temperature, and 033 says out loud that if whatever comes next always grabs the top row then temperature does nothing at all. that is the setup for greedy vs sampling and top-p. greedy IS always grabbing the top row, so the next note explains why temperature is dead under it, then what sampling does instead (roll against the percentages) and how top-p trims the tail before the roll. the percentages are now fully built and correct, so the next note needs no new arithmetic, it needs to show the act of choosing. still nothing has been picked in the whole arc.
-last visuals: worked example (033), worked example (032), mermaid (031). two worked examples running, so 034 must NOT be a worked example, use mermaid or pseudocode.
-last exits: forward (033), forward (032), stops (031). two forwards running, so 034 must just stop.
+baton: 034 finally picked something, and it closed the hole 033 dug. two pickers exist. greedy returns the top row and nothing else, so under greedy temperature is dead, and temperature 0 is exactly greedy because you cant divide by zero and providers just skip the roll. sampling rolls one random number between 0 and 1, then walks down the rows adding percentages until the running total passes the roll, which means every row owns a slice of the 0 to 1 line as wide as its own percentage. traced it on 033s temperature 1.0 row (0.680 / 0.226 / 0.075 / 0.019, running totals 0.680, 0.906, 0.981, 1.000) with a roll of 0.83, and it landed on " time" instead of the favourite " ghee". framed the loop as the weighted random pick every dev has already written. the exact thing the next checkbox must pick up: that walk covers the WHOLE vocabulary, all 100,000 rows, and " flour" at 0.019 still owns a real slice of the line, which means garbage tokens keep a live chance on every single roll. top-k and top-p are the cut. the next note keeps only the top rows, throws the tail away before the roll, and renormalizes whats left so it still adds to 1. the roll and the slice picture are both built now, so 035 only has to show where the knife goes and what renormalizing does to the survivors.
+last visuals: pseudocode (034), worked example (033), worked example (032). nothing is three running so 035 is free, but a third worked example inside four notes would read samey.
+last exits: stops (034), forward (033), forward (032). 035 may point forward.
 
 ## NOTES
