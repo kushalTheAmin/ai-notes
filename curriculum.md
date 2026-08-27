@@ -55,7 +55,7 @@
 ## ARC 5 - the prompt is the program
 - [x] the request is a list of role-tagged messages, and it all becomes one token stream (045)
 - [x] system vs user: what outranking buys you, and what it doesnt (046)
-- [ ] conversation state: the model remembers nothing, your code fakes the memory
+- [x] conversation state: the model remembers nothing, your code fakes the memory (047)
 - [ ] few-shot: showing beats telling
 - [ ] structured output: getting json you can actually parse
 - [ ] when json breaks: validation and retry
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 046 closed the hole 045 left open. 045 said roles are markers in one flat stream, so 046 asked what is actually making the model obey the system message, and the answer is nothing in the code. the visual put the rule i imagined (an if that compares the two messages and obeys system) next to what really runs, which is the flatten from 045 and the guess loop from 022, with the role only deciding which marker token goes in. the lean toward system comes from the second tuning pass in 029 and the ranking round after it, so following the system message is the likely continuation. established as the takeaway: system is a strong trained default, newer models hold it better, and it is never a guarantee, a very specific user instruction can beat a vague system line. injection was deliberately not touched, it is still its own checkbox later in this arc.
+baton: 047 answered the question 046 left hanging, which was how the system lean survives past turn one. it does not survive anything, the endpoint keeps nothing between calls and the transcript array in my code is the entire memory. the visual ran three turns side by side, showing my code appending the models own reply back into the array tagged assistant, then re-posting the whole thing, with 2 then 4 then 6 messages going out and 20 + 40 + 60 = 120 input tokens paid on 60 tokens of actual text. established as the takeaway: multi-turn chat is a replay your code performs, the older messages are billed again on every call (004), and the array only grows so it eventually meets the ceiling from 006. the caveat that some apis now store the transcript server side is in, framed as the same replay with the storage moved. context budgeting was deliberately left alone, it is its own checkbox later in this arc.
 
-the next checkbox is "conversation state: the model remembers nothing, your code fakes the memory". it picks up cleanly from 046, because the obvious follow-on question is how the system message keeps applying on turn five. the answer is that it does not persist anywhere, your code re-posts the whole array every single call, and the model has no memory between calls at all. lean on 045 for the array and the flattening, and 028 is available for the point that the file of numbers is frozen and never learns from a chat. the honest caveat is that the transcript you resend is the entire memory, so it grows every turn and it is billed every turn, which lands on 006 (the context window) and 004 (input tokens are money) without needing to re-explain either. do not write context budgeting here, that is its own checkbox further down the arc.
+the next checkbox is "few-shot: showing beats telling". it picks up from 047 hard, because 047 just showed that i am the one filling that array, including the assistant items. so nothing stops me writing assistant turns the model never said, and that is the whole trick of few-shot: the examples are fake earlier turns sitting in the same array from 045. why showing beats telling then falls out of 022 and 029, the model is continuing a pattern rather than reading a rule, so a pattern it can see beats a description of one. the honest caveat is that the examples are re-sent and re-billed on every call exactly like the transcript in 047, so a big example block is a standing cost, and that the model can copy the shape of a bad example just as happily as a good one.
 
-process note: 046 landed at 204 prose words. the last four notes have all sat between 190 and 210, which is starting to look uniform. one of the next few should deliberately come in short, around 150, or take the room up to 250 if the concept genuinely needs it.
+process note: 047 came in at 185 prose words, deliberately shorter after four notes sat between 190 and 210. that reset the uniformity. 048 can sit anywhere in the range.
 
-last visuals: pseudocode (046), annotated artifact (045), mermaid diagram (044). all three differ, so 047 is only barred from repeating pseudocode. the conversation state note wants to show the same array growing across turns, so a worked example of three consecutive requests side by side, or a small table of what gets re-sent each turn, would both fit.
-last exits: stops (046), stops (045), forward (044). two of the last three just stop, so 047 may point forward.
+last visuals: worked example (047), pseudocode (046), annotated artifact (045). 048 is barred from repeating a worked example. a real prompt with two fabricated example turns marked up would suit few-shot well, and mermaid has not been used since 044 if a flow fits better.
+last exits: forward (047), stops (046), stops (045). 048 may point forward, but then 049 has to just stop.
 
 ## NOTES
