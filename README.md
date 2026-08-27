@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 38
+total notes: 39
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -50,3 +50,4 @@ total notes: 38
 - [036, top-p cuts by running total, not by count](./notes/036-top-p-cuts-by-running-total.md), add percentages down the list until the total passes p and keep whatever you touched, so a certain model keeps two rows and a torn one keeps four at the very same setting
 - [037, theres no row for "i dont know"](./notes/037-no-row-for-i-dont-know.md), the same two steps run on a prompt the model has seen a million times and on a class i invented while writing the note, and both lists come back adding to 100.0% with a winner on top
 - [038, why the made-up answer sounds right](./notes/038-why-the-made-up-answer-sounds-right.md), a real export and one i invented run through the exact same steps and come out looking the same, and nowhere in those steps is there anything that asks whether it is true
+- [039, asking the model how sure it is](./notes/039-asking-how-sure-it-is.md), the winning percentage is about which word beat which and it more than doubles when you set top-k, and asking in words just runs the same loop over tokens like "im highly confident"
