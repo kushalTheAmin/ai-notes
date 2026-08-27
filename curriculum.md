@@ -53,7 +53,8 @@
 - [x] CAPSTONE: one tokens journey out, and every knob you control (044)
 
 ## ARC 5 - the prompt is the program
-- [ ] system vs user messages: who outranks whom
+- [ ] the request is a list of role-tagged messages, and it all becomes one token stream
+- [ ] system vs user: what outranking buys you, and what it doesnt
 - [ ] conversation state: the model remembers nothing, your code fakes the memory
 - [ ] few-shot: showing beats telling
 - [ ] structured output: getting json you can actually parse
