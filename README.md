@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 39
+total notes: 40
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -51,3 +51,4 @@ total notes: 39
 - [037, theres no row for "i dont know"](./notes/037-no-row-for-i-dont-know.md), the same two steps run on a prompt the model has seen a million times and on a class i invented while writing the note, and both lists come back adding to 100.0% with a winner on top
 - [038, why the made-up answer sounds right](./notes/038-why-the-made-up-answer-sounds-right.md), a real export and one i invented run through the exact same steps and come out looking the same, and nowhere in those steps is there anything that asks whether it is true
 - [039, asking the model how sure it is](./notes/039-asking-how-sure-it-is.md), the winning percentage is about which word beat which and it more than doubles when you set top-k, and asking in words just runs the same loop over tokens like "im highly confident"
+- [040, how the loop actually stops](./notes/040-how-the-loop-stops.md), one prompt run three ways, the done token winning a row on its own, a stop string the api matches on the way out, and a token ceiling that cuts mid-word, with only the stop_reason flag telling a finished answer apart from a truncated one
