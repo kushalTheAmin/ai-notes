@@ -39,7 +39,7 @@
 
 ## ARC 4 - how it writes, and the knobs you own
 - [x] logits to probabilities (032)
-- [ ] temperature
+- [x] temperature (033)
 - [ ] greedy vs sampling, top-p
 - [ ] why models make things up, and why its not a bug you can patch
 - [ ] asking the model how sure it is, and why you cant trust the answer
@@ -110,8 +110,8 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 032 opened arc 4 by taking the one line 022 and 031 both ended on, the model hands back a score per token and the picking happens after, and showing what those raw scores actually are. named them logits, unbounded numbers where the only meaning is which is bigger, some of them negative. then the two steps that make them usable, Math.exp on every row (fixes the sign, keeps the order, stretches the gaps) and divide each by the total (now they add to 100%). worked it on four rows, 3.2 / 2.1 / 1.0 / -0.4 becoming 68.0 / 22.6 / 7.5 / 1.9 percent. named the pair softmax. the line the next note has to pick up is the gap stretching: 1.1 points of raw score turned into a 3x difference in probability, and the note ends saying theres a knob that squeezes or stretches those gaps before the exp step even runs. that knob is temperature, the next checkbox, and it is deliberately unexplained so far, only pointed at. temperature divides every logit before softmax, so 032s worked example is the exact table it should reuse and re-run. what 032 explicitly did NOT do is pick a token, we still have 100,000 percentages and no choice made, which is what greedy vs sampling and top-p pick up after temperature. 032 points forward, so 033 may too but the note after it must just stop.
-last visuals: worked example (032), mermaid (031), worked example (030)
-last exits: forward (032), stops (031), forward (030)
+baton: 033 took the gap 032 ended on and named the knob that controls it. temperature is one divide, applied to every raw score before the exp step, and thats the entire mechanism, there is nothing else to it. re-ran 032s exact four rows (3.2 / 2.1 / 1.0 / -0.4) at three settings: 0.4 gives 93.6 / 6.0 / 0.4 / 0.0, 1.0 gives 032s original 68.0 / 22.6 / 7.5 / 1.9, 2.0 gives 48.2 / 27.8 / 16.0 / 8.0. small divisor spreads the scores apart so the leader runs away with it, big divisor squashes them together so the losers get real odds. also paid off the promise from 017 where temperature sat unexplained in a request json. the caveat 033 planted, and the exact thing the next note must pick up: dividing every score by the same positive number cannot reorder them, so the ranking is identical at every temperature, and 033 says out loud that if whatever comes next always grabs the top row then temperature does nothing at all. that is the setup for greedy vs sampling and top-p. greedy IS always grabbing the top row, so the next note explains why temperature is dead under it, then what sampling does instead (roll against the percentages) and how top-p trims the tail before the roll. the percentages are now fully built and correct, so the next note needs no new arithmetic, it needs to show the act of choosing. still nothing has been picked in the whole arc.
+last visuals: worked example (033), worked example (032), mermaid (031). two worked examples running, so 034 must NOT be a worked example, use mermaid or pseudocode.
+last exits: forward (033), forward (032), stops (031). two forwards running, so 034 must just stop.
 
 ## NOTES
