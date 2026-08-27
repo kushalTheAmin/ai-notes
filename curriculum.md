@@ -41,7 +41,8 @@
 - [x] logits to probabilities (032)
 - [x] temperature (033)
 - [x] greedy vs sampling: two ways to pick a row (034)
-- [ ] top-k and top-p: trimming the tail before the roll
+- [ ] top-k: keep the best few rows, then rescale what survives
+- [ ] top-p: cut by running total, and why a fixed k gets it wrong
 - [ ] why models make things up, and why its not a bug you can patch
 - [ ] asking the model how sure it is, and why you cant trust the answer
 - [ ] stop sequences and max tokens
