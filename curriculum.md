@@ -86,7 +86,8 @@
 - [x] "looks good" doesnt scale (071)
 - [x] the golden dataset: 50 examples beat vibes (072)
 - [x] exact match vs semantic scoring (073)
-- [ ] llm-as-judge, and its biases
+- [ ] llm-as-judge: hand the answer to a model and ask it to grade
+- [ ] where the judge tilts: longer answers, its own style, and everything passing
 - [ ] the score moved, is it real: why small eval sets lie
 - [ ] regression: the prompt change that broke three other things
 - [ ] evals in ci: treating prompts like code
