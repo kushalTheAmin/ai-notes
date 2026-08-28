@@ -63,7 +63,7 @@
 - [x] prompt injection: user input IS code now (052)
 - [x] context budget: what to include when you cant include everything (053)
 - [x] images in: multimodal requests without the mystery (054)
-- [ ] CAPSTONE: anatomy of a production prompt
+- [x] CAPSTONE: anatomy of a production prompt (055)
 
 ## ARC 6 - RAG: giving the model your data
 - [ ] closed-book vs open-book
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 054 established that an image is not an attachment sitting outside the prompt. it rides inside the same messages array from 045, as a second content part in a user message next to the text part, so the content field goes from a string to a list of parts and nothing else about the request changes. the visual was an annotated request body with the cost worked out under it: a 900 x 1200 screenshot cut into 28 pixel squares, 33 across by 43 down, 1,419 tokens for the image and about 7 for the question, and the same shot at 600 x 800 down to 638. the things it laid down: the giant base64 string is not what you pay for, cost tracks pixel area so a blank screenshot and a busy photo of the same size cost the same, an image is just another line in the 053 budget table, and resizing before you send is the cheapest cut in that table. the caveats already stated: 28 is one providers square and others use bigger tiles, and something enormous gets scaled down first so there is a ceiling per image.
+baton: 055 closed arc 5 by putting the whole request in one picture. what it established: the prompt is not a string, its an array my code rebuilds on every call (045), and most of what lands in it is text i never typed, the transcript replayed because the endpoint kept nothing (047), the text a tool went and fetched (051), an image riding along as a second content part (054). the two loops are part of the shape now, the budget check before posting (053) and the validate and retry after it (050), and the untrusted-text problem rides in with anything fetched (052). the visual was a mermaid assembly flowchart with note numbers on every part. the closing line pointed at arc 6 as putting a lot more not-mine text in there, on purpose.
 
-the next checkbox is the arc 5 CAPSTONE, "anatomy of a production prompt". every brick in the arc is now checked, so it is assembly only. it should build one real request and label every part of it with the note that laid it: the role-tagged array and its flattening (045), system vs user (046), the transcript my own code re-posts each turn (047), the made-up example turns that set the shape (048), the schema that deletes illegal tokens (049), the validate and retry loop around the call (050), the tool call the model emits and my code runs (051), the untrusted customer text sitting in the same flat stream (052), the line item budget and what gets cut (053), and the image part and its pixel-area price (054). visual must be an assembly diagram with note numbers on the parts. run the capstone gap check before drafting.
+the next checkbox is the first in arc 6, "closed-book vs open-book". being note 1 of a new arc it opens off 055 directly, off that closing line. it should lay exactly one idea: the same question answered out of what training froze in (028) versus answered off text pasted into the array, and that the pasting is the same array move from 045 and the same line in the 053 budget, nothing new in the api. it must not touch chunking, embeddings, indexes or search, each of those is its own checkbox later in the arc.
 
-process note: 052 landed at 197, 053 at 216, 054 at 193. the capstone gets a wider budget (up to 350) but should not use all of it just because it can, aim for tight assembly around 280 to 320.
+process note: 053 landed at 216, 054 at 193, 055 at 325 on the capstone budget. back to the 120 to 250 range, and aim low, somewhere near 180.
 
-last visuals: annotated request body with the cost worked under it (054), worked example (053), annotated artifact (052). two annotated bodies in the last three, so the capstone must not be a third. it needs an assembly diagram anyway, a mermaid flowchart of the request being built part by part with note numbers on the parts.
-last exits: forward (054), stops (053), stops (052). the capstone closes an arc so it can point forward at arc 6, but keep it one plain sentence, not a teaser.
+last visuals: mermaid assembly flowchart (055), annotated request body with cost worked under it (054), worked example (053). so the next note must not be a mermaid flowchart. a two-column comparison of the same question answered both ways, or a worked example, fits better anyway.
+last exits: forward (055), forward (054), stops (053). two forwards running, so the next note has to just stop.
 
 ## NOTES
