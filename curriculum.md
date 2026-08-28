@@ -78,7 +78,7 @@
 - [x] the reranker: one model reads your question and the chunk together (065)
 - [x] two-stage retrieval: search wide and cheap, sort narrow and expensive (066)
 - [x] recall@k: did the right chunk come back at all (067)
-- [ ] mrr: recall throws away where in the list it landed
+- [x] mrr: recall throws away where in the list it landed (068)
 - [ ] groundedness: did the answer come from the docs
 - [ ] CAPSTONE: doc-QA system end to end, every design decision named
 
@@ -118,16 +118,16 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 067 gave a name and a number to the thing 066 could only gesture at. the answer key is hand-written, a question plus the chunk you know answers it, then you run retrieval and write down the rank that chunk actually came back at. recall@k is one yes/no per question, did it land at k or better, averaged over the key. the worked table used ranks 1, 4, 9 and one miss, so recall@5 is 0.50 and recall@10 is 0.75, and the same four rows producing both numbers is what makes k read as a dial rather than a setting. 067 also stated the two limits plainly. rank 1 and rank 9 both count as a plain yes, and the number only covers the questions you bothered to write down. the first of those limits is exactly the next checkbox, and 067 deliberately did not point forward at it, it stated it and stopped, because the exit rule required a stop.
+baton: 068 answered the exact complaint 067 stopped on, that rank 1 and rank 9 both score a plain yes. it reused 067s four rows untouched, ranks 1, 4, 9 and one miss, and scored one over the rank instead of yes/no, so 1.0, 0.25, 0.11, 0, mean 0.34 against recall@10 of 0.75 on identical data. the point that landed is that the two metrics ask different questions, did it come back at all versus did it come back near the top, and neither is the stricter version of the other. 068 also named the limit that mrr only looks at the first right chunk. it exited pointing forward, one line saying both numbers stop at the chunk and neither has opened the answer.
 
-the next checkbox is "mrr: recall throws away where in the list it landed". pick up the rank-1-equals-rank-9 line from 067 by name, that sentence is the whole opening. do not rebuild the answer key, 067 built it, reuse the exact same four rows (ranks 1, 4, 9, miss) so the reader watches the same data produce a different number. one over the rank: 1/1 is 1.0, 1/4 is 0.25, 1/9 is 0.111, a miss scores 0, and the mean of those four is 1.361 divided by 4, which is 0.34. recompute that digit by digit when writing, do not trust this line. 064 already did rank fusion with one over a rank, so the reader has met that arithmetic and leaning on it saves real words. the honest caveat: mrr only looks at the first right chunk and says nothing about the second, and one question sitting at rank 1 can carry an otherwise weak key because 1.0 dwarfs 0.111.
+the next checkbox is "groundedness: did the answer come from the docs". pick up that closing line by name, retrieval metrics grade what came back, groundedness grades what the model did with it. this is the first metric in the arc that reads the generated answer, so the shift is the whole opening. do not reuse the four-row answer key again, three notes running on it would be stale, and 068 already spent the ranks. the honest core: you check each claim in the answer against the chunks that were actually sent, a claim with no supporting chunk is ungrounded even when its true in the world. that last clause is the caveat, groundedness is not correctness, a model can state a true fact the docs never said and that still fails the check. 038 already built why the made-up answer sounds right, lean on it by number rather than re-explaining. 056 closed-book vs open-book is the other natural anchor.
 
 bm25 scoring is still a missing brick and stays one. 064 prints a keyword score as a bare number and never explains its scale, deliberately, since the point is that the scale is unknowable to you.
 
-process note: 064 at 189, 065 at 197, 066 at 201, 067 at 184. 067 landed in range, keep aiming 170 to 190.
+process note: 065 at 197, 066 at 201, 067 at 184, 068 at 187. keep aiming 170 to 190, the last two landed.
 
-last visuals: answer key table with a rank column, plus a plain computed block under it deriving recall@5 and recall@10 off the same four rows (067), ascii funnel with counts and a cost per stage (066), mermaid, two flowcharts side by side (065). 068 wants those same four rows again, so a table two notes running is fine, three would not be.
-last exits: stops (067), forward (066), stops (065). only one of the last three points forward, so 068 may point forward.
+last visuals: worked example block, four rows scored two ways side by side with both totals derived under it (068), answer key table with a rank column plus a computed block (067), ascii funnel with counts and a cost per stage (066). two number-grid visuals running now, so 069 wants something else, an annotated artifact or a mermaid flow.
+last exits: forward (068), stops (067), forward (066). two of the last three point forward, so 069 must just stop.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, so the prose says "the 059 side" and "the reranker side" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
