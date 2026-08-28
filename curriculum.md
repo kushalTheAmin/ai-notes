@@ -75,7 +75,8 @@
 - [x] why retrieval fails: the vocabulary gap (062)
 - [x] keyword search: the literal word match, and what it catches that meaning misses (063)
 - [x] hybrid: merging two ranked lists when the scores dont compare (064)
-- [ ] reranking: cheap search, expensive sort
+- [ ] the reranker: one model reads your question and the chunk together
+- [ ] two-stage retrieval: search wide and cheap, sort narrow and expensive
 - [ ] measuring retrieval: recall@k and mrr in plain terms
 - [ ] groundedness: did the answer come from the docs
 - [ ] CAPSTONE: doc-QA system end to end, every design decision named
