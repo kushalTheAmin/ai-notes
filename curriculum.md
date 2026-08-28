@@ -75,7 +75,7 @@
 - [x] why retrieval fails: the vocabulary gap (062)
 - [x] keyword search: the literal word match, and what it catches that meaning misses (063)
 - [x] hybrid: merging two ranked lists when the scores dont compare (064)
-- [ ] the reranker: one model reads your question and the chunk together
+- [x] the reranker: one model reads your question and the chunk together (065)
 - [ ] two-stage retrieval: search wide and cheap, sort narrow and expensive
 - [ ] measuring retrieval: recall@k and mrr in plain terms
 - [ ] groundedness: did the answer come from the docs
@@ -117,15 +117,17 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 064 did the merge and the whole note is that you cannot do it on the scores. a cosine of 0.71 and a keyword score of 6.4 measure different things, so adding them means nothing. you keep the positions instead, because every list can say 1st and 2nd and 3rd, and you sum one over the rank across both lists. the worked example ran one question, "whats the deadline to claim a Nova expense?", against a top 3 by meaning and a top 3 by literal words. handbook/expenses.md is the doc that answers it, it won neither list, it placed second in both and took the merge at 0.40 while each lists own winner sat at 0.25 for being absent from the other list. the fudge constant is on the page and named: 3 in the note so every fraction stays exact, 60 in real code, and without it first place scores a flat 1.0 that a second-in-both can only tie.
+baton: 065 named the thing every score in this arc had in common and never admitted. the chunk becomes floats when it lands, weeks before any question exists, and 014 already said that whole chunk gets squashed into one row, so cosine is comparing two arrays that were built in separate rooms and neither one ever saw the other. a reranker is a second model that takes the question and the chunk as one stream, which puts 023 back in play, the question tokens can look straight at the doc tokens. one number comes out. the name on the page is cross-encoder, translated in the same sentence as both texts crossed into one pass. the note also states the cost plainly, a full model run per chunk, slow in a way cosine isnt, and that sentence is deliberately left sitting there without being cashed in.
 
 bm25 scoring is still a missing brick and stays one. 064 prints a keyword score as a bare number and never explains its scale, deliberately, since the point is that the scale is unknowable to you.
 
-the next checkbox is "reranking: cheap search, expensive sort". 064 already sold it in its last line, the merged list is roughly right but the order inside it is mush, because throwing the scores away threw away how far ahead rank 1 actually was. that is the baton, pick it up there and do not re-explain the merge. the note is the two-stage shape: cheap retrieval pulls a wide candidate set, maybe 50, then something expensive reads the question and one chunk together and scores that pair, and you can afford it because its 50 pairs and not the whole pile. the real distinction under it is a model that scores a pair versus the one-vector-per-thing setup of 014 and 059, and that may well want its own paragraph, so split it if it does.
+the next checkbox is "two-stage retrieval: search wide and cheap, sort narrow and expensive", and cashing in that cost sentence is the whole job. pick it up there, do not re-explain what a cross-encoder is, 065 built it. the note is the funnel shape: the cheap search from 059 and 060 and 064 runs over everything and pulls a wide candidate set, say 50, then 065s pair scorer reads those 50 and re-sorts, and you keep 5. the point worth landing is that the expensive model never touches the pile, its cost is set by how many candidates you chose and not by how many docs you have, which is exactly why a two-stage shape exists at all. the honest tension to name in one line: widen the candidate set and recall goes up but so does latency, and 50 is a dial, not a law. a mermaid flowchart is the obvious visual but 065 just used mermaid, so this one wants numbers, a funnel with real counts falling from 400,000 to 50 to 5 with a cost per stage would carry it.
 
-process note: 061 at 190, 062 at 181, 063 at 217, 064 at 189. back under 190 as promised. keep aiming 170 to 190.
+process note: 062 at 181, 063 at 217, 064 at 189, 065 at 197. still drifting a little high, keep aiming 170 to 190.
 
-last visuals: worked example, two ranked lists with their raw scores plus a rank-fusion table (064), comparison table, two questions by two search methods against one doc (063), annotated artifact, two doc excerpts marked for word overlap and rank (062). that is four text-shaped visuals running and the no-three-in-a-row rule is biting now, so 065 owes this arc a mermaid, a flowchart of the two stages would do it.
-last exits: forward (064), forward (063), stops (062). two forwards running is the ceiling, so 065 has to just stop.
+last visuals: mermaid, two flowcharts side by side for the two ways of scoring a question against a chunk (065), worked example, two ranked lists with their raw scores plus a rank-fusion table (064), comparison table, two questions by two search methods against one doc (063).
+last exits: stops (065), forward (064), forward (063). the two-forward run is broken, so 066 may point forward again.
+
+process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, so the prose says "the 059 side" and "the reranker side" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
 ## NOTES
