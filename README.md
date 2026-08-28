@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 65
+total notes: 66
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -81,3 +81,4 @@ total notes: 65
 - [063, the search that understands nothing](./notes/063-the-search-that-understands-nothing.md), two questions aimed at the same expense policy, where matching meaning finds the paraphrase with no shared word at all and matching words literally finds the internal tool name in one lookup, so each one wins exactly where the other whiffs
 - [064, two searches, one ranking](./notes/064-two-searches-one-ranking.md), a cosine score and a keyword score measure different things so adding them means nothing, and dropping to the positions instead lets the doc that placed second in both lists beat the doc that won one of them outright
 - [065, the score that read your question](./notes/065-reads-both-at-once.md), the chunks vector got made weeks before the question existed, so cosine compares two arrays built in separate rooms, while a reranker puts both texts through one model in a single pass and scores the pair instead
+- [066, search wide, then sort narrow](./notes/066-search-wide-sort-narrow.md), the cheap search stops picking the answer and starts picking who gets read, handing 50 candidates off a store of 4,000,000 to a scorer that costs one model run each, so the expensive stage is priced by the number you chose and not by how many docs you own

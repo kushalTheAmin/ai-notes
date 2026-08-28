@@ -76,7 +76,7 @@
 - [x] keyword search: the literal word match, and what it catches that meaning misses (063)
 - [x] hybrid: merging two ranked lists when the scores dont compare (064)
 - [x] the reranker: one model reads your question and the chunk together (065)
-- [ ] two-stage retrieval: search wide and cheap, sort narrow and expensive
+- [x] two-stage retrieval: search wide and cheap, sort narrow and expensive (066)
 - [ ] measuring retrieval: recall@k and mrr in plain terms
 - [ ] groundedness: did the answer come from the docs
 - [ ] CAPSTONE: doc-QA system end to end, every design decision named
@@ -117,16 +117,18 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 065 named the thing every score in this arc had in common and never admitted. the chunk becomes floats when it lands, weeks before any question exists, and 014 already said that whole chunk gets squashed into one row, so cosine is comparing two arrays that were built in separate rooms and neither one ever saw the other. a reranker is a second model that takes the question and the chunk as one stream, which puts 023 back in play, the question tokens can look straight at the doc tokens. one number comes out. the name on the page is cross-encoder, translated in the same sentence as both texts crossed into one pass. the note also states the cost plainly, a full model run per chunk, slow in a way cosine isnt, and that sentence is deliberately left sitting there without being cashed in.
+baton: 066 cashed in the cost sentence 065 left sitting there. the shape is a funnel with real counts on it, 4,000,000 chunks in the store, the cheap search from 060 and 064 runs over all of it for about 12,000 comparisons and keeps 50, then 065s pair scorer does 50 full model runs on those 50 and keeps 5. the line that lands it is that stage 2s bill is set by the number you picked and not by how much you own, so ten times more docs tomorrow and stage 2 doesnt feel it. the note also names the honest limit in one line, if the right chunk didnt make the 50 the reranker never sees it, and it ends by asking how you would even know whether it did. that question is deliberately unanswered and it is the handoff.
 
 bm25 scoring is still a missing brick and stays one. 064 prints a keyword score as a bare number and never explains its scale, deliberately, since the point is that the scale is unknowable to you.
 
-the next checkbox is "two-stage retrieval: search wide and cheap, sort narrow and expensive", and cashing in that cost sentence is the whole job. pick it up there, do not re-explain what a cross-encoder is, 065 built it. the note is the funnel shape: the cheap search from 059 and 060 and 064 runs over everything and pulls a wide candidate set, say 50, then 065s pair scorer reads those 50 and re-sorts, and you keep 5. the point worth landing is that the expensive model never touches the pile, its cost is set by how many candidates you chose and not by how many docs you have, which is exactly why a two-stage shape exists at all. the honest tension to name in one line: widen the candidate set and recall goes up but so does latency, and 50 is a dial, not a law. a mermaid flowchart is the obvious visual but 065 just used mermaid, so this one wants numbers, a funnel with real counts falling from 400,000 to 50 to 5 with a cost per stage would carry it.
+the word recall has still never been used in this repo. 066 says "the right chunk didnt make the 50" in plain words on purpose, because naming it is the next checkbox's job.
 
-process note: 062 at 181, 063 at 217, 064 at 189, 065 at 197. still drifting a little high, keep aiming 170 to 190.
+the next checkbox is "measuring retrieval: recall@k and mrr in plain terms", and 066 asked its opening question for it. pick it up there. the note gives a name to the thing 066 could only gesture at: you write down the question and the chunk that actually answers it, run your retrieval, and check. recall@k is one yes/no per question, was the right chunk anywhere in the top k, averaged over the set. mrr adds the part recall throws away, where in the list it landed, as one over the rank, which 064 already built the arithmetic for so lean on that hard rather than re-deriving it. the honest line to include: these need a hand-written answer key, so the number only measures the questions you thought to write down. beware scope, both metrics in one note may be too much, if the draft strains then split it, recall@k first and mrr second. the visual wants a small answer key table, say 4 questions with the rank the right chunk came back at, and the two numbers computed off the same four rows. that is a table plus a worked example, and 066 used an ascii funnel, so a table is clear.
 
-last visuals: mermaid, two flowcharts side by side for the two ways of scoring a question against a chunk (065), worked example, two ranked lists with their raw scores plus a rank-fusion table (064), comparison table, two questions by two search methods against one doc (063).
-last exits: stops (065), forward (064), forward (063). the two-forward run is broken, so 066 may point forward again.
+process note: 063 at 217, 064 at 189, 065 at 197, 066 at 201. still drifting a little high, keep aiming 170 to 190.
+
+last visuals: ascii funnel with counts and a cost per stage, plus two contrast lines under it (066), mermaid, two flowcharts side by side for the two ways of scoring a question against a chunk (065), worked example, two ranked lists with their raw scores plus a rank-fusion table (064).
+last exits: forward (066), stops (065), forward (064). two of the last three point forward, so 067 must just stop.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, so the prose says "the 059 side" and "the reranker side" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
