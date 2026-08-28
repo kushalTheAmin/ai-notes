@@ -73,7 +73,8 @@
 - [x] where vectors live: from scanning every doc to a real index, and what approximate costs (060)
 - [x] filtering before searching: metadata, permissions, and why vector search alone isnt enough (061)
 - [x] why retrieval fails: the vocabulary gap (062)
-- [ ] keyword + semantic: hybrid search
+- [ ] keyword search: the literal word match, and what it catches that meaning misses
+- [ ] hybrid: merging two ranked lists when the scores dont compare
 - [ ] reranking: cheap search, expensive sort
 - [ ] measuring retrieval: recall@k and mrr in plain terms
 - [ ] groundedness: did the answer come from the docs
