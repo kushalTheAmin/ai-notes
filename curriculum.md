@@ -77,7 +77,8 @@
 - [x] hybrid: merging two ranked lists when the scores dont compare (064)
 - [x] the reranker: one model reads your question and the chunk together (065)
 - [x] two-stage retrieval: search wide and cheap, sort narrow and expensive (066)
-- [ ] measuring retrieval: recall@k and mrr in plain terms
+- [ ] recall@k: did the right chunk come back at all
+- [ ] mrr: recall throws away where in the list it landed
 - [ ] groundedness: did the answer come from the docs
 - [ ] CAPSTONE: doc-QA system end to end, every design decision named
 
