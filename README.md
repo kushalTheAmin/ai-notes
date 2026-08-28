@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 63
+total notes: 64
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -79,3 +79,4 @@ total notes: 63
 - [061, filter first, then search](./notes/061-filter-before-you-search.md), six chunks scored for one support engineer, where filtering after the top 3 leaves her with a single chunk and no filter at all quietly hands her two finance docs, so the fields have to bite during the search and not after it
 - [062, when you and the doc use different words](./notes/062-when-you-and-the-doc-use-different-words.md), a question about getting money back pulls up the customer refund page at rank 2 because it echoes the wording, while the expense policy that actually answers it sits at rank 31 sharing not one word, and nothing anywhere errors
 - [063, the search that understands nothing](./notes/063-the-search-that-understands-nothing.md), two questions aimed at the same expense policy, where matching meaning finds the paraphrase with no shared word at all and matching words literally finds the internal tool name in one lookup, so each one wins exactly where the other whiffs
+- [064, two searches, one ranking](./notes/064-two-searches-one-ranking.md), a cosine score and a keyword score measure different things so adding them means nothing, and dropping to the positions instead lets the doc that placed second in both lists beat the doc that won one of them outright

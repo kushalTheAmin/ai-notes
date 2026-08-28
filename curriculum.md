@@ -74,7 +74,7 @@
 - [x] filtering before searching: metadata, permissions, and why vector search alone isnt enough (061)
 - [x] why retrieval fails: the vocabulary gap (062)
 - [x] keyword search: the literal word match, and what it catches that meaning misses (063)
-- [ ] hybrid: merging two ranked lists when the scores dont compare
+- [x] hybrid: merging two ranked lists when the scores dont compare (064)
 - [ ] reranking: cheap search, expensive sort
 - [ ] measuring retrieval: recall@k and mrr in plain terms
 - [ ] groundedness: did the answer come from the docs
@@ -116,15 +116,15 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 063 put the second search on the table. keyword search, a hashmap from each word to the chunks holding it, the thing you already built with a LIKE query behind a search box. the comparison table ran two questions at 062s expenses.md, "how long do i have to claim a work lunch back" which shares literally zero tokens with the doc and which meaning-search still ranks first, and "whats the Nova deadline" which the literal match takes in one lookup while the embedding drifts to whatever else says deadline. each column wins one row and whiffs the other, and that diagonal is the whole note. the one caveat carried: real keyword search is not grep, it weights rare words heavier than common ones, which is why an invented name like Nova is such a loud signal.
+baton: 064 did the merge and the whole note is that you cannot do it on the scores. a cosine of 0.71 and a keyword score of 6.4 measure different things, so adding them means nothing. you keep the positions instead, because every list can say 1st and 2nd and 3rd, and you sum one over the rank across both lists. the worked example ran one question, "whats the deadline to claim a Nova expense?", against a top 3 by meaning and a top 3 by literal words. handbook/expenses.md is the doc that answers it, it won neither list, it placed second in both and took the merge at 0.40 while each lists own winner sat at 0.25 for being absent from the other list. the fudge constant is on the page and named: 3 in the note so every fraction stays exact, 60 in real code, and without it first place scores a flat 1.0 that a second-in-both can only tie.
 
-063 also corrected the plan the last baton had set. hybrid does NOT rescue 062s exact question, there you typed money back and the doc said reimbursement, so the literal list has even less to grab than the embedding did. do not let the next note claim otherwise. 063 ends on two rankings and neither one being the good list.
+bm25 scoring is still a missing brick and stays one. 064 prints a keyword score as a bare number and never explains its scale, deliberately, since the point is that the scale is unknowable to you.
 
-the next checkbox is "hybrid: merging two ranked lists when the scores dont compare". it exists because the merge is genuinely not obvious and that is the note: a cosine score and a keyword score are not on the same scale, so you cannot add them. the move is to throw the scores away and merge on rank position instead, one over the rank, summed across the two lists, which is why a chunk that placed decently in both beats one that won a single list. keep bm25 scoring out of it, that stays a missing brick and gets split if it wants a paragraph.
+the next checkbox is "reranking: cheap search, expensive sort". 064 already sold it in its last line, the merged list is roughly right but the order inside it is mush, because throwing the scores away threw away how far ahead rank 1 actually was. that is the baton, pick it up there and do not re-explain the merge. the note is the two-stage shape: cheap retrieval pulls a wide candidate set, maybe 50, then something expensive reads the question and one chunk together and scores that pair, and you can afford it because its 50 pairs and not the whole pile. the real distinction under it is a model that scores a pair versus the one-vector-per-thing setup of 014 and 059, and that may well want its own paragraph, so split it if it does.
 
-process note: 060 landed at 207, 061 at 190, 062 at 181, 063 at 217. the aim is 170 to 190 and 063 broke it, on purpose, to carry both the caveat and the correction to 062. next one comes back under 190.
+process note: 061 at 190, 062 at 181, 063 at 217, 064 at 189. back under 190 as promised. keep aiming 170 to 190.
 
-last visuals: comparison table, two questions by two search methods against one doc (063), annotated artifact, two doc excerpts marked for word overlap and rank (062), worked example, six scored chunks run through both filter orders (061). the merge is a numbers job, so 064 wants a worked example with the two rank columns and the sum on the page, and that is fine by the no-three-in-a-row rule since the last worked example was 061. it does mean four text-shaped visuals running, so 065 owes this arc a mermaid.
-last exits: forward (063), stops (062), forward (061). a forward at 064 is still legal, two running is the ceiling, so if 064 points ahead then 065 has to just stop.
+last visuals: worked example, two ranked lists with their raw scores plus a rank-fusion table (064), comparison table, two questions by two search methods against one doc (063), annotated artifact, two doc excerpts marked for word overlap and rank (062). that is four text-shaped visuals running and the no-three-in-a-row rule is biting now, so 065 owes this arc a mermaid, a flowchart of the two stages would do it.
+last exits: forward (064), forward (063), stops (062). two forwards running is the ceiling, so 065 has to just stop.
 
 ## NOTES
