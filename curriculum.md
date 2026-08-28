@@ -77,7 +77,7 @@
 - [x] hybrid: merging two ranked lists when the scores dont compare (064)
 - [x] the reranker: one model reads your question and the chunk together (065)
 - [x] two-stage retrieval: search wide and cheap, sort narrow and expensive (066)
-- [ ] recall@k: did the right chunk come back at all
+- [x] recall@k: did the right chunk come back at all (067)
 - [ ] mrr: recall throws away where in the list it landed
 - [ ] groundedness: did the answer come from the docs
 - [ ] CAPSTONE: doc-QA system end to end, every design decision named
@@ -118,18 +118,16 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 066 cashed in the cost sentence 065 left sitting there. the shape is a funnel with real counts on it, 4,000,000 chunks in the store, the cheap search from 060 and 064 runs over all of it for about 12,000 comparisons and keeps 50, then 065s pair scorer does 50 full model runs on those 50 and keeps 5. the line that lands it is that stage 2s bill is set by the number you picked and not by how much you own, so ten times more docs tomorrow and stage 2 doesnt feel it. the note also names the honest limit in one line, if the right chunk didnt make the 50 the reranker never sees it, and it ends by asking how you would even know whether it did. that question is deliberately unanswered and it is the handoff.
+baton: 067 gave a name and a number to the thing 066 could only gesture at. the answer key is hand-written, a question plus the chunk you know answers it, then you run retrieval and write down the rank that chunk actually came back at. recall@k is one yes/no per question, did it land at k or better, averaged over the key. the worked table used ranks 1, 4, 9 and one miss, so recall@5 is 0.50 and recall@10 is 0.75, and the same four rows producing both numbers is what makes k read as a dial rather than a setting. 067 also stated the two limits plainly. rank 1 and rank 9 both count as a plain yes, and the number only covers the questions you bothered to write down. the first of those limits is exactly the next checkbox, and 067 deliberately did not point forward at it, it stated it and stopped, because the exit rule required a stop.
+
+the next checkbox is "mrr: recall throws away where in the list it landed". pick up the rank-1-equals-rank-9 line from 067 by name, that sentence is the whole opening. do not rebuild the answer key, 067 built it, reuse the exact same four rows (ranks 1, 4, 9, miss) so the reader watches the same data produce a different number. one over the rank: 1/1 is 1.0, 1/4 is 0.25, 1/9 is 0.111, a miss scores 0, and the mean of those four is 1.361 divided by 4, which is 0.34. recompute that digit by digit when writing, do not trust this line. 064 already did rank fusion with one over a rank, so the reader has met that arithmetic and leaning on it saves real words. the honest caveat: mrr only looks at the first right chunk and says nothing about the second, and one question sitting at rank 1 can carry an otherwise weak key because 1.0 dwarfs 0.111.
 
 bm25 scoring is still a missing brick and stays one. 064 prints a keyword score as a bare number and never explains its scale, deliberately, since the point is that the scale is unknowable to you.
 
-the word recall has still never been used in this repo. 066 says "the right chunk didnt make the 50" in plain words on purpose, because naming it is the next checkbox's job.
+process note: 064 at 189, 065 at 197, 066 at 201, 067 at 184. 067 landed in range, keep aiming 170 to 190.
 
-the next checkbox is "measuring retrieval: recall@k and mrr in plain terms", and 066 asked its opening question for it. pick it up there. the note gives a name to the thing 066 could only gesture at: you write down the question and the chunk that actually answers it, run your retrieval, and check. recall@k is one yes/no per question, was the right chunk anywhere in the top k, averaged over the set. mrr adds the part recall throws away, where in the list it landed, as one over the rank, which 064 already built the arithmetic for so lean on that hard rather than re-deriving it. the honest line to include: these need a hand-written answer key, so the number only measures the questions you thought to write down. beware scope, both metrics in one note may be too much, if the draft strains then split it, recall@k first and mrr second. the visual wants a small answer key table, say 4 questions with the rank the right chunk came back at, and the two numbers computed off the same four rows. that is a table plus a worked example, and 066 used an ascii funnel, so a table is clear.
-
-process note: 063 at 217, 064 at 189, 065 at 197, 066 at 201. still drifting a little high, keep aiming 170 to 190.
-
-last visuals: ascii funnel with counts and a cost per stage, plus two contrast lines under it (066), mermaid, two flowcharts side by side for the two ways of scoring a question against a chunk (065), worked example, two ranked lists with their raw scores plus a rank-fusion table (064).
-last exits: forward (066), stops (065), forward (064). two of the last three point forward, so 067 must just stop.
+last visuals: answer key table with a rank column, plus a plain computed block under it deriving recall@5 and recall@10 off the same four rows (067), ascii funnel with counts and a cost per stage (066), mermaid, two flowcharts side by side (065). 068 wants those same four rows again, so a table two notes running is fine, three would not be.
+last exits: stops (067), forward (066), stops (065). only one of the last three points forward, so 068 may point forward.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, so the prose says "the 059 side" and "the reranker side" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
