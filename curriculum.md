@@ -69,7 +69,7 @@
 - [x] closed-book vs open-book (056)
 - [x] long context vs retrieval: when you can just send everything, and when you cant (057)
 - [x] chunking: the decision that quietly decides quality (058)
-- [ ] retrieval: embed, search, stuff the context
+- [x] retrieval: embed, search, stuff the context (059)
 - [ ] where vectors live: from scanning every doc to a real index, and what approximate costs
 - [ ] filtering before searching: metadata, permissions, and why vector search alone isnt enough
 - [ ] why retrieval fails: the vocabulary gap
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 058 cut the pile up. what it established: a chunk is a piece of a doc, the cut line is chosen before any question exists, and one 40 page handbook cut three ways (per sentence, not at all, per heading) gives three different answers to the same refund question. the line that carries: a chunk is the unit you search and the unit you send, both, so one cut decides findability and cost together. cut too small and a sentence loses the heading and the price it was leaning on, dont cut at all and youre back on 057s bill at 30,000 tokens a question. it dropped one plain sentence saying chunks usually overlap a bit, no more than that.
+baton: 059 wired the pipeline. what it established: embed every chunk once when the doc lands, embed the question at ask time, cosine against the store, take the top 3, then join those chunk strings and glue them onto the question. the line that carries: there is no documents parameter, retrieved text arrives as characters in the user message like any other text, so the model cannot tell it apart from what i typed. it dropped two plain sentences as caveats, one that a provider file-search feature is doing this same assembly on their side, and one that the loop over every stored array is free at 400 chunks and not at 4 million.
 
-the next checkbox is "retrieval: embed, search, stuff the context". it picks the baton up from having a folder of chunks and no way to pick one. the note is the three-step loop end to end for the first time: embed every chunk once (014, 017), embed the question at ask time and cosine against the stored arrays to take the top few (021), then paste those chunks into the message the way 056 pasted its paragraph. arc 2 already built every piece of the search, so the new thing here is only the wiring, that this is a pipeline my own code runs, and that the model still just reads text someone concatenated for it. keep the storage out of it, scanning every chunk in a loop is fine at this size, the real index is the checkbox after.
+the next checkbox is "where vectors live: from scanning every doc to a real index, and what approximate costs". it picks the baton straight up from that second caveat, the for loop over every array. the note is what replaces the loop: an index that skips most of the arrays instead of scoring all of them, and the trade that buys the speed, which is that it can miss a real neighbour. 013 and 021 built exact scoring, so the honest framing is that exact was never sacred, it was just what a small loop gave for free. keep the algorithm names out of it, the reader needs the shape of the trade, not the internals. one small number comparison would land it, scoring 4 million arrays versus touching a few thousand.
 
-process note: 056 landed at 235, 057 at 206, 058 at 214. keep aiming near 180.
+process note: 057 landed at 206, 058 at 214, 059 at 231. drifting up. next one should aim 170 to 190 and mean it.
 
-last visuals: three-column comparison table of cut strategies (058), worked cost table across pile sizes in a plain code block (057), annotated two-request comparison in a plain code block (056). a table just ran, so the next one wants a different shape. a mermaid flowchart of the offline pass and the ask-time pass, or a numbered pseudocode block, both fit retrieval.
-last exits: forward (058), stops (057), stops (056). one forward, so the next can go either way, but two forwards in a row then needs a stop.
+last visuals: pseudocode block, ten lines, the whole pipeline as code (059), three-column comparison table of cut strategies (058), worked cost table in a plain code block (057). code just ran, so the next one wants a table or a mermaid diagram, and a mermaid has not run since 021.
+last exits: stops (059), forward (058), stops (057). the next can go either way.
 
 ## NOTES
