@@ -70,7 +70,7 @@
 - [x] long context vs retrieval: when you can just send everything, and when you cant (057)
 - [x] chunking: the decision that quietly decides quality (058)
 - [x] retrieval: embed, search, stuff the context (059)
-- [ ] where vectors live: from scanning every doc to a real index, and what approximate costs
+- [x] where vectors live: from scanning every doc to a real index, and what approximate costs (060)
 - [ ] filtering before searching: metadata, permissions, and why vector search alone isnt enough
 - [ ] why retrieval fails: the vocabulary gap
 - [ ] keyword + semantic: hybrid search
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 059 wired the pipeline. what it established: embed every chunk once when the doc lands, embed the question at ask time, cosine against the store, take the top 3, then join those chunk strings and glue them onto the question. the line that carries: there is no documents parameter, retrieved text arrives as characters in the user message like any other text, so the model cannot tell it apart from what i typed. it dropped two plain sentences as caveats, one that a provider file-search feature is doing this same assembly on their side, and one that the loop over every stored array is free at 400 chunks and not at 4 million.
+baton: 060 replaced 059s loop over every stored array with a prebuilt grouping. what it established: the chunk vectors get sorted into neighbourhoods once, up front, each neighbourhood keeps one array at its middle, the question is scored against those middles first, and only the closest few groups get opened. about 12,000 comparisons instead of 4 million. the line that carries: the groups you never open might hold the best chunk in the store and nothing checks, so approximate is the price of the speed, and opening more groups is the knob. it named that prebuilt grouping as the index and named it as roughly what a vector database sells you, with one plain sentence that other index shapes hop a graph of neighbours instead and make the same trade.
 
-the next checkbox is "where vectors live: from scanning every doc to a real index, and what approximate costs". it picks the baton straight up from that second caveat, the for loop over every array. the note is what replaces the loop: an index that skips most of the arrays instead of scoring all of them, and the trade that buys the speed, which is that it can miss a real neighbour. 013 and 021 built exact scoring, so the honest framing is that exact was never sacred, it was just what a small loop gave for free. keep the algorithm names out of it, the reader needs the shape of the trade, not the internals. one small number comparison would land it, scoring 4 million arrays versus touching a few thousand.
+the next checkbox is "filtering before searching: metadata, permissions, and why vector search alone isnt enough". it picks up from the fact that every note in arc 6 so far ranks purely on cosine, so the top 3 are whatever is closest in meaning with no regard for who is allowed to read them or whether the doc is still current. the note is that a chunk needs fields riding alongside the vector, and that the filter has to bite before or during the search, not after, because filtering the top 3 down can leave you with nothing. an access-control example lands this harder than a date one, it makes the failure a leak rather than a stale answer.
 
-process note: 057 landed at 206, 058 at 214, 059 at 231. drifting up. next one should aim 170 to 190 and mean it.
+process note: 058 landed at 214, 059 at 231, 060 at 207. still above the 170 to 190 aim. the fat is usually prose restating the visual, cut that first.
 
-last visuals: pseudocode block, ten lines, the whole pipeline as code (059), three-column comparison table of cut strategies (058), worked cost table in a plain code block (057). code just ran, so the next one wants a table or a mermaid diagram, and a mermaid has not run since 021.
-last exits: stops (059), forward (058), stops (057). the next can go either way.
+last visuals: mermaid flowchart, two paths from one question vector (060), pseudocode block, ten lines (059), three-column comparison table of cut strategies (058). mermaid just ran, so the next one wants a worked example with real numbers or an annotated artifact.
+last exits: stops (060), stops (059), forward (058). the next one can go either way, but two stops in a row means a forward pointer would read fresh.
 
 ## NOTES
