@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 75
+total notes: 76
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -93,3 +93,4 @@ total notes: 75
 - [073, two ways to check the answer](./notes/073-two-ways-to-check-an-answer.md), four answers to one question run past a substring check and a cosine check, where the string check fails a correct paraphrase and the meaning check waves through an answer that swapped 30 days for 60
 - [074, let a model grade the answer](./notes/074-let-a-model-grade-it.md), the grading call written out with a real golden row pasted in, where the must_say line typed by hand in 072 becomes the rubric a second model reads, and it gets both of the rows the mechanical checks broke on, while being the same next-token machine as the thing its grading
 - [075, where the judge tilts](./notes/075-where-the-judge-tilts.md), the rows that have no must_say push you into a soft "is this a good answer", and then the same fact passes when its padded, passes when its phrased the way the model itself writes, and 48 of 50 pass no matter what you ship
+- [076, the score moved, is it real](./notes/076-the-score-moved-is-it-real.md), the same prompt run twice over the same 50 rows lands on two different scores because four rows flipped by themselves, so the +6 points the new prompt bought is 3 answers sitting inside a wobble of 4
