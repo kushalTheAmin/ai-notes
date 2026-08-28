@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 77
+total notes: 78
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -95,3 +95,4 @@ total notes: 77
 - [075, where the judge tilts](./notes/075-where-the-judge-tilts.md), the rows that have no must_say push you into a soft "is this a good answer", and then the same fact passes when its padded, passes when its phrased the way the model itself writes, and 48 of 50 pass no matter what you ship
 - [076, the score moved, is it real](./notes/076-the-score-moved-is-it-real.md), the same prompt run twice over the same 50 rows lands on two different scores because four rows flipped by themselves, so the +6 points the new prompt bought is 3 answers sitting inside a wobble of 4
 - [077, the change that fixed five things and broke two](./notes/077-fixed-five-broke-two.md), the +3 the new prompt bought turns out to be 5 rows fixed and 2 rows broken, and the row that quietly went back to failing never appears in any total, only in the diff
+- [078, the eval run in ci, and what turns the build red](./notes/078-what-turns-the-build-red.md), the golden run wired to any commit that touches the prompt, where gating on the score goes red on a no-op and green on a real break, so the gate reads the rows instead and fails on any id that was passing before
