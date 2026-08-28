@@ -80,7 +80,7 @@
 - [x] recall@k: did the right chunk come back at all (067)
 - [x] mrr: recall throws away where in the list it landed (068)
 - [x] groundedness: did the answer come from the docs (069)
-- [ ] CAPSTONE: doc-QA system end to end, every design decision named
+- [x] CAPSTONE: doc-QA system end to end, every design decision named (070)
 
 ## ARC 7 - evals: how you know any of it works
 - [ ] "looks good" doesnt scale
@@ -118,17 +118,17 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 069 picked up 068s closing line by name and turned the arc from grading the retriever to grading the answer. the visual was an annotated artifact, the 056 refund doc plus a second chunk about the payment method, then the model answer cut into five claims with each traced to doc-1, doc-2 or nothing, 3 supported of 5 so 0.6. the point that landed is the pair of ungrounded lines, a 5 dollar restocking fee that was invented (038) and a 3 to 5 day processing time thats actually true, both scoring the same, because the question is did this come from the text i sent, not is this true. the caveat is in there as its own beat, a true claim off the frozen file (028) is closed book wearing open book clothes, the exact blend 056 warned about, and it cant be cited. it exited on a stop, correctness is somebody elses metric.
+baton: 070 closed arc 6 by assembling every brick into one running system, and the visual was a mermaid assembly diagram in two subgraphs, one that runs once when a doc lands (cut 058, vector index 060, word index 063) and one that runs again on every question (filter 061, search both ways and keep 50 062 063 066, merge by position 064, rerank to 5 065, glue into the message 056 053), with the three metrics 067 068 069 hanging off the answer. what earned it the word capstone is that every box carries a gave up line next to the note number, so the picture names the design decision and its cost in the same label. the landing is that not one of those give-ups throws an error, a filter in the wrong order or too narrow a stage 1 slice still ships five chunks and a confident answer and a normal looking ui, which is exactly why the metrics row exists at all. it exited forward on the four hand written questions from 067 being a placeholder for an answer key, not one.
 
-the next checkbox is the arc 6 CAPSTONE, "doc-QA system end to end, every design decision named". every brick in the arc is now laid, so this is assembly, not a new idea. run the capstone gap check first: walk the pipeline and confirm nothing needed is missing. the shape to assemble is one doc-QA system with each stage carrying its note number, ingest and chunk (058), embed and index (059, 060), filter by metadata and permissions (061), search wide with both keyword and vector (062, 063, 064), merge and rerank narrow (065, 066), stuff the winners into the prompt (056, 053), then measure with recall@k (067), mrr (068) and groundedness (069). the framing that earns the word capstone is "every design decision named", so each stage should carry the choice i made and the thing i gave up, not just the mechanism. capstone budget is up to 350 prose words and the visual must be an assembly diagram, the arcs bricks as labeled parts of one picture with note numbers on the labels. 069 was an annotated artifact and 068 a number grid, so mermaid is clean here and it fits assembly best.
+the next checkbox opens arc 7, "looks good doesnt scale". this is an arc opener so it connects back to 070s capstone, and the baton to pick up is precise: 070 already established that this pipeline fails silently and that 067 068 069 exist as stand-ins for the error it never throws, and it already called the four questions a placeholder. so 071 must not re-argue that measuring is necessary, thats settled. its job is the narrower one, why eyeballing a handful of outputs stops working, what breaks when you scale from four questions to a real set, and why a human reading answers is the thing that doesnt scale rather than the model. dont re-explain recall, mrr or groundedness, those are laid.
 
-bm25 scoring is still a missing brick and stays one. 064 prints a keyword score as a bare number and never explains its scale, deliberately, since the point is that the scale is unknowable to you. do not let the capstone gap check drag it in, its absence is the design decision.
+bm25 scoring stayed a missing brick through all of arc 6 and that was correct. 064 prints a keyword score as a bare number on purpose, since the point is that the scale is unknowable to you. it stays unlaid, dont let a later arc drag it in.
 
-process note: 066 at 201, 067 at 184, 068 at 187, 069 at 154. 154 was a deliberate short one after three near 190. the capstone gets its own ceiling, aim 280 to 330 there.
+process note: 066 at 201, 067 at 184, 068 at 187, 069 at 154, 070 at 324 on the capstone ceiling. after a long one, 071 should land short, aim 140 to 190.
 
-last visuals: annotated artifact, two retrieved chunks plus an answer cut into five claims each traced to a source or to nothing (069), worked example block, four rows scored two ways side by side (068), answer key table with a rank column plus a computed block (067). mermaid has not appeared since 065, so the capstones assembly diagram is due.
-last exits: stops (069), forward (068), stops (067). only one of the last three points forward, so 070 may end either way, and a capstone handing off to arc 7 is a fair place to point forward.
+last visuals: mermaid assembly diagram, two subgraphs for once-per-doc and once-per-question with a gave up line in every box (070), annotated artifact, two retrieved chunks plus an answer cut into five claims (069), worked example block, four rows scored two ways side by side (068). mermaid just appeared, so 071 needs something else, a worked example or an annotated artifact or a small table.
+last exits: forward (070), stops (069), forward (068). two of the last three point forward, so 071 must just stop.
 
-process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, so the prose says "the 059 side" and "the reranker side" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
+process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
 ## NOTES

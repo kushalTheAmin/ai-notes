@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 69
+total notes: 70
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -85,3 +85,4 @@ total notes: 69
 - [067, did the right chunk even come back](./notes/067-did-the-right-chunk-come-back.md), four hand-written questions with the chunk that should answer each, and the rank it actually came back at, where counting how many landed at k or better turns the 50 candidates from a hope into a number you can check
 - [068, recall throws away where it landed](./notes/068-where-in-the-list-it-landed.md), the same four ranks from 067 scored one over the rank instead of yes or no, so a hit at rank 1 is worth nine times one at rank 9, and identical data reads 0.75 by one metric and 0.34 by the other
 - [069, did the answer come from the docs](./notes/069-did-the-answer-come-from-the-docs.md), split the answer into claims and check each one against the chunks you actually sent, where a claim thats true in the world but missing from those chunks still fails
+- [070, from my docs to an answer, end to end](./notes/070-from-my-docs-to-an-answer.md), the whole arc assembled into one system, where every stage carries the thing it gave up to work, and not one of those give-ups throws an error, which is the reason the three metrics exist
