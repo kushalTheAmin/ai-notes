@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 60
+total notes: 61
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -76,3 +76,4 @@ total notes: 60
 - [058, cutting the docs into pieces](./notes/058-cutting-the-docs-into-pieces.md), one handbook cut three ways against the same question, where a chunk turns out to be the unit you search and the unit you send, both, so a cut made before any question exists decides what can be found and what it costs
 - [059, search the chunks, then paste them in](./notes/059-search-the-chunks-then-paste-them-in.md), the retrieval pipeline as ten lines of code, embedding the pile once and the question every time, ending in a string join that drops the winning chunks into the user message where the model cant tell them from anything i typed
 - [060, where the vectors actually live](./notes/060-where-the-vectors-live.md), the loop over every stored array gets replaced by a grouping built once up front, so the question is scored against 2,000 middles and only the closest few groups get opened, which buys the speed by never checking the groups that might hold the best chunk
+- [061, filter first, then search](./notes/061-filter-before-you-search.md), six chunks scored for one support engineer, where filtering after the top 3 leaves her with a single chunk and no filter at all quietly hands her two finance docs, so the fields have to bite during the search and not after it

@@ -71,7 +71,7 @@
 - [x] chunking: the decision that quietly decides quality (058)
 - [x] retrieval: embed, search, stuff the context (059)
 - [x] where vectors live: from scanning every doc to a real index, and what approximate costs (060)
-- [ ] filtering before searching: metadata, permissions, and why vector search alone isnt enough
+- [x] filtering before searching: metadata, permissions, and why vector search alone isnt enough (061)
 - [ ] why retrieval fails: the vocabulary gap
 - [ ] keyword + semantic: hybrid search
 - [ ] reranking: cheap search, expensive sort
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 060 replaced 059s loop over every stored array with a prebuilt grouping. what it established: the chunk vectors get sorted into neighbourhoods once, up front, each neighbourhood keeps one array at its middle, the question is scored against those middles first, and only the closest few groups get opened. about 12,000 comparisons instead of 4 million. the line that carries: the groups you never open might hold the best chunk in the store and nothing checks, so approximate is the price of the speed, and opening more groups is the knob. it named that prebuilt grouping as the index and named it as roughly what a vector database sells you, with one plain sentence that other index shapes hop a graph of neighbours instead and make the same trade.
+baton: 061 established that a chunk in the store is a vector plus fields riding next to it, team, doc id, date, and that the order of filter and search decides the answer. the worked example: six chunks scored for one support engineer, filter after gives top 3 then drops what she cant read and leaves one chunk, filter first cuts to her team then takes top 3 and returns three. no filter at all leaks two finance chunks into her answer. the caveat that carries: you dont run the filter as your own pass, you hand the fields to the store and it applies them during the search, and a tiny allowed slice costs the index some of 060s speed. it exits pointing at a chunk that is allowed, present, and still doesnt come back.
 
-the next checkbox is "filtering before searching: metadata, permissions, and why vector search alone isnt enough". it picks up from the fact that every note in arc 6 so far ranks purely on cosine, so the top 3 are whatever is closest in meaning with no regard for who is allowed to read them or whether the doc is still current. the note is that a chunk needs fields riding alongside the vector, and that the filter has to bite before or during the search, not after, because filtering the top 3 down can leave you with nothing. an access-control example lands this harder than a date one, it makes the failure a leak rather than a stale answer.
+the next checkbox is "why retrieval fails: the vocabulary gap". it has to cash that exit line. everything so far has assumed the question and the right chunk land near each other, and this note breaks that: the user asks in their words, the doc is written in the companys words, and cosine on those two embeddings comes back low even though the chunk is exactly the answer. a real pair of phrasings for the same thing lands it, something like a user asking about "getting my money back" against a handbook that only ever says "reimbursement policy". keep it to the failure itself, the fixes are the next two checkboxes.
 
-process note: 058 landed at 214, 059 at 231, 060 at 207. still above the 170 to 190 aim. the fat is usually prose restating the visual, cut that first.
+process note: 059 landed at 231, 060 at 207, 061 at 190. the aim is 170 to 190 and 061 got there by cutting the sentence that re-walked the visual step by step. keep doing that.
 
-last visuals: mermaid flowchart, two paths from one question vector (060), pseudocode block, ten lines (059), three-column comparison table of cut strategies (058). mermaid just ran, so the next one wants a worked example with real numbers or an annotated artifact.
-last exits: stops (060), stops (059), forward (058). the next one can go either way, but two stops in a row means a forward pointer would read fresh.
+last visuals: worked example, six scored chunks run through both filter orders (061), mermaid flowchart, two paths from one question vector (060), pseudocode block, ten lines (059). a worked example just ran, so the next one wants an annotated artifact or a small table, not another scored list.
+last exits: forward (061), stops (060), stops (059). one forward just went out, so another forward is fine but a third in a row would be the formula showing.
 
 ## NOTES
