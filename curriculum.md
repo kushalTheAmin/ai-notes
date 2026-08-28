@@ -85,7 +85,7 @@
 ## ARC 7 - evals: how you know any of it works
 - [x] "looks good" doesnt scale (071)
 - [x] the golden dataset: 50 examples beat vibes (072)
-- [ ] exact match vs semantic scoring
+- [x] exact match vs semantic scoring (073)
 - [ ] llm-as-judge, and its biases
 - [ ] the score moved, is it real: why small eval sets lie
 - [ ] regression: the prompt change that broke three other things
@@ -118,18 +118,18 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 072 turned 071s hand written labels into an artifact, evals/golden.jsonl, one question per line, 50 of them, checked in beside the code like a test fixture. the visual was an annotated artifact in a plain code block: two real rows carrying a question, the chunk that answers it (scored by 067 and 068) and a must_say list of what a right answer contains, then two runs compared, mon at recall@5 0.62 (31 of 50) against fri at 0.72 (36 of 50), and the same fri run with 10 questions added first reading 0.70 (42 of 60) where the gap says nothing. it landed on the file being boring as the feature, since a score is half of a comparison and both halves have to have sat the same paper. it points forward on purpose: writing "30 days" down does not make it check itself.
+baton: 073 took the must_say list 072 left unread and turned it into pass or fail, two mechanical ways, and neither one wins. the visual was a comparison table, four rows three columns: one question, four model answers each tagged (right) or (wrong), scored by a must_say substring check and by cosine against a reference sentence with the cut at 0.75. the string check marks a correct paraphrase ("about a month") as failed, and the meaning check waves through "60 days from purchase" at 0.97, because embeddings score what a sentence is about and not whether its true, which 019 had already shown with log in and log out at 0.87. it stops rather than pointing forward, on running both checks with the string one first since its free.
 
-the next checkbox is "exact match vs semantic scoring", and 072 handed it the exact opening. the must_say list is sitting in the file and nothing checks it yet, so 073s job is the two ways to compare a written down expected answer against a whole sentence a model produced, string containment or equality on one side, and comparing meaning with the embeddings arc 2 already built (013 cosine, 014 embeddings) on the other, plus where each one is wrong. do not reach for a model grading the answer, llm-as-judge is its own checkbox right after. and do not re-argue why the set is fixed, 072 spent that.
+the next checkbox is "llm-as-judge, and its biases", and 073 set it up without naming it. both checks it built are mechanical and both are wrong on ordinary answers, so 074 opens on the obvious next move, hand the answer to a model and ask it to grade. 074 owes the reader the shape of that call first (what the judge is shown: the question, the answer, and the must_say line 072 already wrote) and then the ways it tilts, position, length, self-preference. the honest caveat it must not skip is that the judge is the same next-token machine as the thing being judged, so 037 and 038 apply to the grader too. do not re-run cosine scoring, 073 spent that.
 
-fifty was framed in 072 as a guess at coverage and nothing more. the sample size argument, why a small set wobbles and a moved score can be noise, belongs to "the score moved, is it real" later in this arc. dont let 073 or 074 borrow it early.
+fifty was framed in 072 as a guess at coverage and nothing more. the sample size argument, why a small set wobbles and a moved score can be noise, belongs to "the score moved, is it real" later in this arc. 073 did not touch it, dont let 074 borrow it early either.
 
 bm25 scoring stayed a missing brick through all of arc 6 and that was correct. 064 prints a keyword score as a bare number on purpose, since the point is that the scale is unknowable to you. it stays unlaid, dont let a later arc drag it in.
 
-process note: 069 at 154, 070 at 324 on the capstone ceiling, 071 at 190, 072 at 221. two longer ones in a row now, so 073 should aim at 150 to 190 and actually land there.
+process note: 069 at 154, 070 at 324 on the capstone ceiling, 071 at 190, 072 at 221, 073 at 191. aiming at a band and trimming to hit it worked, so keep doing that. 074 has more to carry than 073 did, the call shape plus the biases, so 160 to 220 is the band, and if the draft wants more than that the checkbox is two notes.
 
-last visuals: annotated artifact, the golden file with two rows plus a two run comparison (072), worked example, the reading cost multiplied out in a plain code block (071), mermaid assembly diagram with a gave up line in every box (070). an annotated artifact and a worked example just ran back to back, so 073 wants a small comparison table or a short pseudocode block, and a table fits it well since the concept is literally two scoring methods side by side.
-last exits: forward (072), stops (071), forward (070). two of the last three point forward, so 073 must just stop.
+last visuals: comparison table, four answers scored two ways against one question (073), annotated artifact, the golden file with two rows plus a two run comparison (072), worked example, the reading cost multiplied out in a plain code block (071). no type has run twice in a row, so every type is legal for 074. an annotated judge prompt would work but it would be the second artifact in three notes, and a short pseudocode block showing the grading call and what comes back fits the concept better.
+last exits: stops (073), forward (072), stops (071). only one of the last three points forward, so 074 may do either.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
