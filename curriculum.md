@@ -67,7 +67,7 @@
 
 ## ARC 6 - RAG: giving the model your data
 - [x] closed-book vs open-book (056)
-- [ ] long context vs retrieval: when you can just send everything, and when you cant
+- [x] long context vs retrieval: when you can just send everything, and when you cant (057)
 - [ ] chunking: the decision that quietly decides quality
 - [ ] retrieval: embed, search, stuff the context
 - [ ] where vectors live: from scanning every doc to a real index, and what approximate costs
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 056 opened arc 6 off 055s closing line. what it established: the same question has two answers, one off the file training froze (028) and one off text i pasted into the message myself, and the pasting is not a feature, its string concatenation into a row of the array from 045 that shows up as one more line in the 053 budget. it named retrieval augmented generation, RAG, translated in the same sentence as get text, add it to the prompt, generate. it carried one caveat forward: pasted text doesnt force the model to use it, it can still lean on the frozen file or blend the two. and it left one question open on purpose, i said i went and got the paragraph, except i have ten thousand docs, so which one.
+baton: 057 answered 056s open question the lazy way first, dont pick, send the whole pile. what it established: with a small pile that barely moves, pasting everything into the system message is a legitimate finished design, no embeddings and no index. and the thing that kills it is not the 006 ceiling, its the per-call cost, because 047 resends the pile every turn, so a legal-sized 160k pile at $3 per million (004) is 48 cents a call and $2.40 for a five turn chat. it carried one caveat: even inside the window, burying the answer in a huge pile makes it likelier to get missed, more context in is not automatically a better answer out.
 
-the next checkbox is "long context vs retrieval: when you can just send everything, and when you cant". it picks the baton up right at that open question, and its honest first answer is the lazy one, dont pick, send the whole pile. so the note is the two conditions under which that works and where it stops working: the 006 ceiling it hits eventually, and the per-call cost of resending it every turn (004, 047). it should stay on when to retrieve at all, not how. no chunking, no embeddings, no index, no search mechanics, those are the next checkboxes.
+the next checkbox is "chunking: the decision that quietly decides quality". it picks the baton up from the pile being too big to send whole, so the pile has to get cut into pieces first, before anything can search it. the note is what a chunk is and why the cut line matters: too small and the piece loses the context that made it mean anything, too big and youre back to paying for text the question never needed. keep it on cutting the docs only. no embeddings of chunks, no index, no similarity search, those are the next checkboxes.
 
-process note: 054 landed at 193, 055 at 325 on the capstone budget, 056 at 235 after one cut pass. 235 is still high for a note this simple, keep aiming near 180.
+process note: 055 landed at 325 on the capstone budget, 056 at 235, 057 at 206 after two cut passes. the trend is right, keep aiming near 180.
 
-last visuals: annotated two-request comparison in a plain code block (056), mermaid assembly flowchart (055), annotated request body with cost worked under it (054). thats two annotated artifacts in three notes, so the next one should be something else. a worked cost table across a few doc-pile sizes, or a small comparison table, fits this concept well.
-last exits: stops (056), forward (055), forward (054). the last note stopped, so the next one may point forward.
+last visuals: worked cost table across pile sizes in a plain code block (057), annotated two-request comparison in a plain code block (056), mermaid assembly flowchart (055). thats three plain code blocks in a row by presentation even though the types differ, so the next one should be visually different. a mermaid diagram of a doc being cut, or a real paragraph shown chunked two ways side by side, both fit chunking well.
+last exits: stops (057), stops (056), forward (055). two stops in a row, so the next one should point forward.
 
 ## NOTES

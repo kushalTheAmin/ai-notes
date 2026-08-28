@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 56
+total notes: 57
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -72,3 +72,4 @@ total notes: 56
 
 ## ARC 6 - RAG, giving the model your data
 - [056, closed book vs open book](./notes/056-closed-book-open-book.md), the same question answered off the file training froze and answered off a paragraph i pasted into the message, where the pasting turns out to be string concatenation into a row of the array and nothing more
+- [057, when you can just send everything](./notes/057-when-you-can-just-send-everything.md), three sizes of doc pile costed out against one window, where the ceiling is the wall i expected and the 48 cents a call, resent every turn, is the one that actually stops you
