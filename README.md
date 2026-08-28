@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 68
+total notes: 69
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -84,3 +84,4 @@ total notes: 68
 - [066, search wide, then sort narrow](./notes/066-search-wide-sort-narrow.md), the cheap search stops picking the answer and starts picking who gets read, handing 50 candidates off a store of 4,000,000 to a scorer that costs one model run each, so the expensive stage is priced by the number you chose and not by how many docs you own
 - [067, did the right chunk even come back](./notes/067-did-the-right-chunk-come-back.md), four hand-written questions with the chunk that should answer each, and the rank it actually came back at, where counting how many landed at k or better turns the 50 candidates from a hope into a number you can check
 - [068, recall throws away where it landed](./notes/068-where-in-the-list-it-landed.md), the same four ranks from 067 scored one over the rank instead of yes or no, so a hit at rank 1 is worth nine times one at rank 9, and identical data reads 0.75 by one metric and 0.34 by the other
+- [069, did the answer come from the docs](./notes/069-did-the-answer-come-from-the-docs.md), split the answer into claims and check each one against the chunks you actually sent, where a claim thats true in the world but missing from those chunks still fails

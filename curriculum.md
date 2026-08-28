@@ -79,7 +79,7 @@
 - [x] two-stage retrieval: search wide and cheap, sort narrow and expensive (066)
 - [x] recall@k: did the right chunk come back at all (067)
 - [x] mrr: recall throws away where in the list it landed (068)
-- [ ] groundedness: did the answer come from the docs
+- [x] groundedness: did the answer come from the docs (069)
 - [ ] CAPSTONE: doc-QA system end to end, every design decision named
 
 ## ARC 7 - evals: how you know any of it works
@@ -118,16 +118,16 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 068 answered the exact complaint 067 stopped on, that rank 1 and rank 9 both score a plain yes. it reused 067s four rows untouched, ranks 1, 4, 9 and one miss, and scored one over the rank instead of yes/no, so 1.0, 0.25, 0.11, 0, mean 0.34 against recall@10 of 0.75 on identical data. the point that landed is that the two metrics ask different questions, did it come back at all versus did it come back near the top, and neither is the stricter version of the other. 068 also named the limit that mrr only looks at the first right chunk. it exited pointing forward, one line saying both numbers stop at the chunk and neither has opened the answer.
+baton: 069 picked up 068s closing line by name and turned the arc from grading the retriever to grading the answer. the visual was an annotated artifact, the 056 refund doc plus a second chunk about the payment method, then the model answer cut into five claims with each traced to doc-1, doc-2 or nothing, 3 supported of 5 so 0.6. the point that landed is the pair of ungrounded lines, a 5 dollar restocking fee that was invented (038) and a 3 to 5 day processing time thats actually true, both scoring the same, because the question is did this come from the text i sent, not is this true. the caveat is in there as its own beat, a true claim off the frozen file (028) is closed book wearing open book clothes, the exact blend 056 warned about, and it cant be cited. it exited on a stop, correctness is somebody elses metric.
 
-the next checkbox is "groundedness: did the answer come from the docs". pick up that closing line by name, retrieval metrics grade what came back, groundedness grades what the model did with it. this is the first metric in the arc that reads the generated answer, so the shift is the whole opening. do not reuse the four-row answer key again, three notes running on it would be stale, and 068 already spent the ranks. the honest core: you check each claim in the answer against the chunks that were actually sent, a claim with no supporting chunk is ungrounded even when its true in the world. that last clause is the caveat, groundedness is not correctness, a model can state a true fact the docs never said and that still fails the check. 038 already built why the made-up answer sounds right, lean on it by number rather than re-explaining. 056 closed-book vs open-book is the other natural anchor.
+the next checkbox is the arc 6 CAPSTONE, "doc-QA system end to end, every design decision named". every brick in the arc is now laid, so this is assembly, not a new idea. run the capstone gap check first: walk the pipeline and confirm nothing needed is missing. the shape to assemble is one doc-QA system with each stage carrying its note number, ingest and chunk (058), embed and index (059, 060), filter by metadata and permissions (061), search wide with both keyword and vector (062, 063, 064), merge and rerank narrow (065, 066), stuff the winners into the prompt (056, 053), then measure with recall@k (067), mrr (068) and groundedness (069). the framing that earns the word capstone is "every design decision named", so each stage should carry the choice i made and the thing i gave up, not just the mechanism. capstone budget is up to 350 prose words and the visual must be an assembly diagram, the arcs bricks as labeled parts of one picture with note numbers on the labels. 069 was an annotated artifact and 068 a number grid, so mermaid is clean here and it fits assembly best.
 
-bm25 scoring is still a missing brick and stays one. 064 prints a keyword score as a bare number and never explains its scale, deliberately, since the point is that the scale is unknowable to you.
+bm25 scoring is still a missing brick and stays one. 064 prints a keyword score as a bare number and never explains its scale, deliberately, since the point is that the scale is unknowable to you. do not let the capstone gap check drag it in, its absence is the design decision.
 
-process note: 065 at 197, 066 at 201, 067 at 184, 068 at 187. keep aiming 170 to 190, the last two landed.
+process note: 066 at 201, 067 at 184, 068 at 187, 069 at 154. 154 was a deliberate short one after three near 190. the capstone gets its own ceiling, aim 280 to 330 there.
 
-last visuals: worked example block, four rows scored two ways side by side with both totals derived under it (068), answer key table with a rank column plus a computed block (067), ascii funnel with counts and a cost per stage (066). two number-grid visuals running now, so 069 wants something else, an annotated artifact or a mermaid flow.
-last exits: forward (068), stops (067), forward (066). two of the last three point forward, so 069 must just stop.
+last visuals: annotated artifact, two retrieved chunks plus an answer cut into five claims each traced to a source or to nothing (069), worked example block, four rows scored two ways side by side (068), answer key table with a rank column plus a computed block (067). mermaid has not appeared since 065, so the capstones assembly diagram is due.
+last exits: stops (069), forward (068), stops (067). only one of the last three points forward, so 070 may end either way, and a capstone handing off to arc 7 is a fair place to point forward.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, so the prose says "the 059 side" and "the reranker side" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
