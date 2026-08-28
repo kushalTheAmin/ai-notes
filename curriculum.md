@@ -73,7 +73,7 @@
 - [x] where vectors live: from scanning every doc to a real index, and what approximate costs (060)
 - [x] filtering before searching: metadata, permissions, and why vector search alone isnt enough (061)
 - [x] why retrieval fails: the vocabulary gap (062)
-- [ ] keyword search: the literal word match, and what it catches that meaning misses
+- [x] keyword search: the literal word match, and what it catches that meaning misses (063)
 - [ ] hybrid: merging two ranked lists when the scores dont compare
 - [ ] reranking: cheap search, expensive sort
 - [ ] measuring retrieval: recall@k and mrr in plain terms
@@ -116,13 +116,15 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 062 broke the assumption every note in this arc had been resting on, that the question and the right chunk land near each other. the annotated artifact: someone types "can i get my money back for the client dinner", refunds.md comes back at rank 2 because it echoes their words and is written for customers, expenses.md is the actual answer and sits at rank 31 because it says reimbursement, receipts, Nova, and shares nothing with the question. top 3 is all that gets pasted in, so the answer never ships. the caveat that carries: embeddings really do bridge a lot of paraphrase, the gap is company vocabulary, form numbers and internal tool names nothing ever taught the model. 062 also named the thing that makes this dangerous, nothing errors, the ui looks normal.
+baton: 063 put the second search on the table. keyword search, a hashmap from each word to the chunks holding it, the thing you already built with a LIKE query behind a search box. the comparison table ran two questions at 062s expenses.md, "how long do i have to claim a work lunch back" which shares literally zero tokens with the doc and which meaning-search still ranks first, and "whats the Nova deadline" which the literal match takes in one lookup while the embedding drifts to whatever else says deadline. each column wins one row and whiffs the other, and that diagonal is the whole note. the one caveat carried: real keyword search is not grep, it weights rare words heavier than common ones, which is why an invented name like Nova is such a loud signal.
 
-the next checkbox is "keyword + semantic: hybrid search". it is the first of the two fixes and it should be framed as exactly that, the answer to 062. the move: run the old dumb thing alongside the smart thing, a literal word match that would have found "Nova" and "reimbursement" instantly precisely because it never tries to understand them, and merge the two ranked lists into one. the honest tension worth landing is that keyword search fails wherever 062s embedding succeeded, it cannot bridge paraphrase at all, so neither list is the good one and the merge is the point. do not get pulled into explaining bm25 scoring, if that wants a paragraph it is a missing brick, split it.
+063 also corrected the plan the last baton had set. hybrid does NOT rescue 062s exact question, there you typed money back and the doc said reimbursement, so the literal list has even less to grab than the embedding did. do not let the next note claim otherwise. 063 ends on two rankings and neither one being the good list.
 
-process note: 059 landed at 231, 060 at 207, 061 at 190, 062 at 181. the aim is 170 to 190 and it is holding. keep cutting the sentence that re-walks the visual.
+the next checkbox is "hybrid: merging two ranked lists when the scores dont compare". it exists because the merge is genuinely not obvious and that is the note: a cosine score and a keyword score are not on the same scale, so you cannot add them. the move is to throw the scores away and merge on rank position instead, one over the rank, summed across the two lists, which is why a chunk that placed decently in both beats one that won a single list. keep bm25 scoring out of it, that stays a missing brick and gets split if it wants a paragraph.
 
-last visuals: annotated artifact, two doc excerpts marked for word overlap and rank (062), worked example, six scored chunks run through both filter orders (061), mermaid flowchart, two paths from one question vector (060). two text-shaped visuals in a row now, so the next one wants a mermaid diagram or a small comparison table.
-last exits: stops (062), forward (061), stops (060). a forward is free next, the merge of two lists is a natural place to point at reranking.
+process note: 060 landed at 207, 061 at 190, 062 at 181, 063 at 217. the aim is 170 to 190 and 063 broke it, on purpose, to carry both the caveat and the correction to 062. next one comes back under 190.
+
+last visuals: comparison table, two questions by two search methods against one doc (063), annotated artifact, two doc excerpts marked for word overlap and rank (062), worked example, six scored chunks run through both filter orders (061). the merge is a numbers job, so 064 wants a worked example with the two rank columns and the sum on the page, and that is fine by the no-three-in-a-row rule since the last worked example was 061. it does mean four text-shaped visuals running, so 065 owes this arc a mermaid.
+last exits: forward (063), stops (062), forward (061). a forward at 064 is still legal, two running is the ceiling, so if 064 points ahead then 065 has to just stop.
 
 ## NOTES
