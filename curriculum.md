@@ -68,7 +68,7 @@
 ## ARC 6 - RAG: giving the model your data
 - [x] closed-book vs open-book (056)
 - [x] long context vs retrieval: when you can just send everything, and when you cant (057)
-- [ ] chunking: the decision that quietly decides quality
+- [x] chunking: the decision that quietly decides quality (058)
 - [ ] retrieval: embed, search, stuff the context
 - [ ] where vectors live: from scanning every doc to a real index, and what approximate costs
 - [ ] filtering before searching: metadata, permissions, and why vector search alone isnt enough
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 057 answered 056s open question the lazy way first, dont pick, send the whole pile. what it established: with a small pile that barely moves, pasting everything into the system message is a legitimate finished design, no embeddings and no index. and the thing that kills it is not the 006 ceiling, its the per-call cost, because 047 resends the pile every turn, so a legal-sized 160k pile at $3 per million (004) is 48 cents a call and $2.40 for a five turn chat. it carried one caveat: even inside the window, burying the answer in a huge pile makes it likelier to get missed, more context in is not automatically a better answer out.
+baton: 058 cut the pile up. what it established: a chunk is a piece of a doc, the cut line is chosen before any question exists, and one 40 page handbook cut three ways (per sentence, not at all, per heading) gives three different answers to the same refund question. the line that carries: a chunk is the unit you search and the unit you send, both, so one cut decides findability and cost together. cut too small and a sentence loses the heading and the price it was leaning on, dont cut at all and youre back on 057s bill at 30,000 tokens a question. it dropped one plain sentence saying chunks usually overlap a bit, no more than that.
 
-the next checkbox is "chunking: the decision that quietly decides quality". it picks the baton up from the pile being too big to send whole, so the pile has to get cut into pieces first, before anything can search it. the note is what a chunk is and why the cut line matters: too small and the piece loses the context that made it mean anything, too big and youre back to paying for text the question never needed. keep it on cutting the docs only. no embeddings of chunks, no index, no similarity search, those are the next checkboxes.
+the next checkbox is "retrieval: embed, search, stuff the context". it picks the baton up from having a folder of chunks and no way to pick one. the note is the three-step loop end to end for the first time: embed every chunk once (014, 017), embed the question at ask time and cosine against the stored arrays to take the top few (021), then paste those chunks into the message the way 056 pasted its paragraph. arc 2 already built every piece of the search, so the new thing here is only the wiring, that this is a pipeline my own code runs, and that the model still just reads text someone concatenated for it. keep the storage out of it, scanning every chunk in a loop is fine at this size, the real index is the checkbox after.
 
-process note: 055 landed at 325 on the capstone budget, 056 at 235, 057 at 206 after two cut passes. the trend is right, keep aiming near 180.
+process note: 056 landed at 235, 057 at 206, 058 at 214. keep aiming near 180.
 
-last visuals: worked cost table across pile sizes in a plain code block (057), annotated two-request comparison in a plain code block (056), mermaid assembly flowchart (055). thats three plain code blocks in a row by presentation even though the types differ, so the next one should be visually different. a mermaid diagram of a doc being cut, or a real paragraph shown chunked two ways side by side, both fit chunking well.
-last exits: stops (057), stops (056), forward (055). two stops in a row, so the next one should point forward.
+last visuals: three-column comparison table of cut strategies (058), worked cost table across pile sizes in a plain code block (057), annotated two-request comparison in a plain code block (056). a table just ran, so the next one wants a different shape. a mermaid flowchart of the offline pass and the ask-time pass, or a numbered pseudocode block, both fit retrieval.
+last exits: forward (058), stops (057), stops (056). one forward, so the next can go either way, but two forwards in a row then needs a stop.
 
 ## NOTES
