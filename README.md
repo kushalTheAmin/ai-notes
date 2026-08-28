@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 73
+total notes: 74
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -91,3 +91,4 @@ total notes: 73
 - [071, "looks good" doesnt scale](./notes/071-looks-good-doesnt-scale.md), the ranks recompute themselves once the labels exist, but checking the answer is a person reading for two minutes, and you pay that again on every prompt change, so 4 questions costs 8 minutes a run and 50 costs 20 hours across an afternoon of tweaks
 - [072, the same questions, every run](./notes/072-the-same-questions-every-run.md), the hand written labels become a file checked in beside the code, one question a line with the chunk that answers it and what a right answer must contain, and the moment you add ten questions mid-comparison the two scores stop being comparable at all
 - [073, two ways to check the answer](./notes/073-two-ways-to-check-an-answer.md), four answers to one question run past a substring check and a cosine check, where the string check fails a correct paraphrase and the meaning check waves through an answer that swapped 30 days for 60
+- [074, let a model grade the answer](./notes/074-let-a-model-grade-it.md), the grading call written out with a real golden row pasted in, where the must_say line typed by hand in 072 becomes the rubric a second model reads, and it gets both of the rows the mechanical checks broke on, while being the same next-token machine as the thing its grading
