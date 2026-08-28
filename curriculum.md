@@ -72,7 +72,7 @@
 - [x] retrieval: embed, search, stuff the context (059)
 - [x] where vectors live: from scanning every doc to a real index, and what approximate costs (060)
 - [x] filtering before searching: metadata, permissions, and why vector search alone isnt enough (061)
-- [ ] why retrieval fails: the vocabulary gap
+- [x] why retrieval fails: the vocabulary gap (062)
 - [ ] keyword + semantic: hybrid search
 - [ ] reranking: cheap search, expensive sort
 - [ ] measuring retrieval: recall@k and mrr in plain terms
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 061 established that a chunk in the store is a vector plus fields riding next to it, team, doc id, date, and that the order of filter and search decides the answer. the worked example: six chunks scored for one support engineer, filter after gives top 3 then drops what she cant read and leaves one chunk, filter first cuts to her team then takes top 3 and returns three. no filter at all leaks two finance chunks into her answer. the caveat that carries: you dont run the filter as your own pass, you hand the fields to the store and it applies them during the search, and a tiny allowed slice costs the index some of 060s speed. it exits pointing at a chunk that is allowed, present, and still doesnt come back.
+baton: 062 broke the assumption every note in this arc had been resting on, that the question and the right chunk land near each other. the annotated artifact: someone types "can i get my money back for the client dinner", refunds.md comes back at rank 2 because it echoes their words and is written for customers, expenses.md is the actual answer and sits at rank 31 because it says reimbursement, receipts, Nova, and shares nothing with the question. top 3 is all that gets pasted in, so the answer never ships. the caveat that carries: embeddings really do bridge a lot of paraphrase, the gap is company vocabulary, form numbers and internal tool names nothing ever taught the model. 062 also named the thing that makes this dangerous, nothing errors, the ui looks normal.
 
-the next checkbox is "why retrieval fails: the vocabulary gap". it has to cash that exit line. everything so far has assumed the question and the right chunk land near each other, and this note breaks that: the user asks in their words, the doc is written in the companys words, and cosine on those two embeddings comes back low even though the chunk is exactly the answer. a real pair of phrasings for the same thing lands it, something like a user asking about "getting my money back" against a handbook that only ever says "reimbursement policy". keep it to the failure itself, the fixes are the next two checkboxes.
+the next checkbox is "keyword + semantic: hybrid search". it is the first of the two fixes and it should be framed as exactly that, the answer to 062. the move: run the old dumb thing alongside the smart thing, a literal word match that would have found "Nova" and "reimbursement" instantly precisely because it never tries to understand them, and merge the two ranked lists into one. the honest tension worth landing is that keyword search fails wherever 062s embedding succeeded, it cannot bridge paraphrase at all, so neither list is the good one and the merge is the point. do not get pulled into explaining bm25 scoring, if that wants a paragraph it is a missing brick, split it.
 
-process note: 059 landed at 231, 060 at 207, 061 at 190. the aim is 170 to 190 and 061 got there by cutting the sentence that re-walked the visual step by step. keep doing that.
+process note: 059 landed at 231, 060 at 207, 061 at 190, 062 at 181. the aim is 170 to 190 and it is holding. keep cutting the sentence that re-walks the visual.
 
-last visuals: worked example, six scored chunks run through both filter orders (061), mermaid flowchart, two paths from one question vector (060), pseudocode block, ten lines (059). a worked example just ran, so the next one wants an annotated artifact or a small table, not another scored list.
-last exits: forward (061), stops (060), stops (059). one forward just went out, so another forward is fine but a third in a row would be the formula showing.
+last visuals: annotated artifact, two doc excerpts marked for word overlap and rank (062), worked example, six scored chunks run through both filter orders (061), mermaid flowchart, two paths from one question vector (060). two text-shaped visuals in a row now, so the next one wants a mermaid diagram or a small comparison table.
+last exits: stops (062), forward (061), stops (060). a forward is free next, the merge of two lists is a natural place to point at reranking.
 
 ## NOTES

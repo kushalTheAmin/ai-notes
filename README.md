@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 61
+total notes: 62
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -77,3 +77,4 @@ total notes: 61
 - [059, search the chunks, then paste them in](./notes/059-search-the-chunks-then-paste-them-in.md), the retrieval pipeline as ten lines of code, embedding the pile once and the question every time, ending in a string join that drops the winning chunks into the user message where the model cant tell them from anything i typed
 - [060, where the vectors actually live](./notes/060-where-the-vectors-live.md), the loop over every stored array gets replaced by a grouping built once up front, so the question is scored against 2,000 middles and only the closest few groups get opened, which buys the speed by never checking the groups that might hold the best chunk
 - [061, filter first, then search](./notes/061-filter-before-you-search.md), six chunks scored for one support engineer, where filtering after the top 3 leaves her with a single chunk and no filter at all quietly hands her two finance docs, so the fields have to bite during the search and not after it
+- [062, when you and the doc use different words](./notes/062-when-you-and-the-doc-use-different-words.md), a question about getting money back pulls up the customer refund page at rank 2 because it echoes the wording, while the expense policy that actually answers it sits at rank 31 sharing not one word, and nothing anywhere errors
