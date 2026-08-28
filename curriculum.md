@@ -84,7 +84,7 @@
 
 ## ARC 7 - evals: how you know any of it works
 - [x] "looks good" doesnt scale (071)
-- [ ] the golden dataset: 50 examples beat vibes
+- [x] the golden dataset: 50 examples beat vibes (072)
 - [ ] exact match vs semantic scoring
 - [ ] llm-as-judge, and its biases
 - [ ] the score moved, is it real: why small eval sets lie
@@ -118,16 +118,18 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 071 opened arc 7 by cutting the cost of measuring in two. the retrieval half already recomputes itself, because once i wrote down which chunk should answer each question the ranks fall out of the search results anyway, so recall 067 and mrr 068 are free on every run. the answer has no key like that, so checking it is a person opening the chunks and reading claims 069, about two minutes each, and that cost gets paid again on every single prompt change. the visual was a worked example multiplying it out in a plain code block: 4 questions at 2 min is 8 min a run, 12 tweaks in one afternoon makes 96 min, and moving to 50 questions makes it 1200 min, 20 hours, while the same 600 model calls finish in a few minutes at 20 at a time. it landed on reading being the only step in the loop that runs at exactly one person, and on the skim that starts around answer forty. it just stopped, no forward pointer.
+baton: 072 turned 071s hand written labels into an artifact, evals/golden.jsonl, one question per line, 50 of them, checked in beside the code like a test fixture. the visual was an annotated artifact in a plain code block: two real rows carrying a question, the chunk that answers it (scored by 067 and 068) and a must_say list of what a right answer contains, then two runs compared, mon at recall@5 0.62 (31 of 50) against fri at 0.72 (36 of 50), and the same fri run with 10 questions added first reading 0.70 (42 of 60) where the gap says nothing. it landed on the file being boring as the feature, since a score is half of a comparison and both halves have to have sat the same paper. it points forward on purpose: writing "30 days" down does not make it check itself.
 
-the next checkbox is "the golden dataset: 50 examples beat vibes". the baton is specific: 071 already established that the labels are the thing that makes 067 and 068 free, and it already used 50 as a number without arguing for it. so 072s job is the fix, a written down fixed set of questions with the expected answer for each, why writing it down at all is the move, and why the set has to stay identical between runs or the comparison means nothing. do not re-argue the time cost, thats spent. also note 071 said "right now the only thing checking it is me" on purpose rather than "only a human can", so llm-as-judge stays open for its own checkbox later in the arc, dont let 072 reach for it.
+the next checkbox is "exact match vs semantic scoring", and 072 handed it the exact opening. the must_say list is sitting in the file and nothing checks it yet, so 073s job is the two ways to compare a written down expected answer against a whole sentence a model produced, string containment or equality on one side, and comparing meaning with the embeddings arc 2 already built (013 cosine, 014 embeddings) on the other, plus where each one is wrong. do not reach for a model grading the answer, llm-as-judge is its own checkbox right after. and do not re-argue why the set is fixed, 072 spent that.
+
+fifty was framed in 072 as a guess at coverage and nothing more. the sample size argument, why a small set wobbles and a moved score can be noise, belongs to "the score moved, is it real" later in this arc. dont let 073 or 074 borrow it early.
 
 bm25 scoring stayed a missing brick through all of arc 6 and that was correct. 064 prints a keyword score as a bare number on purpose, since the point is that the scale is unknowable to you. it stays unlaid, dont let a later arc drag it in.
 
-process note: 068 at 187, 069 at 154, 070 at 324 on the capstone ceiling, 071 at 190. 072 can sit anywhere in 140 to 220.
+process note: 069 at 154, 070 at 324 on the capstone ceiling, 071 at 190, 072 at 221. two longer ones in a row now, so 073 should aim at 150 to 190 and actually land there.
 
-last visuals: worked example, the reading cost multiplied out in a plain code block (071), mermaid assembly diagram with a gave up line in every box (070), annotated artifact, two retrieved chunks plus an answer cut into five claims (069). a worked example just ran, so 072 wants something else, a mermaid or an annotated artifact or a small table.
-last exits: stops (071), forward (070), stops (069). only one of the last three points forward, so 072 is free either way.
+last visuals: annotated artifact, the golden file with two rows plus a two run comparison (072), worked example, the reading cost multiplied out in a plain code block (071), mermaid assembly diagram with a gave up line in every box (070). an annotated artifact and a worked example just ran back to back, so 073 wants a small comparison table or a short pseudocode block, and a table fits it well since the concept is literally two scoring methods side by side.
+last exits: forward (072), stops (071), forward (070). two of the last three point forward, so 073 must just stop.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
