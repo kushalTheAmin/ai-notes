@@ -83,7 +83,7 @@
 - [x] CAPSTONE: doc-QA system end to end, every design decision named (070)
 
 ## ARC 7 - evals: how you know any of it works
-- [ ] "looks good" doesnt scale
+- [x] "looks good" doesnt scale (071)
 - [ ] the golden dataset: 50 examples beat vibes
 - [ ] exact match vs semantic scoring
 - [ ] llm-as-judge, and its biases
@@ -118,16 +118,16 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 070 closed arc 6 by assembling every brick into one running system, and the visual was a mermaid assembly diagram in two subgraphs, one that runs once when a doc lands (cut 058, vector index 060, word index 063) and one that runs again on every question (filter 061, search both ways and keep 50 062 063 066, merge by position 064, rerank to 5 065, glue into the message 056 053), with the three metrics 067 068 069 hanging off the answer. what earned it the word capstone is that every box carries a gave up line next to the note number, so the picture names the design decision and its cost in the same label. the landing is that not one of those give-ups throws an error, a filter in the wrong order or too narrow a stage 1 slice still ships five chunks and a confident answer and a normal looking ui, which is exactly why the metrics row exists at all. it exited forward on the four hand written questions from 067 being a placeholder for an answer key, not one.
+baton: 071 opened arc 7 by cutting the cost of measuring in two. the retrieval half already recomputes itself, because once i wrote down which chunk should answer each question the ranks fall out of the search results anyway, so recall 067 and mrr 068 are free on every run. the answer has no key like that, so checking it is a person opening the chunks and reading claims 069, about two minutes each, and that cost gets paid again on every single prompt change. the visual was a worked example multiplying it out in a plain code block: 4 questions at 2 min is 8 min a run, 12 tweaks in one afternoon makes 96 min, and moving to 50 questions makes it 1200 min, 20 hours, while the same 600 model calls finish in a few minutes at 20 at a time. it landed on reading being the only step in the loop that runs at exactly one person, and on the skim that starts around answer forty. it just stopped, no forward pointer.
 
-the next checkbox opens arc 7, "looks good doesnt scale". this is an arc opener so it connects back to 070s capstone, and the baton to pick up is precise: 070 already established that this pipeline fails silently and that 067 068 069 exist as stand-ins for the error it never throws, and it already called the four questions a placeholder. so 071 must not re-argue that measuring is necessary, thats settled. its job is the narrower one, why eyeballing a handful of outputs stops working, what breaks when you scale from four questions to a real set, and why a human reading answers is the thing that doesnt scale rather than the model. dont re-explain recall, mrr or groundedness, those are laid.
+the next checkbox is "the golden dataset: 50 examples beat vibes". the baton is specific: 071 already established that the labels are the thing that makes 067 and 068 free, and it already used 50 as a number without arguing for it. so 072s job is the fix, a written down fixed set of questions with the expected answer for each, why writing it down at all is the move, and why the set has to stay identical between runs or the comparison means nothing. do not re-argue the time cost, thats spent. also note 071 said "right now the only thing checking it is me" on purpose rather than "only a human can", so llm-as-judge stays open for its own checkbox later in the arc, dont let 072 reach for it.
 
 bm25 scoring stayed a missing brick through all of arc 6 and that was correct. 064 prints a keyword score as a bare number on purpose, since the point is that the scale is unknowable to you. it stays unlaid, dont let a later arc drag it in.
 
-process note: 066 at 201, 067 at 184, 068 at 187, 069 at 154, 070 at 324 on the capstone ceiling. after a long one, 071 should land short, aim 140 to 190.
+process note: 068 at 187, 069 at 154, 070 at 324 on the capstone ceiling, 071 at 190. 072 can sit anywhere in 140 to 220.
 
-last visuals: mermaid assembly diagram, two subgraphs for once-per-doc and once-per-question with a gave up line in every box (070), annotated artifact, two retrieved chunks plus an answer cut into five claims (069), worked example block, four rows scored two ways side by side (068). mermaid just appeared, so 071 needs something else, a worked example or an annotated artifact or a small table.
-last exits: forward (070), stops (069), forward (068). two of the last three point forward, so 071 must just stop.
+last visuals: worked example, the reading cost multiplied out in a plain code block (071), mermaid assembly diagram with a gave up line in every box (070), annotated artifact, two retrieved chunks plus an answer cut into five claims (069). a worked example just ran, so 072 wants something else, a mermaid or an annotated artifact or a small table.
+last exits: stops (071), forward (070), stops (069). only one of the last three points forward, so 072 is free either way.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
