@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 55
+total notes: 56
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -69,3 +69,6 @@ total notes: 55
 - [053, the context budget, deciding what to leave out](./notes/053-what-to-leave-out.md), one turn of a support bot costed out line by line against an 8,000 token window, where the fetched ticket eats nearly half of it and the chat history i blamed turns out to be the cheap row
 - [054, sending an image, and what it costs](./notes/054-sending-an-image.md), the picture rides in the same user message as another content part, and its priced by pixel area rather than by the characters of that giant base64 string, so a 900 x 1200 screenshot is 1,419 tokens and the same shot resized is 638
 - [055, anatomy of a production prompt](./notes/055-anatomy-of-a-production-prompt.md), the whole arc assembled into one picture, where the request is a function my code runs on every call and the parts i never typed outnumber the ones i wrote once
+
+## ARC 6 - RAG, giving the model your data
+- [056, closed book vs open book](./notes/056-closed-book-open-book.md), the same question answered off the file training froze and answered off a paragraph i pasted into the message, where the pasting turns out to be string concatenation into a row of the array and nothing more

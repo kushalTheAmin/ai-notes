@@ -66,7 +66,7 @@
 - [x] CAPSTONE: anatomy of a production prompt (055)
 
 ## ARC 6 - RAG: giving the model your data
-- [ ] closed-book vs open-book
+- [x] closed-book vs open-book (056)
 - [ ] long context vs retrieval: when you can just send everything, and when you cant
 - [ ] chunking: the decision that quietly decides quality
 - [ ] retrieval: embed, search, stuff the context
@@ -115,13 +115,13 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 055 closed arc 5 by putting the whole request in one picture. what it established: the prompt is not a string, its an array my code rebuilds on every call (045), and most of what lands in it is text i never typed, the transcript replayed because the endpoint kept nothing (047), the text a tool went and fetched (051), an image riding along as a second content part (054). the two loops are part of the shape now, the budget check before posting (053) and the validate and retry after it (050), and the untrusted-text problem rides in with anything fetched (052). the visual was a mermaid assembly flowchart with note numbers on every part. the closing line pointed at arc 6 as putting a lot more not-mine text in there, on purpose.
+baton: 056 opened arc 6 off 055s closing line. what it established: the same question has two answers, one off the file training froze (028) and one off text i pasted into the message myself, and the pasting is not a feature, its string concatenation into a row of the array from 045 that shows up as one more line in the 053 budget. it named retrieval augmented generation, RAG, translated in the same sentence as get text, add it to the prompt, generate. it carried one caveat forward: pasted text doesnt force the model to use it, it can still lean on the frozen file or blend the two. and it left one question open on purpose, i said i went and got the paragraph, except i have ten thousand docs, so which one.
 
-the next checkbox is the first in arc 6, "closed-book vs open-book". being note 1 of a new arc it opens off 055 directly, off that closing line. it should lay exactly one idea: the same question answered out of what training froze in (028) versus answered off text pasted into the array, and that the pasting is the same array move from 045 and the same line in the 053 budget, nothing new in the api. it must not touch chunking, embeddings, indexes or search, each of those is its own checkbox later in the arc.
+the next checkbox is "long context vs retrieval: when you can just send everything, and when you cant". it picks the baton up right at that open question, and its honest first answer is the lazy one, dont pick, send the whole pile. so the note is the two conditions under which that works and where it stops working: the 006 ceiling it hits eventually, and the per-call cost of resending it every turn (004, 047). it should stay on when to retrieve at all, not how. no chunking, no embeddings, no index, no search mechanics, those are the next checkboxes.
 
-process note: 053 landed at 216, 054 at 193, 055 at 325 on the capstone budget. back to the 120 to 250 range, and aim low, somewhere near 180.
+process note: 054 landed at 193, 055 at 325 on the capstone budget, 056 at 235 after one cut pass. 235 is still high for a note this simple, keep aiming near 180.
 
-last visuals: mermaid assembly flowchart (055), annotated request body with cost worked under it (054), worked example (053). so the next note must not be a mermaid flowchart. a two-column comparison of the same question answered both ways, or a worked example, fits better anyway.
-last exits: forward (055), forward (054), stops (053). two forwards running, so the next note has to just stop.
+last visuals: annotated two-request comparison in a plain code block (056), mermaid assembly flowchart (055), annotated request body with cost worked under it (054). thats two annotated artifacts in three notes, so the next one should be something else. a worked cost table across a few doc-pile sizes, or a small comparison table, fits this concept well.
+last exits: stops (056), forward (055), forward (054). the last note stopped, so the next one may point forward.
 
 ## NOTES
