@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 101
+total notes: 102
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -123,3 +123,4 @@ total notes: 101
 - [099, should this even be a model call](./notes/099-should-this-even-be-a-model-call.md), five jobs from one support inbox sorted by whether a rule already decides the answer, where the top rows go to a regex and a keyword table, the duplicate row goes to embeddings and a threshold, and only the open-ended rows are worth the sixteen notes of scaffolding a model call costs
 - [100, one check before the call, one after](./notes/100-two-gates-around-the-call.md), the two gates you put around a model call, one on what the user sent that saves the call entirely, one on what the model wrote that no input check could have predicted, and both of them classifiers that are wrong in two directions, so the real choice is which miss you can live with
 - [101, whats in the request that nobody typed today](./notes/101-whats-in-the-request-nobody-typed.md), the array leaving your server opened up and annotated, a system message that ships forever, eleven earlier turns still attached and a retrieved chunk holding another customers ticket, where the only line a human typed today is the smallest thing in it and allowed to read turns out to be a different question from ready to leave the building
+- [102, swap it out, swap it back](./notes/102-swap-it-out-swap-it-back.md), one question traced through a redaction round trip, the sensitive spans swapped for labels before the call and swapped back from a map that never leaves your server, which works right up until the model needs to look inside the value it can no longer see
