@@ -109,7 +109,8 @@
 - [x] the timeout you set yourself: how long to wait before you stop waiting (092)
 - [x] fallback: a second model when the first one is down (093)
 - [x] failing gracefully: what the user gets when every attempt is gone (094)
-- [ ] the model changes under you: pinning versions and surviving deprecations
+- [ ] pinned or floating: the model id you send is either a date or a moving pointer
+- [ ] deprecations: the version you pinned has an end date
 - [ ] observability: logging llm calls like http calls
 - [ ] CAPSTONE: what happens after deploy, keeping an llm feature alive
 
