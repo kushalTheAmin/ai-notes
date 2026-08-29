@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 98
+total notes: 99
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -118,3 +118,6 @@ total notes: 98
 - [096, the version you pinned has an end date](./notes/096-a-date-somebody-else-picked.md), the pinned snapshot gets a published retirement date and the announcement never lands in your logs, so the id answers fine for months and then errors on every call at once, and the window before that day is for pointing the golden set at the candidate and reading the diff, not for editing one string
 - [097, what your http log line is missing](./notes/097-what-your-http-log-is-missing.md), one log line for a model call with the fields an http log never needed, the id that actually answered, the token counts split by what the cache covered, the prompt version and the attempt number, each one the difference between an incident you can query and one you can only guess at
 - [098, everything you write around one model call](./notes/098-everything-around-one-call.md), the whole arc assembled into one deployed feature on three clocks, the good-day request path in seconds, the retry and fallback and degrade path in minutes, and the version drift that breaks it in months with nobody touching the code, where every box in the picture turns out to be code you wrote around a single model call
+
+## ARC 9 - the decisions, safety, privacy, and picking your model
+- [099, should this even be a model call](./notes/099-should-this-even-be-a-model-call.md), five jobs from one support inbox sorted by whether a rule already decides the answer, where the top rows go to a regex and a keyword table, the duplicate row goes to embeddings and a threshold, and only the open-ended rows are worth the sixteen notes of scaffolding a model call costs
