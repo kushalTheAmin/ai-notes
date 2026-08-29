@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 99
+total notes: 100
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -121,3 +121,4 @@ total notes: 99
 
 ## ARC 9 - the decisions, safety, privacy, and picking your model
 - [099, should this even be a model call](./notes/099-should-this-even-be-a-model-call.md), five jobs from one support inbox sorted by whether a rule already decides the answer, where the top rows go to a regex and a keyword table, the duplicate row goes to embeddings and a threshold, and only the open-ended rows are worth the sixteen notes of scaffolding a model call costs
+- [100, one check before the call, one after](./notes/100-two-gates-around-the-call.md), the two gates you put around a model call, one on what the user sent that saves the call entirely, one on what the model wrote that no input check could have predicted, and both of them classifiers that are wrong in two directions, so the real choice is which miss you can live with
