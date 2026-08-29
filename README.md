@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 91
+total notes: 92
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -111,3 +111,4 @@ total notes: 91
 - [089, when a 429 lands, wait, then double the wait](./notes/089-wait-then-double.md), the retry loop written out, five attempts with the wait doubling from 1s to 8s and a hard stop after that, where firing the retry instantly just burns a try and the 15 seconds you spend waiting come out of the latency budget
 - [090, jitter, or why everyone wakes up on the same tick](./notes/090-everyone-wakes-at-once.md), four workers that got the same 429 all compute the same one second wait, so the retry code itself is what marches them back in as one spike, and a random slice added to each wait spreads the same four calls over 0.79s
 - [091, not every error deserves a retry](./notes/091-not-every-error-deserves-a-retry.md), the loop now has the right timing but still retries everything, and a bad api key fails identically five times for 15 seconds and five requests on the meter, so the split is whether the exact same bytes sent again could ever work
+- [092, how long do you wait before you stop waiting](./notes/092-how-long-before-you-stop-waiting.md), the timeout nobody set defaults to ten minutes or to forever, and once the retry loop runs it five times a 30 second timeout is really 165 seconds of a hanging provider against a 1 second budget, so the timeout and the attempt count are one decision

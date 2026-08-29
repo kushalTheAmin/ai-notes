@@ -106,7 +106,7 @@
 - [x] retrying a 429: wait, then double the wait (089)
 - [x] jitter: when every client retries at the same moment (090)
 - [x] which errors are worth retrying, and which never are (091)
-- [ ] the timeout you set yourself: how long to wait before you stop waiting
+- [x] the timeout you set yourself: how long to wait before you stop waiting (092)
 - [ ] fallback: a second model when the first one is down
 - [ ] failing gracefully: what the user gets when every attempt is gone
 - [ ] the model changes under you: pinning versions and surviving deprecations
@@ -124,16 +124,16 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 091 fixed what enters the loop at all. the establishing move is that the status code is not the rule, its the answer to one question, if i send these exact same bytes again unchanged could it work. 429 and 500 and 503 yes, 400 and 401 and 404 and 413 never, and retrying a never buys five identical failures, 15 seconds of sleeping and five requests off 088s meter. the timeout row is the one carrying a caveat: a timeout says you stopped waiting, not that the model stopped working, so the call may have finished and billed, which is why the note says make running it twice safe. 089s timing and 090s jitter are settled and 091 did not touch either.
+baton: 092 put a number on the wait. the establishing move is that the timeout exists whether you picked it or not, some sdk clients sit at ten minutes and browser fetch has no limit at all without an abort signal, so "i didnt set one" reads as forever. the click is that the timeout is not the wait: 089s five attempts multiply it and stack the 15 seconds of sleeps on top, so 30 seconds is 165, 5 seconds is 40, and even 5 seconds with 2 attempts is 11 against 087s 1 second budget. so the timeout and the attempt count are one decision. the streaming caveat is laid: with 084 you time the wait to the first token, not the whole answer. 092 did not touch which codes retry (091) or the backoff shape (089), and it deliberately said nothing about what happens after the last attempt.
 
-next is "when the provider is down: timeouts, fallbacks, failing gracefully". it picks up the retryable row that never stops being retryable. 091 sent every 500 and 503 and timeout back into the loop, and the loop gives up after five tries, so this note starts where give_up() is called and asks what your feature does then. the material is the timeout you set yourself, a second model or provider to fall back to, and the degraded answer that is still better than a spinner. it must not re-argue which codes retry, thats 091, and it must not re-derive backoff or jitter. a mermaid flowchart of one call with its give-up branch feeding a fallback path is the obvious shape, and mermaid is free, the last one was a while back.
+next is "fallback: a second model when the first one is down". it picks up the number 092 just made concrete. 092 ends the moment the clock runs out on the last attempt and does not say what happens next, so this note starts exactly there, at give_up() from 089, and the material is the second call: a different model or a different provider, why it is a real call with its own latency and its own price and its own output shape, and the fact that your prompt was tuned against model one. it must not re-derive the timeout math, thats 092, and it must not touch what the user sees when the fallback also dies, thats the note after. a mermaid flowchart of one call with the give-up branch feeding a second provider is the obvious shape, and mermaid is very much free, no diagram in the last four.
 
-caches stay laid and closed. 085 owns exact prefix caching, 086 owns fuzzy question matching, 087 owns the two budget numbers, 088 owns the meters, 089 owns backoff, 090 owns jitter, 091 owns retryable vs never. bm25 scoring is still an unlaid brick on purpose, dont let arc 8 or 9 drag it in.
+caches stay laid and closed. 085 owns exact prefix caching, 086 owns fuzzy question matching, 087 owns the two budget numbers, 088 owns the meters, 089 owns backoff, 090 owns jitter, 091 owns retryable vs never, 092 owns the timeout number. bm25 scoring is still an unlaid brick on purpose, dont let arc 8 or 9 drag it in.
 
-process note: 084 at 194, 085 at 179, 086 at 234, 087 at 207, 088 at 223, 089 at 212, 090 at 202, 091 at 196. the 176 to 215 band is where this arc reads best. 092 has a diagram doing the work so it can sit low in the band.
+process note: 085 at 179, 086 at 234, 087 at 207, 088 at 223, 089 at 212, 090 at 202, 091 at 196, 092 at 172. the 176 to 215 band is where this arc reads best and 092 sat just under it because the arithmetic block carried the load. 093 has a diagram doing the work too, so low in the band is fine again.
 
-last visuals: comparison table, seven status codes with retry or never and the reason in the third column (091), worked example, a timeline of four workers waking on one tick with the calls stacked, against the same four with a random slice added (090), pseudocode, a five attempt retry loop with the doubling wait and a give up branch (089). no table for 092, thats two of the last four.
-last exits: forward (091), stops (090), stops (089). 091 pointed forward, so 092 may end either way, but a plain stop is the safer pick.
+last visuals: worked example, four timeout choices with the calls and the sleeps added up to what the user actually waits (092), comparison table, seven status codes with retry or never and the reason in the third column (091), worked example, a timeline of four workers waking on one tick with the calls stacked, against the same four with a random slice added (090). no worked example for 093, thats two of the last three.
+last exits: stops (092), forward (091), stops (090). 092 stopped, so 093 may end either way.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
