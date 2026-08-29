@@ -106,7 +106,9 @@
 - [x] retrying a 429: wait, then double the wait (089)
 - [x] jitter: when every client retries at the same moment (090)
 - [x] which errors are worth retrying, and which never are (091)
-- [ ] when the provider is down: timeouts, fallbacks, failing gracefully
+- [ ] the timeout you set yourself: how long to wait before you stop waiting
+- [ ] fallback: a second model when the first one is down
+- [ ] failing gracefully: what the user gets when every attempt is gone
 - [ ] the model changes under you: pinning versions and surviving deprecations
 - [ ] observability: logging llm calls like http calls
 - [ ] CAPSTONE: what happens after deploy, keeping an llm feature alive
