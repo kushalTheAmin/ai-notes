@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 103
+total notes: 104
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -125,3 +125,4 @@ total notes: 103
 - [101, whats in the request that nobody typed today](./notes/101-whats-in-the-request-nobody-typed.md), the array leaving your server opened up and annotated, a system message that ships forever, eleven earlier turns still attached and a retrieved chunk holding another customers ticket, where the only line a human typed today is the smallest thing in it and allowed to read turns out to be a different question from ready to leave the building
 - [102, swap it out, swap it back](./notes/102-swap-it-out-swap-it-back.md), one question traced through a redaction round trip, the sensitive spans swapped for labels before the call and swapped back from a map that never leaves your server, which works right up until the model needs to look inside the value it can no longer see
 - [103, every call makes two copies](./notes/103-every-call-makes-two-copies.md), one request forking into the copy sitting in your own logs, whose fields and expiry are entirely yours, and the copy on the providers side, where how long they keep it and whether they train on it are two separate account settings people keep folding into one question
+- [104, shipping a feature that gets it wrong on purpose](./notes/104-ten-wrong-answers-a-day.md), the same model at the same 95% dropped into four different features, where the wrong answer costs five seconds in one and real money in another, so the thing you design is not the error rate but where the answer lands and who gets to catch it
