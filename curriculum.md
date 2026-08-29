@@ -97,7 +97,7 @@
 
 ## ARC 8 - running it: speed, cost, and when things break
 - [x] an agent is a while loop with an llm inside (082)
-- [ ] when the loop goes wrong: runaway agents and hard stops
+- [x] when the loop goes wrong: runaway agents and hard stops (083)
 - [ ] streaming: why the ui types
 - [ ] provider prompt caching: pay less for the part of the prompt that never changes
 - [ ] semantic caching: the same question twice shouldnt cost twice
@@ -119,16 +119,18 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 082 opened arc 8 by putting the arc 5 call inside a while loop. the loop posts the whole array (045 047), the model either answers or asks for a tool (051), my code runs the tool and appends the result, round again. the exit is the only interesting line, the loop ends when a reply comes back with no tool call in it, and the model owns that moment, not me. the trace is a doc-QA question (070) taking three rounds, so one question is three model calls, which is where 081s nine second answer comes from. it does not touch what happens when the model never stops asking, that is deliberate, the next checkbox owns it.
+baton: 083 put my own exits around 082s loop. the model still owns the only natural exit, so my code adds a round counter that hard stops at 6, a running token total checked before each call, and a wall clock for the tool call that hangs while the round count sits low. the number that carries the note is the growth, every round re-sends the whole array (047) and the array got longer last round, so ten rounds costs fifty five times one round, not ten times. it also names the failure mode, a stuck loop reads as progress rather than a hang, nothing throws while the meter runs.
 
-next is "when the loop goes wrong: runaway agents and hard stops". it picks the baton up exactly where 082 left it, at `while True` with a single exit the model controls. the honest shape is the caps my code puts around a loop it does not control, a max round count, a token or dollar ceiling, a wall clock timeout, and the money angle is real since every round re-sends a longer array (047, 004). do not let it become a note about a framework or a safety lecture. and do not spend the streaming or the cost-budget material, those are their own checkboxes later in this arc.
+next is "streaming: why the ui types". it picks up from the fact that 082 and 083 just established, one question is several model calls and a real answer takes seconds, which is exactly the wait streaming is answering. the honest shape is that the model produces one token at a time anyway (022 032 044), so the tokens can leave as they are picked instead of being held until the last one lands. keep it about the wait and the shape of the response, do not turn it into an sse or websocket tutorial, and do not spend the latency budget material, thats its own checkbox two down.
+
+083 deliberately left prompt caching alone even though it costs the re-sent array, thats a checkbox later in this arc and it owns that material. same for the cost budget note.
 
 bm25 scoring stayed a missing brick through all of arc 6 and that was correct. 064 prints a keyword score as a bare number on purpose, since the point is that the scale is unknowable to you. it stays unlaid, dont let a later arc drag it in.
 
-process note: 073 at 191, 074 at 202, 075 at 218, 076 at 200, 077 at 208, 078 at 215, 079 at 208, 080 at 217, 081 at 346 (capstone ceiling), 082 at 190. 082 landed at the bottom of the band on purpose after eleven notes clustered at 190 to 221. keep breaking the flatness, the next one should aim 140 to 175 or push toward 240, not park at 200 again.
+process note: 076 at 200, 077 at 208, 078 at 215, 079 at 208, 080 at 217, 081 at 346 (capstone ceiling), 082 at 190, 083 at 176. two in a row moving down and out of the 190 to 220 clump. 084 can sit anywhere from 150 to 240, just not 200 again.
 
-last visuals: pseudocode, the whole agent loop in one block with the earlier note numbers hung on the three lines that were already built (082), annotated artifact, the evals/ folder listed out with every file carrying the note number that built it (081), mermaid flowchart, one weeks traffic splitting into thumbs and a random sample (080). so no pseudocode next, and a worked example with real numbers would fit a note about caps and ceilings well.
-last exits: stops (082), forward (081), stops (080). one of the last three points forward, so 083 may point forward or stop, its free.
+last visuals: worked example, one question traced round by round with the send size and the running bill in three columns (083), pseudocode, the whole agent loop in one block with the earlier note numbers hung on the three lines that were already built (082), annotated artifact, the evals/ folder listed out with every file carrying the note number that built it (081). so no worked example next, and a mermaid sequence or a small comparison would both be free.
+last exits: stops (083), stops (082), forward (081). two stops running, so 084 pointing forward would read fine.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
