@@ -100,7 +100,7 @@
 - [x] when the loop goes wrong: runaway agents and hard stops (083)
 - [x] streaming: why the ui types (084)
 - [x] provider prompt caching: pay less for the part of the prompt that never changes (085)
-- [ ] semantic caching: the same question twice shouldnt cost twice
+- [x] semantic caching: the same question twice shouldnt cost twice (086)
 - [ ] latency and cost budgets: the two numbers that kill llm features
 - [ ] rate limits and retries
 - [ ] when the provider is down: timeouts, fallbacks, failing gracefully
@@ -119,18 +119,18 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 085 finally spent the debt 047 and 083 ran up. the array has a front section that is byte identical on every call, system plus tool definitions plus few-shot, and the provider keeps the processed version of it for a few minutes and charges about a tenth to reuse it. worked example was 4,000 cached tokens plus a 200 token question, 4,200 becoming 600. the two constraints that matter downstream: it is an exact prefix match from the very start, so anything variable has to sit at the bottom of the array, and there is a rough thousand token minimum. caveats already stated once, a small write premium on some apis and automatic caching on others.
+baton: 086 laid semantic caching, which skips the model call entirely. embed the incoming question, cosine it against questions youve already answered, and if the best match clears a threshold, return the stored answer instead of calling anything. it is contrasted with 085 in the opening line and again in the middle, exact bytes vs meaning, prompt work made cheaper vs no model call at all. two risks named and not softened: the near miss that scores high and gets served the wrong answer, which is 019s threshold with a worse failure mode, and staleness, where a cached "14 days" outlives the day it became 30. the "depends on who is asking" case was ruled out in one line.
 
-next is "semantic caching: the same question twice shouldnt cost twice". this is a genuinely different idea from 085 and the note has to say so early or the reader will merge them. 085 caches the prompt work on an exact byte match and the model still runs. semantic caching skips the model call entirely by returning a stored answer, and the match is fuzzy, its 013 cosine on the question embedding against questions youve already answered. so the new risks are the near-miss hit, two questions that score 0.93 but want different answers, and staleness. 041 already noted in passing that a cache can hold two right answers under one key, thats fair to pick up.
+next is "latency and cost budgets: the two numbers that kill llm features". 086 ends by naming exactly those two, what a call costs and how long you wait, and points at 087 by number. that pointer is a promise, so 087 has to put real numbers on both or the exit reads as a bluff. the material is still unspent: 084 only handled latency as perceived time, 085 gave the cache latency win one clause, 086 said "no waiting" and stopped. the cost side does not restart from zero either, 083 already traced a running bill round by round and 085 priced a cached read at a tenth, so 087 assembles rather than introduces.
 
-the latency and cost budget note still owns the budget material, dont spend it early. 085 mentioned the latency win from a cache hit in one clause only, thats enough.
+both caching notes are now laid and neither one gets re-explained. 085 owns exact prefix caching, 086 owns fuzzy question matching. if a later note needs a cache it links, it does not redefine.
 
 bm25 scoring stayed a missing brick through all of arc 6 and that was correct. 064 prints a keyword score as a bare number on purpose, since the point is that the scale is unknowable to you. it stays unlaid, dont let a later arc drag it in.
 
-process note: 079 at 208, 080 at 217, 081 at 346 (capstone ceiling), 082 at 190, 083 at 176, 084 at 194, 085 at 179. the short run is holding, 176 to 194 across the last four. 086 can go a bit longer without it reading as bloat, 200 to 230 is fine.
+process note: 080 at 217, 081 at 346 (capstone ceiling), 082 at 190, 083 at 176, 084 at 194, 085 at 179, 086 at 234. 086 is the longest non-capstone in a while and it earned it by carrying two risks, but the run before it sat at 176 to 194 and that is the better shape. pull 087 back toward 190 to 215.
 
-last visuals: annotated artifact, the posted array with the cache marker drawn across it and the two bills computed underneath (085), comparison table, three columns and three rows putting first text on screen, last word on screen, and what the code holds side by side for one shot and streaming (084), worked example, one question traced round by round with the send size and the running bill in three columns (083). a mermaid diagram is free next and semantic caching has an obvious flowchart shape, question in, close enough match or not, stored answer or a real model call.
-last exits: stops (085), forward (084), stops (083). 086 is free to point forward.
+last visuals: mermaid flowchart, question in, embed it, cosine against past questions, then a threshold decision splitting into the stored answer or a real model call with the store step hanging off that branch (086), annotated artifact, the posted array with the cache marker drawn across it and the two bills computed underneath (085), comparison table, three columns and three rows putting first text on screen, last word on screen, and what the code holds side by side for one shot and streaming (084). a worked example is the obvious pick for 087 since two budget numbers want real digits, and it has not been used since 083.
+last exits: forward (086), stops (085), forward (084). 087 may point forward or stop, but two forwards in a row after this means 088 must stop.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 

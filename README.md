@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 85
+total notes: 86
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -105,3 +105,4 @@ total notes: 85
 - [083, when the loop wont stop](./notes/083-when-the-loop-wont-stop.md), one question traced round by round, where re-sending a bigger array every pass makes ten rounds cost fifty five times one round, and a loop stuck asking never looks like a hang, so the round counter and the token ceiling and the clock are all mine to add
 - [084, why the ui types](./notes/084-why-the-ui-types.md), streaming doesnt make the answer arrive sooner, the last word still lands at 4.3 seconds, it just stops hiding the tokens the model was already writing one at a time
 - [085, the part of the prompt that never changes](./notes/085-the-part-that-never-changes.md), the system prompt and tool definitions and few-shot examples are the same bytes on every single call, so a marker drawn under them turns a 4,200 token bill into 600, as long as nothing variable sneaks in above the line
+- [086, the same question twice shouldnt cost twice](./notes/086-the-same-question-twice.md), matching on what the question means instead of its bytes lets you skip the model call entirely and hand back a stored answer, which is the first cache that can be confidently wrong, since one word apart still scores high
