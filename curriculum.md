@@ -102,7 +102,7 @@
 - [x] provider prompt caching: pay less for the part of the prompt that never changes (085)
 - [x] semantic caching: the same question twice shouldnt cost twice (086)
 - [x] latency and cost budgets: the two numbers that kill llm features (087)
-- [ ] rate limits: two meters, requests a minute and tokens a minute
+- [x] rate limits: two meters, requests a minute and tokens a minute (088)
 - [ ] retrying a 429: backing off, jitter, and when not to retry
 - [ ] when the provider is down: timeouts, fallbacks, failing gracefully
 - [ ] the model changes under you: pinning versions and surviving deprecations
@@ -120,16 +120,16 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 087 put real digits on the two numbers 086 promised. one doc-QA question broken into stages, each with a wait and a cost, totalled two ways, 870ms to first text and 2,870ms to done, 2.30 cents a question. the idea is that a budget is picked before you build and every stage spends out of it, so the rerank costing 200ms and a fifth of a cent becomes a visible trade instead of a free improvement. the kill line is the multiplication, 2.3 cents reads as free and 4,000 questions a day is $92. the caveat is present and plain, my digits are not yours.
+baton: 088 turned the cap around. 087 was two numbers i chose, 088 is a number the provider chose. the establishing move is that a rate limit is not one meter but several, and the same http 429 comes back from any of them, so the first question on a rejection is always which meter emptied. the table proves it with two workloads that fail opposite ways, 61 tiny classify calls tripping the request meter at under 5 percent of the token allowance, and 18 fat doc-QA calls tripping the token meter on almost no traffic. the sting is that the fixes pull against each other, batching fixes the first row and worsens the second. two caveats are down and must stay down: the window rolls rather than resetting, and some providers meter input and output separately.
 
-next is "rate limits and retries". 087 gives it the frame it needs, since a retry spends from both budgets at once, it adds wait and it adds a call you already paid for. 088 must not restate the budget idea, it links to 087 and moves. what is unspent: nothing in the repo has covered 429s, backoff, or the difference between a limit on requests and a limit on tokens per minute. 041 covered variance and 083 covered self-imposed caps, but a limit imposed by the provider is new ground.
+next is "retrying a 429: backing off, jitter, and when not to retry". 088 ends pointing straight at it and promises one specific thing, that doing nothing for a moment is the right move, so 089 has to deliver backoff and pay that off. it must not re-teach what a 429 is or re-explain the meters, 088 owns both, it links and moves. what is unspent: nothing anywhere covers exponential backoff, jitter and the thundering herd, retry-after headers, or which errors are worth retrying at all (a 429 or a 500 yes, a 400 never). the retry-spends-from-both-budgets angle from 087 is still unspent too and belongs in 089, since a retry adds wait and it adds a call you already paid for.
 
-caches stay laid and closed. 085 owns exact prefix caching, 086 owns fuzzy question matching, 087 owns the two budget numbers. later notes link, they do not redefine. bm25 scoring is still an unlaid brick on purpose, dont let arc 8 or 9 drag it in.
+caches stay laid and closed. 085 owns exact prefix caching, 086 owns fuzzy question matching, 087 owns the two budget numbers, 088 owns the meters. later notes link, they do not redefine. bm25 scoring is still an unlaid brick on purpose, dont let arc 8 or 9 drag it in.
 
-process note: 082 at 190, 083 at 176, 084 at 194, 085 at 179, 086 at 234, 087 at 207. the 176 to 210 band is where this arc reads best, keep 088 there.
+process note: 082 at 190, 083 at 176, 084 at 194, 085 at 179, 086 at 234, 087 at 207, 088 at 223. the 176 to 215 band is where this arc reads best, aim 089 there.
 
-last visuals: worked example, a stage by stage ledger with a wait column and a cost column, two subtotals, and the daily multiplication underneath (087), mermaid flowchart, question in, embed it, cosine against past questions, then a threshold decision splitting into the stored answer or a real model call (086), annotated artifact, the posted array with the cache marker drawn across it and the two bills computed underneath (085). 088 must not be a worked example three notes running, and it has two of the last three slots as diagram and artifact, so a small comparison table or a short pseudocode block is the open pick. pseudocode fits a retry loop well.
-last exits: stops (087), forward (086), stops (085). 088 is free either way.
+last visuals: comparison table, two limits declared on top and two workloads under them, a requests column and a tokens column, each row over on a different one (088), worked example, a stage by stage ledger with a wait column and a cost column, two subtotals, and the daily multiplication underneath (087), mermaid flowchart, question in, embed it, cosine against past questions, then a threshold decision splitting into the stored answer or a real model call (086). 089 must not be a table, and the pseudocode slot is wide open and has been flagged for the retry loop for two runs now. take it.
+last exits: forward (088), stops (087), forward (086). 089 must not point forward, it stops.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 

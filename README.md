@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 87
+total notes: 88
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -107,3 +107,4 @@ total notes: 87
 - [085, the part of the prompt that never changes](./notes/085-the-part-that-never-changes.md), the system prompt and tool definitions and few-shot examples are the same bytes on every single call, so a marker drawn under them turns a 4,200 token bill into 600, as long as nothing variable sneaks in above the line
 - [086, the same question twice shouldnt cost twice](./notes/086-the-same-question-twice.md), matching on what the question means instead of its bytes lets you skip the model call entirely and hand back a stored answer, which is the first cache that can be confidently wrong, since one word apart still scores high
 - [087, the two numbers you pick before you build](./notes/087-the-two-numbers.md), one doc-QA question costed and timed stage by stage, where the wait a user feels is 870ms and the 2.3 cents that reads as free is $92 a day once you multiply it by traffic
+- [088, two meters, and you trip whichever empties first](./notes/088-two-meters.md), a rate limit is not one number, 61 tiny calls trip the request meter while sitting under 5 percent of the token allowance and 18 fat doc-QA calls trip the token meter on almost no traffic, and both get back the same 429, so batching fixes one row and breaks the other
