@@ -103,7 +103,9 @@
 - [x] semantic caching: the same question twice shouldnt cost twice (086)
 - [x] latency and cost budgets: the two numbers that kill llm features (087)
 - [x] rate limits: two meters, requests a minute and tokens a minute (088)
-- [ ] retrying a 429: backing off, jitter, and when not to retry
+- [ ] retrying a 429: wait, then double the wait
+- [ ] jitter: when every client retries at the same moment
+- [ ] which errors are worth retrying, and which never are
 - [ ] when the provider is down: timeouts, fallbacks, failing gracefully
 - [ ] the model changes under you: pinning versions and surviving deprecations
 - [ ] observability: logging llm calls like http calls
