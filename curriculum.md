@@ -96,7 +96,7 @@
 - [x] CAPSTONE: an eval harness for the arc 6 system (081)
 
 ## ARC 8 - running it: speed, cost, and when things break
-- [ ] an agent is a while loop with an llm inside
+- [x] an agent is a while loop with an llm inside (082)
 - [ ] when the loop goes wrong: runaway agents and hard stops
 - [ ] streaming: why the ui types
 - [ ] provider prompt caching: pay less for the part of the prompt that never changes
@@ -119,16 +119,16 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 081 closed arc 7 by assembling it as a folder, four files plus me. golden.jsonl is the file (072) that live traffic now grows (080), run.py calls the arc 6 pipeline (070) per row and scores it three ways, the free ranks (067 068), the free substring (073), and one judge call at temperature 0 with a concrete rubric (074 075), writing runs/<name>.json. diff.py compares ids against the last green run rather than totals (077) and re-runs each suspect id 3x first (076). ci.yml prints the score and gates only on regressed rows (078). the landing is that the scoring is the small part, the file and the comparison and the piles (079) are the harness, and 071 is why any of it exists, the person now reads six failing rows instead of fifty answers. it exits pointing at arc 8, that this harness says nothing about the answer that took nine seconds.
+baton: 082 opened arc 8 by putting the arc 5 call inside a while loop. the loop posts the whole array (045 047), the model either answers or asks for a tool (051), my code runs the tool and appends the result, round again. the exit is the only interesting line, the loop ends when a reply comes back with no tool call in it, and the model owns that moment, not me. the trace is a doc-QA question (070) taking three rounds, so one question is three model calls, which is where 081s nine second answer comes from. it does not touch what happens when the model never stops asking, that is deliberate, the next checkbox owns it.
 
-next is arc 8, first checkbox "an agent is a while loop with an llm inside". thats note 001 of a new arc, so per the rules it builds on 081, the arc 7 capstone. the honest hook: everything through arc 7 was one call in and one answer out, scored. an agent is that call put inside a loop that decides whether to go round again, and the bricks for it are already laid, 051 tool calling (the model asks, your code acts) and 047 (your code re-posts the whole transcript every turn). do not let it turn into a note about frameworks. the loop is the concept, and the whole thing should be writable as pseudocode the reader could type out.
+next is "when the loop goes wrong: runaway agents and hard stops". it picks the baton up exactly where 082 left it, at `while True` with a single exit the model controls. the honest shape is the caps my code puts around a loop it does not control, a max round count, a token or dollar ceiling, a wall clock timeout, and the money angle is real since every round re-sends a longer array (047, 004). do not let it become a note about a framework or a safety lecture. and do not spend the streaming or the cost-budget material, those are their own checkboxes later in this arc.
 
 bm25 scoring stayed a missing brick through all of arc 6 and that was correct. 064 prints a keyword score as a bare number on purpose, since the point is that the scale is unknowable to you. it stays unlaid, dont let a later arc drag it in.
 
-process note: 070 at 324 on the capstone ceiling, 071 at 190, 072 at 221, 073 at 191, 074 at 202, 075 at 218, 076 at 200, 077 at 208, 078 at 215, 079 at 208, 080 at 217, 081 at 346. the flatness got broken by the capstone using its ceiling, which is what a capstone is for, so it doesnt count as breaking it. arc 8 opens on a normal budget, 120 to 250, and 082 should deliberately land low, 140 to 190, since ten of the last eleven notes sat between 190 and 221.
+process note: 073 at 191, 074 at 202, 075 at 218, 076 at 200, 077 at 208, 078 at 215, 079 at 208, 080 at 217, 081 at 346 (capstone ceiling), 082 at 190. 082 landed at the bottom of the band on purpose after eleven notes clustered at 190 to 221. keep breaking the flatness, the next one should aim 140 to 175 or push toward 240, not park at 200 again.
 
-last visuals: annotated artifact, the evals/ folder listed out with every file carrying the note number that built it and a last row for the person (081), mermaid flowchart, one weeks traffic splitting into thumbs and a random sample and both ending in a golden row the ci gate then watches (080), worked list, six failing rows grouped under three named pile headings with a count line (079). no run to break. 082 is an agent loop, so pseudocode is the obvious fit and 078 was the last pseudocode note, three back, which is far enough.
-last exits: forward (081), stops (080), forward (079). two of the last three point forward, so 082 must just stop.
+last visuals: pseudocode, the whole agent loop in one block with the earlier note numbers hung on the three lines that were already built (082), annotated artifact, the evals/ folder listed out with every file carrying the note number that built it (081), mermaid flowchart, one weeks traffic splitting into thumbs and a random sample (080). so no pseudocode next, and a worked example with real numbers would fit a note about caps and ceilings well.
+last exits: stops (082), forward (081), stops (080). one of the last three points forward, so 083 may point forward or stop, its free.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 

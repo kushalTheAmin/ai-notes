@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 81
+total notes: 82
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -99,3 +99,6 @@ total notes: 81
 - [079, read the failures, then sort them into piles](./notes/079-read-the-failures-sort-them-into-piles.md), the six rows behind a 44/50 opened one at a time and dropped into three named piles, where three of them never had the right chunk in the context at all, so the prompt rewrite my instinct wanted would have touched two rows out of six
 - [080, after you ship, who tells you its broken](./notes/080-who-tells-you-its-broken.md), 11 thumbs down on 4,200 real answers turns out to be 6 genuinely bad ones, while reading 50 answers nobody complained about finds 7, and every bad one you find becomes a golden row the ci gate watches from then on
 - [081, the whole eval harness, in four files](./notes/081-the-harness-in-four-files.md), the arc laid out as one folder, a checked-in file of questions, a runner that scores every row, a diff that compares ids instead of totals, and a ci gate that goes red on any row that used to pass
+
+## ARC 8 - running it, speed, cost, and when things break
+- [082, an agent is a while loop with a model inside](./notes/082-a-while-loop-with-a-model-inside.md), the ordinary call wrapped in a while loop, where the model asking for a tool means go round again and answering means stop, so the moment it ends is the models call and not yours, and one question quietly costs three model calls
