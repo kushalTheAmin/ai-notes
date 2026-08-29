@@ -102,7 +102,8 @@
 - [x] provider prompt caching: pay less for the part of the prompt that never changes (085)
 - [x] semantic caching: the same question twice shouldnt cost twice (086)
 - [x] latency and cost budgets: the two numbers that kill llm features (087)
-- [ ] rate limits and retries
+- [ ] rate limits: two meters, requests a minute and tokens a minute
+- [ ] retrying a 429: backing off, jitter, and when not to retry
 - [ ] when the provider is down: timeouts, fallbacks, failing gracefully
 - [ ] the model changes under you: pinning versions and surviving deprecations
 - [ ] observability: logging llm calls like http calls
