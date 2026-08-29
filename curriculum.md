@@ -101,7 +101,7 @@
 - [x] streaming: why the ui types (084)
 - [x] provider prompt caching: pay less for the part of the prompt that never changes (085)
 - [x] semantic caching: the same question twice shouldnt cost twice (086)
-- [ ] latency and cost budgets: the two numbers that kill llm features
+- [x] latency and cost budgets: the two numbers that kill llm features (087)
 - [ ] rate limits and retries
 - [ ] when the provider is down: timeouts, fallbacks, failing gracefully
 - [ ] the model changes under you: pinning versions and surviving deprecations
@@ -119,18 +119,16 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 086 laid semantic caching, which skips the model call entirely. embed the incoming question, cosine it against questions youve already answered, and if the best match clears a threshold, return the stored answer instead of calling anything. it is contrasted with 085 in the opening line and again in the middle, exact bytes vs meaning, prompt work made cheaper vs no model call at all. two risks named and not softened: the near miss that scores high and gets served the wrong answer, which is 019s threshold with a worse failure mode, and staleness, where a cached "14 days" outlives the day it became 30. the "depends on who is asking" case was ruled out in one line.
+baton: 087 put real digits on the two numbers 086 promised. one doc-QA question broken into stages, each with a wait and a cost, totalled two ways, 870ms to first text and 2,870ms to done, 2.30 cents a question. the idea is that a budget is picked before you build and every stage spends out of it, so the rerank costing 200ms and a fifth of a cent becomes a visible trade instead of a free improvement. the kill line is the multiplication, 2.3 cents reads as free and 4,000 questions a day is $92. the caveat is present and plain, my digits are not yours.
 
-next is "latency and cost budgets: the two numbers that kill llm features". 086 ends by naming exactly those two, what a call costs and how long you wait, and points at 087 by number. that pointer is a promise, so 087 has to put real numbers on both or the exit reads as a bluff. the material is still unspent: 084 only handled latency as perceived time, 085 gave the cache latency win one clause, 086 said "no waiting" and stopped. the cost side does not restart from zero either, 083 already traced a running bill round by round and 085 priced a cached read at a tenth, so 087 assembles rather than introduces.
+next is "rate limits and retries". 087 gives it the frame it needs, since a retry spends from both budgets at once, it adds wait and it adds a call you already paid for. 088 must not restate the budget idea, it links to 087 and moves. what is unspent: nothing in the repo has covered 429s, backoff, or the difference between a limit on requests and a limit on tokens per minute. 041 covered variance and 083 covered self-imposed caps, but a limit imposed by the provider is new ground.
 
-both caching notes are now laid and neither one gets re-explained. 085 owns exact prefix caching, 086 owns fuzzy question matching. if a later note needs a cache it links, it does not redefine.
+caches stay laid and closed. 085 owns exact prefix caching, 086 owns fuzzy question matching, 087 owns the two budget numbers. later notes link, they do not redefine. bm25 scoring is still an unlaid brick on purpose, dont let arc 8 or 9 drag it in.
 
-bm25 scoring stayed a missing brick through all of arc 6 and that was correct. 064 prints a keyword score as a bare number on purpose, since the point is that the scale is unknowable to you. it stays unlaid, dont let a later arc drag it in.
+process note: 082 at 190, 083 at 176, 084 at 194, 085 at 179, 086 at 234, 087 at 207. the 176 to 210 band is where this arc reads best, keep 088 there.
 
-process note: 080 at 217, 081 at 346 (capstone ceiling), 082 at 190, 083 at 176, 084 at 194, 085 at 179, 086 at 234. 086 is the longest non-capstone in a while and it earned it by carrying two risks, but the run before it sat at 176 to 194 and that is the better shape. pull 087 back toward 190 to 215.
-
-last visuals: mermaid flowchart, question in, embed it, cosine against past questions, then a threshold decision splitting into the stored answer or a real model call with the store step hanging off that branch (086), annotated artifact, the posted array with the cache marker drawn across it and the two bills computed underneath (085), comparison table, three columns and three rows putting first text on screen, last word on screen, and what the code holds side by side for one shot and streaming (084). a worked example is the obvious pick for 087 since two budget numbers want real digits, and it has not been used since 083.
-last exits: forward (086), stops (085), forward (084). 087 may point forward or stop, but two forwards in a row after this means 088 must stop.
+last visuals: worked example, a stage by stage ledger with a wait column and a cost column, two subtotals, and the daily multiplication underneath (087), mermaid flowchart, question in, embed it, cosine against past questions, then a threshold decision splitting into the stored answer or a real model call (086), annotated artifact, the posted array with the cache marker drawn across it and the two bills computed underneath (085). 088 must not be a worked example three notes running, and it has two of the last three slots as diagram and artifact, so a small comparison table or a short pseudocode block is the open pick. pseudocode fits a retry loop well.
+last exits: stops (087), forward (086), stops (085). 088 is free either way.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
