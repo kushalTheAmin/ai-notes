@@ -98,7 +98,7 @@
 ## ARC 8 - running it: speed, cost, and when things break
 - [x] an agent is a while loop with an llm inside (082)
 - [x] when the loop goes wrong: runaway agents and hard stops (083)
-- [ ] streaming: why the ui types
+- [x] streaming: why the ui types (084)
 - [ ] provider prompt caching: pay less for the part of the prompt that never changes
 - [ ] semantic caching: the same question twice shouldnt cost twice
 - [ ] latency and cost budgets: the two numbers that kill llm features
@@ -119,18 +119,18 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 083 put my own exits around 082s loop. the model still owns the only natural exit, so my code adds a round counter that hard stops at 6, a running token total checked before each call, and a wall clock for the tool call that hangs while the round count sits low. the number that carries the note is the growth, every round re-sends the whole array (047) and the array got longer last round, so ten rounds costs fifty five times one round, not ten times. it also names the failure mode, a stuck loop reads as progress rather than a hang, nothing throws while the meter runs.
+baton: 084 took the wait 082 and 083 created and split it into two numbers, time to the first text on screen and time to the last word. streaming moves only the first one, 0.3s instead of 4.3s on a 300 token answer, and the total stays 4.3s either way. the reason is 022, the model was always writing one token at a time, the plain call just holds them until the last lands. the note also flagged what streaming costs the caller, no complete answer exists until the stream closes, so json (050) gets buffered and validated at the end, and errors can arrive after good text is already on screen.
 
-next is "streaming: why the ui types". it picks up from the fact that 082 and 083 just established, one question is several model calls and a real answer takes seconds, which is exactly the wait streaming is answering. the honest shape is that the model produces one token at a time anyway (022 032 044), so the tokens can leave as they are picked instead of being held until the last one lands. keep it about the wait and the shape of the response, do not turn it into an sse or websocket tutorial, and do not spend the latency budget material, thats its own checkbox two down.
+next is "provider prompt caching: pay less for the part of the prompt that never changes". 084 ended pointing straight at it, and it has been owed since 047 and 083, every turn re-sends the whole array and the front of that array is identical every time. keep it about the repeated prefix and the bill, the mechanism is that the provider keeps the processed prefix around for a short window and charges less for a hit on it. do not drift into semantic caching, thats the very next checkbox and it is a different idea entirely, caching the answer rather than the prompt work.
 
-083 deliberately left prompt caching alone even though it costs the re-sent array, thats a checkbox later in this arc and it owns that material. same for the cost budget note.
+083 deliberately left prompt caching alone even though it costs the re-sent array, and 084 handed it the baton. the latency and cost budget note still owns the budget material, dont spend it early.
 
 bm25 scoring stayed a missing brick through all of arc 6 and that was correct. 064 prints a keyword score as a bare number on purpose, since the point is that the scale is unknowable to you. it stays unlaid, dont let a later arc drag it in.
 
-process note: 076 at 200, 077 at 208, 078 at 215, 079 at 208, 080 at 217, 081 at 346 (capstone ceiling), 082 at 190, 083 at 176. two in a row moving down and out of the 190 to 220 clump. 084 can sit anywhere from 150 to 240, just not 200 again.
+process note: 077 at 208, 078 at 215, 079 at 208, 080 at 217, 081 at 346 (capstone ceiling), 082 at 190, 083 at 176, 084 at 194. the 190 to 220 clump is getting crowded again. 085 should land short, 150 to 180.
 
-last visuals: worked example, one question traced round by round with the send size and the running bill in three columns (083), pseudocode, the whole agent loop in one block with the earlier note numbers hung on the three lines that were already built (082), annotated artifact, the evals/ folder listed out with every file carrying the note number that built it (081). so no worked example next, and a mermaid sequence or a small comparison would both be free.
-last exits: stops (083), stops (082), forward (081). two stops running, so 084 pointing forward would read fine.
+last visuals: comparison table, three columns and three rows putting first text on screen, last word on screen, and what the code holds side by side for one shot and streaming (084), worked example, one question traced round by round with the send size and the running bill in three columns (083), pseudocode, the whole agent loop in one block with the earlier note numbers hung on the three lines that were already built (082). a mermaid diagram or an annotated artifact would both be free next, and caching has an obvious annotated shape, the array with a line drawn where the unchanging prefix ends.
+last exits: forward (084), stops (083), stops (082). 085 can go either way, but two forwards running means 086 has to stop.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 

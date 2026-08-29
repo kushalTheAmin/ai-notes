@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 83
+total notes: 84
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -103,3 +103,4 @@ total notes: 83
 ## ARC 8 - running it, speed, cost, and when things break
 - [082, an agent is a while loop with a model inside](./notes/082-a-while-loop-with-a-model-inside.md), the ordinary call wrapped in a while loop, where the model asking for a tool means go round again and answering means stop, so the moment it ends is the models call and not yours, and one question quietly costs three model calls
 - [083, when the loop wont stop](./notes/083-when-the-loop-wont-stop.md), one question traced round by round, where re-sending a bigger array every pass makes ten rounds cost fifty five times one round, and a loop stuck asking never looks like a hang, so the round counter and the token ceiling and the clock are all mine to add
+- [084, why the ui types](./notes/084-why-the-ui-types.md), streaming doesnt make the answer arrive sooner, the last word still lands at 4.3 seconds, it just stops hiding the tokens the model was already writing one at a time
