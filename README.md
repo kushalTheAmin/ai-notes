@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 96
+total notes: 97
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -116,3 +116,4 @@ total notes: 96
 - [094, what the user gets when every attempt is gone](./notes/094-when-every-attempt-is-gone.md), five things you can serve once the retries and the backup provider are both gone, where having no plan is itself the worst row, and the two good rows are already built, a labelled stale answer from the cache and the retrieved chunks with no summary on top
 - [095, the model id you send is either a date or a moving pointer](./notes/095-a-date-or-a-moving-pointer.md), the same model field written as an alias and as a dated snapshot, resolved on two dates, where the day a new snapshot ships the alias moves your app and the snapshot doesnt, and the only thing that catches a deploy nobody ran is the golden set
 - [096, the version you pinned has an end date](./notes/096-a-date-somebody-else-picked.md), the pinned snapshot gets a published retirement date and the announcement never lands in your logs, so the id answers fine for months and then errors on every call at once, and the window before that day is for pointing the golden set at the candidate and reading the diff, not for editing one string
+- [097, what your http log line is missing](./notes/097-what-your-http-log-is-missing.md), one log line for a model call with the fields an http log never needed, the id that actually answered, the token counts split by what the cache covered, the prompt version and the attempt number, each one the difference between an incident you can query and one you can only guess at
