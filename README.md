@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 95
+total notes: 96
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -115,3 +115,4 @@ total notes: 95
 - [093, a second model, when the first one is down](./notes/093-a-second-model-when-the-first-is-down.md), when the retry loop runs out of attempts you can call a different model at a different provider instead of failing, but that branch is a second integration with its own price, its own speed and its own json shape, and its the only path your evals never scored
 - [094, what the user gets when every attempt is gone](./notes/094-when-every-attempt-is-gone.md), five things you can serve once the retries and the backup provider are both gone, where having no plan is itself the worst row, and the two good rows are already built, a labelled stale answer from the cache and the retrieved chunks with no summary on top
 - [095, the model id you send is either a date or a moving pointer](./notes/095-a-date-or-a-moving-pointer.md), the same model field written as an alias and as a dated snapshot, resolved on two dates, where the day a new snapshot ships the alias moves your app and the snapshot doesnt, and the only thing that catches a deploy nobody ran is the golden set
+- [096, the version you pinned has an end date](./notes/096-a-date-somebody-else-picked.md), the pinned snapshot gets a published retirement date and the announcement never lands in your logs, so the id answers fine for months and then errors on every call at once, and the window before that day is for pointing the golden set at the candidate and reading the diff, not for editing one string
