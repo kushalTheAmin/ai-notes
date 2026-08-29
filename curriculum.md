@@ -117,7 +117,9 @@
 ## ARC 9 - the decisions: safety, privacy, and picking your model
 - [x] should this even be an llm: when boring code wins (099)
 - [x] content moderation: the filter in front of and behind the model (100)
-- [ ] data leaves the building: pii, redaction, and what the api keeps
+- [ ] what leaves your server: the personal data in a request nobody typed today
+- [ ] redaction: swapping the sensitive parts out before the call, and what you cant swap
+- [ ] what the other side keeps: retention, training, and the logs that are yours
 - [ ] designing for wrong: shipping a feature that fails 5% of the time, on purpose
 - [ ] api models vs open weights: renting a model vs owning one
 - [ ] which lever: prompt harder, add retrieval, or fine-tune
