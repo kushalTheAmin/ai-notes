@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 90
+total notes: 91
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -110,3 +110,4 @@ total notes: 90
 - [088, two meters, and you trip whichever empties first](./notes/088-two-meters.md), a rate limit is not one number, 61 tiny calls trip the request meter while sitting under 5 percent of the token allowance and 18 fat doc-QA calls trip the token meter on almost no traffic, and both get back the same 429, so batching fixes one row and breaks the other
 - [089, when a 429 lands, wait, then double the wait](./notes/089-wait-then-double.md), the retry loop written out, five attempts with the wait doubling from 1s to 8s and a hard stop after that, where firing the retry instantly just burns a try and the 15 seconds you spend waiting come out of the latency budget
 - [090, jitter, or why everyone wakes up on the same tick](./notes/090-everyone-wakes-at-once.md), four workers that got the same 429 all compute the same one second wait, so the retry code itself is what marches them back in as one spike, and a random slice added to each wait spreads the same four calls over 0.79s
+- [091, not every error deserves a retry](./notes/091-not-every-error-deserves-a-retry.md), the loop now has the right timing but still retries everything, and a bad api key fails identically five times for 15 seconds and five requests on the meter, so the split is whether the exact same bytes sent again could ever work
