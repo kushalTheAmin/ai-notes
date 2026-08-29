@@ -99,7 +99,7 @@
 - [x] an agent is a while loop with an llm inside (082)
 - [x] when the loop goes wrong: runaway agents and hard stops (083)
 - [x] streaming: why the ui types (084)
-- [ ] provider prompt caching: pay less for the part of the prompt that never changes
+- [x] provider prompt caching: pay less for the part of the prompt that never changes (085)
 - [ ] semantic caching: the same question twice shouldnt cost twice
 - [ ] latency and cost budgets: the two numbers that kill llm features
 - [ ] rate limits and retries
@@ -119,18 +119,18 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 084 took the wait 082 and 083 created and split it into two numbers, time to the first text on screen and time to the last word. streaming moves only the first one, 0.3s instead of 4.3s on a 300 token answer, and the total stays 4.3s either way. the reason is 022, the model was always writing one token at a time, the plain call just holds them until the last lands. the note also flagged what streaming costs the caller, no complete answer exists until the stream closes, so json (050) gets buffered and validated at the end, and errors can arrive after good text is already on screen.
+baton: 085 finally spent the debt 047 and 083 ran up. the array has a front section that is byte identical on every call, system plus tool definitions plus few-shot, and the provider keeps the processed version of it for a few minutes and charges about a tenth to reuse it. worked example was 4,000 cached tokens plus a 200 token question, 4,200 becoming 600. the two constraints that matter downstream: it is an exact prefix match from the very start, so anything variable has to sit at the bottom of the array, and there is a rough thousand token minimum. caveats already stated once, a small write premium on some apis and automatic caching on others.
 
-next is "provider prompt caching: pay less for the part of the prompt that never changes". 084 ended pointing straight at it, and it has been owed since 047 and 083, every turn re-sends the whole array and the front of that array is identical every time. keep it about the repeated prefix and the bill, the mechanism is that the provider keeps the processed prefix around for a short window and charges less for a hit on it. do not drift into semantic caching, thats the very next checkbox and it is a different idea entirely, caching the answer rather than the prompt work.
+next is "semantic caching: the same question twice shouldnt cost twice". this is a genuinely different idea from 085 and the note has to say so early or the reader will merge them. 085 caches the prompt work on an exact byte match and the model still runs. semantic caching skips the model call entirely by returning a stored answer, and the match is fuzzy, its 013 cosine on the question embedding against questions youve already answered. so the new risks are the near-miss hit, two questions that score 0.93 but want different answers, and staleness. 041 already noted in passing that a cache can hold two right answers under one key, thats fair to pick up.
 
-083 deliberately left prompt caching alone even though it costs the re-sent array, and 084 handed it the baton. the latency and cost budget note still owns the budget material, dont spend it early.
+the latency and cost budget note still owns the budget material, dont spend it early. 085 mentioned the latency win from a cache hit in one clause only, thats enough.
 
 bm25 scoring stayed a missing brick through all of arc 6 and that was correct. 064 prints a keyword score as a bare number on purpose, since the point is that the scale is unknowable to you. it stays unlaid, dont let a later arc drag it in.
 
-process note: 077 at 208, 078 at 215, 079 at 208, 080 at 217, 081 at 346 (capstone ceiling), 082 at 190, 083 at 176, 084 at 194. the 190 to 220 clump is getting crowded again. 085 should land short, 150 to 180.
+process note: 079 at 208, 080 at 217, 081 at 346 (capstone ceiling), 082 at 190, 083 at 176, 084 at 194, 085 at 179. the short run is holding, 176 to 194 across the last four. 086 can go a bit longer without it reading as bloat, 200 to 230 is fine.
 
-last visuals: comparison table, three columns and three rows putting first text on screen, last word on screen, and what the code holds side by side for one shot and streaming (084), worked example, one question traced round by round with the send size and the running bill in three columns (083), pseudocode, the whole agent loop in one block with the earlier note numbers hung on the three lines that were already built (082). a mermaid diagram or an annotated artifact would both be free next, and caching has an obvious annotated shape, the array with a line drawn where the unchanging prefix ends.
-last exits: forward (084), stops (083), stops (082). 085 can go either way, but two forwards running means 086 has to stop.
+last visuals: annotated artifact, the posted array with the cache marker drawn across it and the two bills computed underneath (085), comparison table, three columns and three rows putting first text on screen, last word on screen, and what the code holds side by side for one shot and streaming (084), worked example, one question traced round by round with the send size and the running bill in three columns (083). a mermaid diagram is free next and semantic caching has an obvious flowchart shape, question in, close enough match or not, stored answer or a real model call.
+last exits: stops (085), forward (084), stops (083). 086 is free to point forward.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
