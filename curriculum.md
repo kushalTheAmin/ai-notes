@@ -104,7 +104,7 @@
 - [x] latency and cost budgets: the two numbers that kill llm features (087)
 - [x] rate limits: two meters, requests a minute and tokens a minute (088)
 - [x] retrying a 429: wait, then double the wait (089)
-- [ ] jitter: when every client retries at the same moment
+- [x] jitter: when every client retries at the same moment (090)
 - [ ] which errors are worth retrying, and which never are
 - [ ] when the provider is down: timeouts, fallbacks, failing gracefully
 - [ ] the model changes under you: pinning versions and surviving deprecations
@@ -122,16 +122,16 @@
 - [ ] CAPSTONE: the checklist i would run before shipping any llm feature
 
 ## THREAD
-baton: 089 answered the 429 with the dumbest possible move, sleep. the establishing move is the retry loop itself, five attempts, doubling the wait, and a hard cap on tries, with the honest caveat that a retry-after header beats guessing whenever the provider sends one. the sting is that waiting is not free, those 15 seconds land in the latency budget from 087 before the model writes a token. the loop shape (wait = wait * 2, give up at 5) is now laid and owned by 089, later notes reuse it, they do not redraw it.
+baton: 090 broke 089s own loop by running four copies of it. the establishing move is that deterministic backoff synchronises clients, every worker that got the same 429 computes the same 1s and lands on the same tick, so the retry code is what builds the spike. the fix is jitter, one line, sleep the wait plus a random slice of it, and the honest price is half a second more per attempt on average, paid to spread four calls over 0.79s instead of stacking them. the note deliberately picked wait + random(0, wait) rather than random(0, wait), because it still sleeps at least the full wait and so does not contradict 089s ruling that an instant retry burns a try. if a later note ever wants the retry-instantly variant, it has to say why that ruling loosens.
 
-next is "jitter: when every client retries at the same moment". it picks up the exact loop 089 wrote and breaks it: every caller that got the same 429 wakes at the same 1s, 2s, 4s, so the retries arrive in a spike instead of spreading out, and the fix is a small random offset on each wait. it must not re-teach what a 429 is (088 owns that) or re-derive doubling (089 owns that), it starts from 089s pseudocode and adds one line. after that comes which errors are worth retrying at all, a 429 or a 500 yes, a 400 never, still unspent and still unwritten anywhere.
+next is "which errors are worth retrying, and which never are". it inherits a loop that is now correct in its timing and asks the question one level up: the loop retries anything that failed, but a 400 or a bad api key will fail identically five times and all youve bought is 15 seconds and five calls on the meter. 429 and 500 and a timeout are worth another go, a malformed request or an auth failure never is. it must not re-derive backoff (089) or jitter (090), those are settled, it only decides what enters the loop at all. a comparison table of status codes, retry or never, with the reason in the third column, is the obvious visual and the type is free again.
 
-caches stay laid and closed. 085 owns exact prefix caching, 086 owns fuzzy question matching, 087 owns the two budget numbers, 088 owns the meters, 089 owns backoff. bm25 scoring is still an unlaid brick on purpose, dont let arc 8 or 9 drag it in.
+caches stay laid and closed. 085 owns exact prefix caching, 086 owns fuzzy question matching, 087 owns the two budget numbers, 088 owns the meters, 089 owns backoff, 090 owns jitter. bm25 scoring is still an unlaid brick on purpose, dont let arc 8 or 9 drag it in.
 
-process note: 083 at 176, 084 at 194, 085 at 179, 086 at 234, 087 at 207, 088 at 223, 089 at 212. the 176 to 215 band is where this arc reads best, aim 090 there, and 090 should sit low in it since it is one added line on a loop the reader already has.
+process note: 084 at 194, 085 at 179, 086 at 234, 087 at 207, 088 at 223, 089 at 212, 090 at 202. the 176 to 215 band is where this arc reads best. 091 is a sorting decision with a short list behind it, so it can sit low in the band, near 180.
 
-last visuals: pseudocode, a five attempt retry loop with the doubling wait and a give up branch, and the waits listed underneath (089), comparison table, two limits declared on top and two workloads under them, each row over on a different meter (088), worked example, a stage by stage ledger with a wait column and a cost column (087). 090 needs the jitter spread visible. a worked example of several clients waking on the same tick, against the same clients with a random offset added, would carry it. pseudocode twice running is allowed if it is genuinely one added line on 089s loop, but a worked example is the better pick here.
-last exits: stops (089), forward (088), stops (087). 090 may point forward.
+last visuals: worked example, a timeline of four workers waking on one tick with the calls stacked, against the same four with a random slice added and the arrivals laid out one per line (090), pseudocode, a five attempt retry loop with the doubling wait and a give up branch, and the waits listed underneath (089), comparison table, two limits declared on top and two workloads under them, each row over on a different meter (088). a table is fine for 091, the last one was three notes back.
+last exits: stops (090), stops (089), forward (088). two stops running, so 091 should point forward.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render.
 
