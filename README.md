@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 88
+total notes: 89
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -108,3 +108,4 @@ total notes: 88
 - [086, the same question twice shouldnt cost twice](./notes/086-the-same-question-twice.md), matching on what the question means instead of its bytes lets you skip the model call entirely and hand back a stored answer, which is the first cache that can be confidently wrong, since one word apart still scores high
 - [087, the two numbers you pick before you build](./notes/087-the-two-numbers.md), one doc-QA question costed and timed stage by stage, where the wait a user feels is 870ms and the 2.3 cents that reads as free is $92 a day once you multiply it by traffic
 - [088, two meters, and you trip whichever empties first](./notes/088-two-meters.md), a rate limit is not one number, 61 tiny calls trip the request meter while sitting under 5 percent of the token allowance and 18 fat doc-QA calls trip the token meter on almost no traffic, and both get back the same 429, so batching fixes one row and breaks the other
+- [089, when a 429 lands, wait, then double the wait](./notes/089-wait-then-double.md), the retry loop written out, five attempts with the wait doubling from 1s to 8s and a hard stop after that, where firing the retry instantly just burns a try and the 15 seconds you spend waiting come out of the latency budget
