@@ -1,7 +1,7 @@
 # 040: how the loop actually stops
 
 builds on: [037](./037-no-row-for-i-dont-know.md), [022](./022-guess-the-next-token.md)
-arc: how it writes, and the knobs you own (9 of 12), ~2 min
+arc: how it writes, and the knobs you own (9 of 13), ~2 min
 
 037 dropped a real done token into the vocabulary and then walked straight past it. i want that one back. after three notes on what the loop wont tell you, heres the part that works.
 

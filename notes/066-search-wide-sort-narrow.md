@@ -1,7 +1,7 @@
 # 066: search wide, then sort narrow
 
 builds on: [065](./065-reads-both-at-once.md), [060](./060-where-the-vectors-live.md), [064](./064-two-searches-one-ranking.md)
-arc: giving the model your data (11 of 14), ~2 min
+arc: giving the model your data (11 of 15), ~2 min
 
 065 ended on a cost i left sitting there. a full model run per chunk. point that at a real store and youre finished. so you dont point it at the store.
 

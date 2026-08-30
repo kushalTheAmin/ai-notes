@@ -1,7 +1,7 @@
 # 035: top-k cuts the list before the roll
 
 builds on: [034](./034-greedy-vs-sampling.md), [032](./032-raw-scores-arent-percentages.md)
-arc: how it writes, and the knobs you own (4 of 11), ~2 min
+arc: how it writes, and the knobs you own (4 of 13), ~2 min
 
 034 left the roll walking every row, top to bottom. " flour" at 1.9% still owns a real slice of the 0 to 1 line, and the real list isnt 4 rows, its 100,000. top-k is the knife. sort, keep k rows, delete the rest, roll on whats left.
 

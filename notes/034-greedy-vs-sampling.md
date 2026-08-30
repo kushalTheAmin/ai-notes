@@ -1,7 +1,7 @@
 # 034: greedy takes the top row, sampling rolls for it
 
 builds on: [033](./033-temperature-is-one-divide.md), [032](./032-raw-scores-arent-percentages.md)
-arc: how it writes, and the knobs you own (3 of 10), ~2 min
+arc: how it writes, and the knobs you own (3 of 13), ~2 min
 
 033 dug a hole and left it. the same divisor on every score cant reorder anything, so ghee sits on top at 0.4 and at 2.0 both. if the picker always grabs the top row, temperature does nothing. that picker is real, its called greedy, and its one of two options.
 

@@ -1,7 +1,7 @@
 # 056: closed book vs open book
 
 builds on: [055](./055-anatomy-of-a-production-prompt.md), [028](./028-numbers-frozen-on-a-date.md), [045](./045-roles-are-markers.md), [053](./053-what-to-leave-out.md)
-arc: giving the model your data (1 of 12), ~2 min
+arc: giving the model your data (1 of 15), ~2 min
 
 055 pointed at this arc as putting a lot more not-mine text in the array on purpose. heres where that starts, and the mechanism is dumber than i expected.
 

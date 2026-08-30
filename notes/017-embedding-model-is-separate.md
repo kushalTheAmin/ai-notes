@@ -1,6 +1,6 @@
 # 017: the embedding model is its own product
 builds on: [016](./016-one-word-many-meanings.md), [014](./014-what-an-embedding-is.md)
-arc: meaning as numbers (7 of 9), ~2 min
+arc: meaning as numbers (7 of 11), ~2 min
 
 016 ended with the mixing being done by a model i hadnt actually met. i had been picturing the chat model doing it quietly on the side. its not that. different url, different name on the pricing page, and it cant hold a conversation.
 

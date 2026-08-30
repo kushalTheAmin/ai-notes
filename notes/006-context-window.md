@@ -1,6 +1,6 @@
 # 006: the context window
 builds on: [005-why hindi and gujarati cost more than english](./005-hindi-gujarati-cost-more.md), [004-tokens are money](./004-tokens-are-money.md)
-arc: how machines read text (6 of 8), ~2 min
+arc: how machines read text (6 of 10), ~2 min
 
 005 ended on those extra tokens filling up something besides your bill. this is that something. every model has a hard ceiling on how many tokens a single request can hold, and thats the context window.
 

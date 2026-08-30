@@ -1,7 +1,7 @@
 # 060: where the vectors actually live
 
 builds on: [059](./059-search-the-chunks-then-paste-them-in.md), [013](./013-cosine-similarity.md), [021](./021-search-by-meaning-end-to-end.md)
-arc: giving the model your data (5 of 12), ~2 min
+arc: giving the model your data (5 of 15), ~2 min
 
 059 ended on a loop that scores every array in the store. heres what replaces it once that pile gets big.
 

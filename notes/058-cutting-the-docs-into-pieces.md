@@ -1,7 +1,7 @@
 # 058: cutting the docs into pieces
 
 builds on: [057](./057-when-you-can-just-send-everything.md), [056](./056-closed-book-open-book.md)
-arc: giving the model your data (3 of 12), ~2 min
+arc: giving the model your data (3 of 15), ~2 min
 
 057 ended on the pile being too expensive to send whole. so you send one piece instead, a chunk. chunking is deciding where those chunks start and stop, before anyone has asked a question.
 

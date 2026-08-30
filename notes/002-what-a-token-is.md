@@ -1,6 +1,6 @@
 # 002: what a token is
 builds on: [001-characters vs words, and why both fail](./001-characters-vs-words.md)
-arc: how machines read text (2 of 7), ~2 min
+arc: how machines read text (2 of 10), ~2 min
 
 001 landed on this: we need chunks smaller than a word but bigger than a letter. that chunk is a token. every model ships with a fixed list of them, its vocabulary, basically a hashmap from text pieces to integer ids.
 

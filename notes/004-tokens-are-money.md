@@ -1,6 +1,6 @@
 # 004: tokens are money, how pricing actually works
 builds on: [003-bpe-merging-by-frequency](./003-bpe-merging-by-frequency.md)
-arc: how machines read text (4 of 8), ~2 min
+arc: how machines read text (4 of 10), ~2 min
 
 003 showed how a tokenizer builds its vocabulary by merging pairs. what it skipped is that every token in that vocabulary carries a price, and youre charged the moment you hit send.
 

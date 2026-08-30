@@ -1,7 +1,7 @@
 # 083: when the loop wont stop
 
 builds on: [082](./082-a-while-loop-with-a-model-inside.md), [047](./047-your-code-fakes-the-memory.md), [004](./004-tokens-are-money.md)
-arc: running it, speed, cost, and when things break (2 of 11), ~2 min
+arc: running it, speed, cost, and when things break (2 of 17), ~2 min
 
 082 left the loop with one exit, and the model owns it. so what does it cost when it never takes it.
 

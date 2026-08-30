@@ -1,7 +1,7 @@
 # 088: two meters, and you trip whichever empties first
 
 builds on: [087](./087-the-two-numbers.md), [053](./053-what-to-leave-out.md), [004](./004-tokens-are-money.md)
-arc: running it, speed, cost, and when things break (7 of 12), ~2 min
+arc: running it, speed, cost, and when things break (7 of 17), ~2 min
 
 087 was my budget, two numbers i picked. this is a cap the provider picked, and it doesnt care about mine.
 

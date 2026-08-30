@@ -1,7 +1,7 @@
 # 085: the part of the prompt that never changes
 
 builds on: [047](./047-your-code-fakes-the-memory.md), [083](./083-when-the-loop-wont-stop.md), [004](./004-tokens-are-money.md), [051](./051-the-model-asks-your-code-acts.md), [048](./048-showing-beats-telling.md)
-arc: running it, speed, cost, and when things break (4 of 11), ~2 min
+arc: running it, speed, cost, and when things break (4 of 17), ~2 min
 
 047 said it first, every call re-sends the whole array, and 083 did the addition. heres the part of that bill you can stop paying.
 

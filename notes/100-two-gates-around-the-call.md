@@ -1,7 +1,7 @@
 # 100: one check before the call, one after
 
 builds on: [099](./099-should-this-even-be-a-model-call.md), [052](./052-when-the-text-isnt-mine.md), [018](./018-classify-with-no-training.md), [038](./038-why-the-made-up-answer-sounds-right.md)
-arc: the decisions, safety, privacy, and picking your model (2 of 8), ~2 min
+arc: the decisions, safety, privacy, and picking your model (2 of 10), ~2 min
 
 099 sorted out which jobs a model should keep. this is the first thing i put around one of those jobs before real users touch it.
 

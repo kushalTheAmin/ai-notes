@@ -1,7 +1,7 @@
 # 039: asking the model how sure it is
 
 builds on: [038](./038-why-the-made-up-answer-sounds-right.md), [037](./037-no-row-for-i-dont-know.md), [035](./035-top-k-cuts-the-tail.md)
-arc: how it writes, and the knobs you own (8 of 12), ~2 min
+arc: how it writes, and the knobs you own (8 of 13), ~2 min
 
 038 ended on a maybe and i want to close it. 037s real list topped out at 68%, the invented one at 14%. so read the winners percentage, threshold it, ship. i genuinely thought this was the escape hatch.
 

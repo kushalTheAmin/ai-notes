@@ -1,7 +1,7 @@
 # 086: the same question twice shouldnt cost twice
 
 builds on: [085](./085-the-part-that-never-changes.md), [013](./013-cosine-similarity.md), [014](./014-what-an-embedding-is.md), [019](./019-near-duplicates-and-a-threshold.md)
-arc: running it, speed, cost, and when things break (5 of 11), ~2 min
+arc: running it, speed, cost, and when things break (5 of 17), ~2 min
 
 085 made the prompt cheaper and the model still ran. this one doesnt call the model at all.
 

@@ -1,7 +1,7 @@
 # 065: the score that read your question
 
 builds on: [064](./064-two-searches-one-ranking.md), [059](./059-search-the-chunks-then-paste-them-in.md), [014](./014-what-an-embedding-is.md), [023](./023-attention-every-token-looks.md)
-arc: giving the model your data (10 of 14), ~2 min
+arc: giving the model your data (10 of 15), ~2 min
 
 064 merged two lists by throwing the scores away, and the order is what it cost. deadlines.md and tools.md came out tied at 0.25 and rank fusion has nothing left to say about them. so i went looking for a better score.
 

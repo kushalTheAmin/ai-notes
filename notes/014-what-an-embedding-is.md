@@ -1,6 +1,6 @@
 # 014: what an embedding is
 builds on: [013](./013-cosine-similarity.md), [011](./011-a-vector-is-a-list-of-numbers.md)
-arc: meaning as numbers (4 of 9), ~2 min
+arc: meaning as numbers (4 of 11), ~2 min
 
 013 finished the tool and i still had nothing real to run it on. every array in this arc so far, i typed by hand. heres where the floats come from.
 

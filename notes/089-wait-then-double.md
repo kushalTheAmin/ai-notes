@@ -1,7 +1,7 @@
 # 089: when a 429 lands, wait, then double the wait
 
 builds on: [088](./088-two-meters.md), [087](./087-the-two-numbers.md)
-arc: running it, speed, cost, and when things break (8 of 14), ~2 min
+arc: running it, speed, cost, and when things break (8 of 17), ~2 min
 
 088 left you holding a 429 with nothing to do about it. this is what you do. you sleep.
 

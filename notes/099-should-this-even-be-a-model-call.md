@@ -1,7 +1,7 @@
 # 099: should this even be a model call
 
 builds on: [098](./098-everything-around-one-call.md), [019](./019-near-duplicates-and-a-threshold.md), [038](./038-why-the-made-up-answer-sounds-right.md), [041](./041-same-prompt-two-answers.md), [087](./087-the-two-numbers.md)
-arc: the decisions, safety, privacy, and picking your model (1 of 8), ~2 min
+arc: the decisions, safety, privacy, and picking your model (1 of 10), ~2 min
 
 098 ended with me counting sixteen notes of scaffolding around one model call. thats the price of shipping one, so arc 9 opens on whether to pay it.
 

@@ -1,7 +1,7 @@
 # 059: search the chunks, then paste them in
 
 builds on: [058](./058-cutting-the-docs-into-pieces.md), [021](./021-search-by-meaning-end-to-end.md), [056](./056-closed-book-open-book.md), [052](./052-when-the-text-isnt-mine.md), [045](./045-roles-are-markers.md)
-arc: giving the model your data (4 of 12), ~2 min
+arc: giving the model your data (4 of 15), ~2 min
 
 058 left me with a folder of chunks and nothing that picks one. this is the picking, and its ten lines.
 

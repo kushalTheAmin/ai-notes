@@ -1,7 +1,7 @@
 # 087: the two numbers you pick before you build
 
 builds on: [086](./086-the-same-question-twice.md), [084](./084-why-the-ui-types.md), [066](./066-search-wide-sort-narrow.md), [043](./043-thinking-on-the-bill.md), [004](./004-tokens-are-money.md)
-arc: running it, speed, cost, and when things break (6 of 11), ~2 min
+arc: running it, speed, cost, and when things break (6 of 17), ~2 min
 
 086 ended on what a call costs and how long you wait. here they are, on one question to my doc-QA thing.
 

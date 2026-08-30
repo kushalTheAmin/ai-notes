@@ -1,6 +1,6 @@
 # 013: cosine similarity, a score that ignores size
 builds on: [012](./012-dot-product-by-hand.md)
-arc: meaning as numbers (3 of 9), ~2 min
+arc: meaning as numbers (3 of 11), ~2 min
 
 012 ended on a hole i left open. scale b ten times bigger, same direction, and the total jumps from 20 to 200. heres the fix, one division.
 

@@ -1,7 +1,7 @@
 # 041: the same prompt, twice, two different answers
 
 builds on: [034](./034-greedy-vs-sampling.md), [022](./022-guess-the-next-token.md)
-arc: how it writes, and the knobs you own (10 of 12), ~2 min
+arc: how it writes, and the knobs you own (10 of 13), ~2 min
 
 034 ended on temperature 0 skipping the roll and handing you greedy. no random number left anywhere. so pin it to 0 and you get the same answer forever.
 

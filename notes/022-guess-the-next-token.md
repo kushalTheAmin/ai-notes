@@ -1,7 +1,7 @@
 # 022: all it does is guess the next token
 
 builds on: [021](./021-search-by-meaning-end-to-end.md), [002](./002-what-a-token-is.md), [011](./011-a-vector-is-a-list-of-numbers.md)
-arc: whats inside the box (1 of 8), ~2 min
+arc: whats inside the box (1 of 10), ~2 min
 
 arc 2 left the model as a thing that eats my text and hands back floats. 021 ended asking what it does going the other way, handing words back. heres the answer, and its smaller than i expected.
 

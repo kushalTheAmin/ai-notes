@@ -1,7 +1,7 @@
 # 073: two ways to check the answer
 
 builds on: [072](./072-the-same-questions-every-run.md), [013](./013-cosine-similarity.md), [014](./014-what-an-embedding-is.md)
-arc: evals, how you know any of it works (3 of 10), ~2 min
+arc: evals, how you know any of it works (3 of 11), ~2 min
 
 072 left a must_say list in the file with nothing reading it. you wrote down "30 days", the model wrote a whole sentence. what turns that into pass or fail.
 

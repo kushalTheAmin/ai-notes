@@ -1,7 +1,7 @@
 # 082: an agent is a while loop with a model inside
 
 builds on: [081](./081-the-harness-in-four-files.md), [051](./051-the-model-asks-your-code-acts.md), [047](./047-your-code-fakes-the-memory.md), [070](./070-from-my-docs-to-an-answer.md)
-arc: running it, speed, cost, and when things break (1 of 11), ~2 min
+arc: running it, speed, cost, and when things break (1 of 17), ~2 min
 
 081 closed arc 7 on one call in, one answer out, scored. an agent is that same call, put inside a loop.
 

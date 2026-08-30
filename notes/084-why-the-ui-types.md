@@ -1,7 +1,7 @@
 # 084: why the ui types
 
 builds on: [082](./082-a-while-loop-with-a-model-inside.md), [083](./083-when-the-loop-wont-stop.md), [022](./022-guess-the-next-token.md), [050](./050-when-the-json-breaks.md)
-arc: running it, speed, cost, and when things break (3 of 11), ~2 min
+arc: running it, speed, cost, and when things break (3 of 17), ~2 min
 
 082 got a nine second answer out of three rounds, and 083 let it run to six before killing it. the wait is real. streaming is what you do about the wait.
 

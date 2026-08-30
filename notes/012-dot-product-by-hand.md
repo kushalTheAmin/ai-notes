@@ -1,6 +1,6 @@
 # 012: dot product, by hand
 builds on: [011](./011-a-vector-is-a-list-of-numbers.md)
-arc: meaning as numbers (2 of 9), ~2 min
+arc: meaning as numbers (2 of 11), ~2 min
 
 011 ended on two equal-width arrays and said they can be walked together in one loop. this is that loop.
 

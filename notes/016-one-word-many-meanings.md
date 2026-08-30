@@ -1,6 +1,6 @@
 # 016: one word, many meanings
 builds on: [014](./014-what-an-embedding-is.md), [011](./011-a-vector-is-a-list-of-numbers.md)
-arc: meaning as numbers (6 of 9), ~2 min
+arc: meaning as numbers (6 of 11), ~2 min
 
 011 handed me a table with one row per token and i have been treating that row as where the meaning lives. 015 scored whole sentences and never pulled a single word out on its own. heres why it couldnt.
 

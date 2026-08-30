@@ -1,7 +1,7 @@
 # 094: what the user gets when every attempt is gone
 
 builds on: [093](./093-a-second-model-when-the-first-is-down.md), [086](./086-the-same-question-twice.md), [059](./059-search-the-chunks-then-paste-them-in.md)
-arc: running it, speed, cost, and when things break (13 of 16), ~2 min
+arc: running it, speed, cost, and when things break (13 of 17), ~2 min
 
 093 ended on a box i drew and then said nothing about, nothing left to serve. retries gone, backup provider gone. your code still has to hand something back to a person sitting there waiting.
 

@@ -1,7 +1,7 @@
 # 063: the search that understands nothing
 
 builds on: [062](./062-when-you-and-the-doc-use-different-words.md), [016](./016-one-word-many-meanings.md)
-arc: giving the model your data (8 of 13), ~2 min
+arc: giving the model your data (8 of 15), ~2 min
 
 after 062 i went hunting for a better embedding model. wrong direction. the thing that finds Nova is plain keyword search, the kind you already built behind a search box with a LIKE query. real ones index up front, a hashmap from each word to the chunks holding it.
 

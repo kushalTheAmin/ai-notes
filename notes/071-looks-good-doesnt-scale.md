@@ -1,7 +1,7 @@
 # 071: "looks good" doesnt scale
 
 builds on: [070](./070-from-my-docs-to-an-answer.md), [067](./067-did-the-right-chunk-come-back.md), [068](./068-where-in-the-list-it-landed.md), [069](./069-did-the-answer-come-from-the-docs.md)
-arc: evals, how you know any of it works (1 of 10), ~2 min
+arc: evals, how you know any of it works (1 of 11), ~2 min
 
 070 left the four questions from 067 sitting there as a placeholder for an answer key. this note is about why four was always going to break.
 

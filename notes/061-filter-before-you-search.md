@@ -1,7 +1,7 @@
 # 061: filter first, then search
 
 builds on: [059](./059-search-the-chunks-then-paste-them-in.md), [060](./060-where-the-vectors-live.md)
-arc: giving the model your data (6 of 12), ~2 min
+arc: giving the model your data (6 of 15), ~2 min
 
 060 made the search fast. but everything in this arc still ranks on cosine alone, closest meaning wins. nothing in there asks whether priya is allowed to read the thing it hands back.
 

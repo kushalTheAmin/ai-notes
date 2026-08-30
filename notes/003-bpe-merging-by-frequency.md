@@ -1,6 +1,6 @@
 # 003: BPE, merging by frequency
 builds on: [002-what a token is](./002-what-a-token-is.md)
-arc: how machines read text (3 of 7), ~2 min
+arc: how machines read text (3 of 10), ~2 min
 
 002 ended with a promise: explain why roti splits into rot and i instead of some other cut. the answer is byte pair encoding, bpe for short, and its dumb-simple: start from single characters and keep gluing together whichever pair shows up most.
 

@@ -1,6 +1,6 @@
 # 011: a vector is just a list of numbers
 builds on: [010](./010-what-i-send-and-what-it-costs.md)
-arc: meaning as numbers (1 of 9), ~2 min
+arc: meaning as numbers (1 of 11), ~2 min
 
 010 left 5868 sitting on the wire and i called it a lookup key. heres what its a key to.
 

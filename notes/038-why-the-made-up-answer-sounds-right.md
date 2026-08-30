@@ -1,7 +1,7 @@
 # 038: why the made-up answer sounds right
 
 builds on: [037](./037-no-row-for-i-dont-know.md), [030](./030-fine-tuning-shape-not-facts.md), [026](./026-every-number-every-token.md)
-arc: how it writes, and the knobs you own (7 of 12), ~2 min
+arc: how it writes, and the knobs you own (7 of 13), ~2 min
 
 037 left half the question open. the made-up token comes out, sure, but why does it come out looking so finished? the answer is already in 030. the shape was in all 60 tuning examples, each fact in exactly one. i filed that under fine-tuning at the time. it isnt a tuning thing. its every answer the model has ever written.
 

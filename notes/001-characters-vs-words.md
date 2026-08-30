@@ -1,6 +1,6 @@
 # 001: characters vs words, and why both fail
 builds on: nothing, this is the start
-arc: how machines read text (1 of 7), ~2 min
+arc: how machines read text (1 of 10), ~2 min
 
 before a model can do anything with your text it has to chop it into pieces it can count. there are two obvious ways to chop, and both break down fast.
 

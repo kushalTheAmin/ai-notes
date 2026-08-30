@@ -2,7 +2,7 @@
 
 builds on: [089](./089-wait-then-double.md), [088](./088-two-meters.md)
 
-arc: running it, speed, cost, and when things break (9 of 14), ~2 min
+arc: running it, speed, cost, and when things break (9 of 17), ~2 min
 
 089s loop is fine when youre the only one running it. it breaks the moment four workers on the same api key get 429d on the same tick.
 

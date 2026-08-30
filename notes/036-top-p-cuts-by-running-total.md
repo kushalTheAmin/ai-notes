@@ -1,7 +1,7 @@
 # 036: top-p cuts by running total, not by count
 
 builds on: [035](./035-top-k-cuts-the-tail.md), [034](./034-greedy-vs-sampling.md)
-arc: how it writes, and the knobs you own (5 of 11), ~2 min
+arc: how it writes, and the knobs you own (5 of 13), ~2 min
 
 035 ended on the bit that bugged me. k is a fixed count, the same count whether the model is dead certain or completely torn. top-p cuts somewhere else. dont count rows, add percentages down the list until the running total passes p, keep everything you touched, delete the rest.
 

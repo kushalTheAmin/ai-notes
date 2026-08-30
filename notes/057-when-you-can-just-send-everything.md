@@ -1,7 +1,7 @@
 # 057: when you can just send everything
 
 builds on: [056](./056-closed-book-open-book.md), [006](./006-context-window.md), [004](./004-tokens-are-money.md), [047](./047-your-code-fakes-the-memory.md)
-arc: giving the model your data (2 of 12), ~2 min
+arc: giving the model your data (2 of 15), ~2 min
 
 056 ended on ten thousand docs and which one do i paste. the honest first answer is you dont pick, you paste all of them. sometimes thats really the right call.
 

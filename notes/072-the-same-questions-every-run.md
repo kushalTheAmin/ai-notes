@@ -1,7 +1,7 @@
 # 072: the same questions, every run
 
 builds on: [071](./071-looks-good-doesnt-scale.md), [067](./067-did-the-right-chunk-come-back.md), [069](./069-did-the-answer-come-from-the-docs.md)
-arc: evals, how you know any of it works (2 of 10), ~2 min
+arc: evals, how you know any of it works (2 of 11), ~2 min
 
 071 ended on the half that runs itself, and it only ran itself because i wrote those labels down by hand back in 067. so write all of them down, the answer too. a golden dataset is that file, a fixed set of questions and, for each one, what should come back.
 

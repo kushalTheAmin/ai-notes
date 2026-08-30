@@ -1,6 +1,6 @@
 # 005: why hindi and gujarati cost more than english
 builds on: [004-tokens are money](./004-tokens-are-money.md), [003-BPE, merging by frequency](./003-bpe-merging-by-frequency.md)
-arc: how machines read text (5 of 8), ~2 min
+arc: how machines read text (5 of 10), ~2 min
 
 004 priced a request by counting tokens in and tokens out. it never asked what language the text was in. turns out that matters a lot.
 

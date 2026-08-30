@@ -1,7 +1,7 @@
 # 033: temperature is one divide
 
 builds on: [032](./032-raw-scores-arent-percentages.md)
-arc: how it writes, and the knobs you own (2 of 9), ~2 min
+arc: how it writes, and the knobs you own (2 of 13), ~2 min
 
 032 ended on the gap. ghee beat time by 1.1 points of raw score and came out three times as likely. temperature is the knob that decides how much of that stretching happens, and it does it by dividing every score before the exp step runs.
 

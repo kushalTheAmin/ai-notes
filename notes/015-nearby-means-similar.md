@@ -1,6 +1,6 @@
 # 015: nearby means similar
 builds on: [014](./014-what-an-embedding-is.md), [013](./013-cosine-similarity.md)
-arc: meaning as numbers (5 of 9), ~2 min
+arc: meaning as numbers (5 of 11), ~2 min
 
 014 claimed the floats end up pointing the same way when the text means the same thing, then showed you none of it. heres the check. three sentences into that same model, 013's cosine on each pair.
 

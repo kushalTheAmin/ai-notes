@@ -2,7 +2,7 @@
 
 builds on: [089](./089-wait-then-double.md), [090](./090-everyone-wakes-at-once.md)
 
-arc: running it, speed, cost, and when things break (10 of 14), ~2 min
+arc: running it, speed, cost, and when things break (10 of 17), ~2 min
 
 089 and 090 got the timing of the loop right. the loop is still wrong, because it retries everything that failed.
 

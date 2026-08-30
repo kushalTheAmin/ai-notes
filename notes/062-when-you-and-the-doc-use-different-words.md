@@ -1,7 +1,7 @@
 # 062: when you and the doc use different words
 
 builds on: [061](./061-filter-before-you-search.md), [059](./059-search-the-chunks-then-paste-them-in.md), [013](./013-cosine-similarity.md)
-arc: giving the model your data (7 of 12), ~2 min
+arc: giving the model your data (7 of 15), ~2 min
 
 061 ended on a chunk thats allowed, present, and still doesnt come back. heres how that happens.
 

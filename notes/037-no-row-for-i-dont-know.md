@@ -1,7 +1,7 @@
 # 037: theres no row for "i dont know"
 
 builds on: [032](./032-raw-scores-arent-percentages.md), [034](./034-greedy-vs-sampling.md), [022](./022-guess-the-next-token.md)
-arc: how it writes, and the knobs you own (6 of 12), ~2 min
+arc: how it writes, and the knobs you own (6 of 13), ~2 min
 
 032 through 036 all leaned on something none of them said out loud. the model hands back a full list of percentages and one row wins. every step, no exceptions.
 

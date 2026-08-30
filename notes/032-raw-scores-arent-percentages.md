@@ -1,7 +1,7 @@
 # 032: raw scores arent percentages yet
 
 builds on: [031](./031-the-box-closed.md), [022](./022-guess-the-next-token.md)
-arc: how it writes, and the knobs you own (1 of 9), ~2 min
+arc: how it writes, and the knobs you own (1 of 13), ~2 min
 
 022 and 031 both ended on the same line, the model doesnt pick a token, it hands back a score for every token in the vocabulary and the picking happens after. arc 4 is that after. first thing in the way: those scores arent percentages. some of them are negative.
 

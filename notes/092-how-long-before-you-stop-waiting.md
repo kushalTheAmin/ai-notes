@@ -2,7 +2,7 @@
 
 builds on: [091](./091-not-every-error-deserves-a-retry.md), [089](./089-wait-then-double.md), [087](./087-the-two-numbers.md)
 
-arc: running it, speed, cost, and when things break (11 of 16), ~2 min
+arc: running it, speed, cost, and when things break (11 of 17), ~2 min
 
 091 said a timeout means you stopped waiting. i wrote that down and then noticed i had never actually decided when.
 

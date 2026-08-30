@@ -1,7 +1,7 @@
 # 024: why twice the input is four times the work
 
 builds on: [023](./023-attention-every-token-looks.md), [006](./006-context-window.md)
-arc: whats inside the box (3 of 8), ~2 min
+arc: whats inside the box (3 of 10), ~2 min
 
 023 ended on four tokens making sixteen scores. every token scores itself against every other one, so the count is just tokens times tokens.
 

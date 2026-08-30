@@ -1,7 +1,7 @@
 # 023: attention, every token looks at every other token
 
 builds on: [022](./022-guess-the-next-token.md), [016](./016-one-word-many-meanings.md), [012](./012-dot-product-by-hand.md)
-arc: whats inside the box (2 of 8), ~2 min
+arc: whats inside the box (2 of 10), ~2 min
 
 022 left one thing shut on purpose. one call, and back comes a score for every token in the vocabulary. but how does the box know "the roti needs more" wants ghee, when " more" on its own means nothing? i went looking and the answer is a dot product loop.
 

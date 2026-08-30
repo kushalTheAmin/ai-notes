@@ -1,7 +1,7 @@
 # 064: two searches, one ranking
 
 builds on: [063](./063-the-search-that-understands-nothing.md), [062](./062-when-you-and-the-doc-use-different-words.md), [013](./013-cosine-similarity.md)
-arc: giving the model your data (9 of 13), ~2 min
+arc: giving the model your data (9 of 15), ~2 min
 
 063 left two ranked lists and neither one is the list you want. merging them sounds like a one liner. it isnt, and the reason is the numbers.
 

@@ -2,7 +2,7 @@
 
 builds on: [092](./092-how-long-before-you-stop-waiting.md), [089](./089-wait-then-double.md), [072](./072-the-same-questions-every-run.md)
 
-arc: running it, speed, cost, and when things break (12 of 16), ~2 min
+arc: running it, speed, cost, and when things break (12 of 17), ~2 min
 
 092 left me at the exact second the last attempt times out. i had never written the line after that one.
 
