@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 123
+total notes: 124
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -149,3 +149,4 @@ total notes: 123
 ## ARC 11 - agents you can trust
 - [122, what a wrong call leaves behind](./notes/122-what-a-wrong-call-leaves-behind.md), four tools ranked not by whether they read or write but by what a wrong call leaves behind and whether it can be taken back, where a plain lookup with the wrong id puts one customers order in front of another and cant be undone, and the refund, easily the scariest name on the list, turns out to be the one a second call reverses
 - [123, when the poisoned line can call a tool](./notes/123-injection-grows-hands.md), the same injection 052 already described, this time landing in a tool result my own code fetched and appended, where the model answers it with a call instead of a sentence and my code has already run it, so the reach of one planted line is not the tool that fetched it but every tool in the box
+- [124, hand the tool less power](./notes/124-hand-the-tool-less-power.md), the same email tool written twice, once trusting a sentence in the system prompt and once checking the caller and the argument in its own function body, where swapping a free text message for a template id leaves the injected link from 123 with no field to ride in on
