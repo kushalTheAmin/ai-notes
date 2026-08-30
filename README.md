@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 120
+total notes: 121
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -144,3 +144,4 @@ total notes: 120
 - [118, the plan is just tokens, a file is real memory](./notes/118-files-are-the-agents-real-memory.md), an 800 token plan followed down two paths, left in the array where it is replayed on every round and eventually rewritten by the fold, or written to plan.md where the array carries only the filename and the six steps come back word for word eleven rounds later, with the honest price being that the read costs those tokens again on the round you need them
 - [119, a fresh window with a narrower job](./notes/119-a-fresh-window-with-a-narrower-job.md), three calls totting up 10,200 tokens of raw hits inside the parents own window against the same job handed to a sub-agent, whose fresh array holds the same calls and the same tokens and stops existing when it returns one ~15 token sentence, so the parent pays for the work once instead of replaying it, and gets back a conclusion it has no way to audit
 - [120, when the tool is the screen](./notes/120-when-the-tool-is-the-screen.md), computer use turns the tool into a screen, so the result coming back is a screenshot and the call going out is a coordinate, the loop unchanged from 082 with only the observe step made of pixels, and no dom anywhere in it, so a banner that shifts the page 40 pixels sends the click somewhere else and nothing errors
+- [121, the working agent, assembled](./notes/121-the-working-agent-assembled.md), the whole arc drawn as one loop, the toolbox going in as text, a call my code runs against an api or a screen, results appended whether they worked or not, five different moves to stop the array growing forever, and an exit my own database answers instead of the model, where every check in the picture asks did it work and none of them asks whether the call should have run
