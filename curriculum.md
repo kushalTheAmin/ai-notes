@@ -128,7 +128,7 @@
 
 ## ARC 10 - agents: when output starts doing things
 - [x] answer vs action: what changes when the output executes (109)
-- [ ] the toolbox is a prompt: tool names and descriptions are instructions
+- [x] the toolbox is a prompt: tool names and descriptions are instructions (110)
 - [ ] the schema clamp: json that cant come out wrong
 - [ ] a shared socket for toolboxes: any agent, any toolbox
 - [ ] a failed tool call goes back in: errors are context
@@ -157,9 +157,9 @@
 
 ## THREAD
 
-baton: 109 opened arc 10 by reframing, not by adding mechanism. it put one reply next to another, the text field and the tool_calls field, same model and same 95%, and showed that the only thing that moved is whether a person sits between what the model said and it being true. it named my code as the thing that still calls run, and 082s loop as the default that never asks. 110 picks up from the tool_calls block being taken at face value: it must show where those tool names and descriptions come from, that the toolbox is written in english and goes into the prompt, so a bad description is a bad instruction rather than a bad config file. no gating and no permissions yet, arc 11 owns those and 109 deliberately left the door open by saying nothing forces me to call run.
+baton: 110 established that the toolbox is english in the prompt, not config. same two functions, same question, and rewriting only the names and the one line descriptions moved the pick from a coin flip to the right tool, so a tool rename is a prompt change. it deliberately left the argument schema alone, naming it as also text but not the thing the pick runs on, and pointed at 111 for it. 111 picks up exactly there: the pick was right, the arguments came back wrong, and the fix is not more english. it must show json that cant come out malformed, the schema doing the clamping rather than the description asking nicely, and it should lean on 049 and 050, where json shape and validate-and-retry were already laid. still no gating and no permissions, arc 11 owns those.
 
-for the record, what 109 established: the fork between an answer and an action lives in the shape of the reply, not in the model. a plain text block, not mermaid and not a table, holding one refund question resolved two ways, the chat bubble path costing a scroll when wrong and the issue_refund path costing a refund that already happened. it carried 104s bottom row forward as the subject of the whole arc, wired 051 into 082s loop, and its exit points forward at the toolbox.
+for the record, what 110 established: names and descriptions are instructions the model reads, so vague ones make it guess between tools. an annotated artifact, two versions of the same toolbox with the same question resolved under each, v1 picking on a coin flip and v2 picking correctly after only the strings changed. it wired 045s one token stream into the tools array, answered the aside 083 dropped about bad tool descriptions causing long loops, sent tool renames through 078s prompt-change checks, and its exit points forward at the arguments. that means 111 must stop, two forwards in a row is the cap.
 
 the growth rules are unchanged inside the new arcs: splits for granularity, capstone gap check for at most one brick, strict order within an arc, capstone written last. one sanctioned exception to the no-names line: the socket note in arc 10 may name mcp once, translated in the same sentence it appears in, a published standard is not a vendor. everything else stays shapes over names.
 
@@ -167,10 +167,10 @@ process note on headers: every notes (n of m) was backfilled on 2026-08-30, spli
 
 lines the repo has held and should keep holding: no named vendor and no named benchmark, arc 9 held that from 099 through 108 and 109 held it too, issue_refund and search_docs are made-up tool names in my own example. caches are laid and closed, arc 8 owns them and 098 owns their assembly. bm25 scoring is still an unlaid brick on purpose. arc 7 owns measurement.
 
-process note: 104 at 233, 105 at 220, 106 at 198, 107 at 205, 108 at 314 under the 350 capstone ceiling, 109 at 214. the brick cluster stays loose and steady and only the capstone runs long, which is what the wider budget is for.
+process note: 105 at 220, 106 at 198, 107 at 205, 108 at 314 under the 350 capstone ceiling, 109 at 214, 110 at 232. the cluster has been sitting in the 200s for a while now, so 111 or 112 should land in the 140 to 190 band on purpose, riding one end of the budget is its own tell.
 
-last visuals: plain text block, one question resolved into two reply shapes with the consequence of being wrong annotated under each (109), mermaid flowchart, ten nodes, two diamonds and a branch that rejoins, every label carrying its note number (108), table, three rows and three columns, public rank against my own score with the order inverting (107). mermaid is free again after this one, the streak is broken.
-last exits: forward (109), stops (108), stops (107). one forward against two stops, so the next note may point forward, but the one after that should stop.
+last visuals: annotated artifact, two versions of the same toolbox with the same question resolved under each (110), plain text block, one question resolved into two reply shapes with the consequence of being wrong annotated under each (109), mermaid flowchart, ten nodes, two diamonds and a branch that rejoins, every label carrying its note number (108). two fenced text visuals running now, so 111 must not be a third. mermaid and tables and worked examples are all free.
+last exits: forward (110), forward (109), stops (108). two forwards running, so 111 must stop.
 
 process note on visuals: mermaid stacks subgraphs in whatever order it likes and it flipped the two on 065, and on 070 it put the once-per-doc group beside the per-question one rather than above it. so 070s prose says "one group" and "the other group" instead of top and bottom, and 098 names its groups seconds, minutes and months for the same reason. do not write positional references into prose about a mermaid block, github may lay it out differently than a local render. 106 hit this while drafting, "that first fork" became "the fact question" so the prose names the node by its content instead of its place. 108 hit it twice, "the first fork" became "the rule question" and "every other question below" became "every other question here", both for the same reason. tables are safe for this, 099 says "top row" and "row two" and github renders rows in file order, and 104 leans on top two rows and bottom two rows the same way. plain text blocks are safe too, 102 labels each step in file order and github shows them that way, and 109 says top block and bottom block for the same reason. <br/> inside mermaid node labels renders fine, 103 proved it and 106 used it on all seven labels.
 
