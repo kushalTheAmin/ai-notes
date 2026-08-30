@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 106
+total notes: 107
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -128,3 +128,4 @@ total notes: 106
 - [104, shipping a feature that gets it wrong on purpose](./notes/104-ten-wrong-answers-a-day.md), the same model at the same 95% dropped into four different features, where the wrong answer costs five seconds in one and real money in another, so the thing you design is not the error rate but where the answer lands and who gets to catch it
 - [105, renting the model, or owning it](./notes/105-rent-it-or-own-it.md), one day of the same feature costed twice, per token to a provider and per hour on one machine you serve the weights from yourself, where the rented bill falls to zero overnight and the owned one never moves, and the crossover around three thousand questions a day turns out to be the easy half of the decision
 - [106, three fixes, and they dont fix the same thing](./notes/106-three-fixes-that-fix-different-things.md), the three moves you make when a feature isnt good enough sorted by what each one actually adds, where only retrieval puts a missing fact in front of the model, prompting fixes the instructions you never gave, and fine-tuning earns its weeks only when the model already knows enough and keeps breaking the same way
+- [107, the ranking has never seen your task](./notes/107-the-ranking-hasnt-seen-your-task.md), three candidates lined up by where they sit on a public ranking against how many of my own 50 examples they passed, where the order inverts because a public rank is an average over a mixed bag my narrow task barely registers in, and once two of them tie within noise the deciding is done by cost and speed
