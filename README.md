@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 126
+total notes: 127
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -152,3 +152,4 @@ total notes: 126
 - [124, hand the tool less power](./notes/124-hand-the-tool-less-power.md), the same email tool written twice, once trusting a sentence in the system prompt and once checking the caller and the argument in its own function body, where swapping a free text message for a template id leaves the injected link from 123 with no field to ride in on
 - [125, the gate that doesnt drown you](./notes/125-the-gate-that-doesnt-drown-you.md), a proposed call sent through two filters before a person ever sees it, settled by a rule where a rule exists and let through where the damage can be undone, so what reaches the human is the short list nobody can click through on autopilot
 - [126, a trace, not a log line](./notes/126-a-trace-not-a-log-line.md), one agent run written down as a single indented trace instead of six unrelated log lines, a shared id on every call and each step recording which step spawned it, where the parents own numbers never top 1,850 tokens and the biggest call in the run, 5,800, sits one level down inside a sub-agent the parent knows only as 4.4 seconds
+- [127, grade the end state](./notes/127-grade-the-end-state.md), twenty finished runs scored by what the refunds table looks like afterwards instead of by what the run said it did, where two runs end on the identical sentence and land on opposite scores, and a run that refunded the right order and a second one on the way fails for the row that shouldnt be there
