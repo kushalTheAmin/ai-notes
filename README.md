@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 110
+total notes: 111
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -134,3 +134,4 @@ total notes: 110
 ## ARC 10 - agents: when output starts doing things
 - [109, when the answer stops being a suggestion](./notes/109-when-the-answer-stops-being-a-suggestion.md), the same refund question resolved into two shapes of reply, a text field a person reads and decides on, and a tool call that my own code runs before anybody reads anything, where the model and the error rate are identical and the only thing deleted is the person who used to sit in between
 - [110, the toolbox is written in english](./notes/110-the-toolbox-is-written-in-english.md), the same two functions offered to the model twice, once with short names and a line of description each and once with the boundary spelled out, where only the strings changed and the pick went from a coin flip to the right tool, because the tools array lands in the prompt as text
+- [111, the arguments cant come out malformed](./notes/111-the-arguments-cant-come-out-malformed.md), four rules i used to write into a tool description lined up against the same four written into its parameter schema, where the description only asks and the schema cuts the illegal token at the pick, so a required field cant be skipped and an invented status cant be spelled, and the one thing still unguarded is an argument thats well formed and wrong
