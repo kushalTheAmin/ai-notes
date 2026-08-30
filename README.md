@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 125
+total notes: 126
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -151,3 +151,4 @@ total notes: 125
 - [123, when the poisoned line can call a tool](./notes/123-injection-grows-hands.md), the same injection 052 already described, this time landing in a tool result my own code fetched and appended, where the model answers it with a call instead of a sentence and my code has already run it, so the reach of one planted line is not the tool that fetched it but every tool in the box
 - [124, hand the tool less power](./notes/124-hand-the-tool-less-power.md), the same email tool written twice, once trusting a sentence in the system prompt and once checking the caller and the argument in its own function body, where swapping a free text message for a template id leaves the injected link from 123 with no field to ride in on
 - [125, the gate that doesnt drown you](./notes/125-the-gate-that-doesnt-drown-you.md), a proposed call sent through two filters before a person ever sees it, settled by a rule where a rule exists and let through where the damage can be undone, so what reaches the human is the short list nobody can click through on autopilot
+- [126, a trace, not a log line](./notes/126-a-trace-not-a-log-line.md), one agent run written down as a single indented trace instead of six unrelated log lines, a shared id on every call and each step recording which step spawned it, where the parents own numbers never top 1,850 tokens and the biggest call in the run, 5,800, sits one level down inside a sub-agent the parent knows only as 4.4 seconds
