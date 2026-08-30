@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 118
+total notes: 119
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -142,3 +142,4 @@ total notes: 118
 - [116, when the tool hands back too much](./notes/116-truncate-or-paginate.md), the 47 chunks a search actually matched against the 4 that reach the array, where truncating puts the other 43 out of reach for good and paginating leaves them 11 rounds away, so the page size stops being a default and becomes the thing that decides what the model is allowed to find
 - [117, when the run outgrows the window](./notes/117-fold-old-rounds-into-a-summary.md), the point where a long agent run stops fitting, 29,700 tokens of old rounds folded by one extra model call into a single 240 token summary that sits in the array where they were, which is not the slicing 053 and 047 do but the agent taking notes on its own earlier work, and the fold prompt deciding what survives because whatever the paragraph drops is gone
 - [118, the plan is just tokens, a file is real memory](./notes/118-files-are-the-agents-real-memory.md), an 800 token plan followed down two paths, left in the array where it is replayed on every round and eventually rewritten by the fold, or written to plan.md where the array carries only the filename and the six steps come back word for word eleven rounds later, with the honest price being that the read costs those tokens again on the round you need them
+- [119, a fresh window with a narrower job](./notes/119-a-fresh-window-with-a-narrower-job.md), three calls totting up 10,200 tokens of raw hits inside the parents own window against the same job handed to a sub-agent, whose fresh array holds the same calls and the same tokens and stops existing when it returns one ~15 token sentence, so the parent pays for the work once instead of replaying it, and gets back a conclusion it has no way to audit
