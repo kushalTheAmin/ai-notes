@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 113
+total notes: 114
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -137,3 +137,4 @@ total notes: 113
 - [111, the arguments cant come out malformed](./notes/111-the-arguments-cant-come-out-malformed.md), four rules i used to write into a tool description lined up against the same four written into its parameter schema, where the description only asks and the schema cuts the illegal token at the pick, so a required field cant be skipped and an invented status cant be spelled, and the one thing still unguarded is an argument thats well formed and wrong
 - [112, any agent, any toolbox](./notes/112-any-agent-any-toolbox.md), the toolbox stops being source code in my app and becomes a list my code asks a tool server for at runtime, the same names, descriptions and schemas as before arriving over an agreed shape, so nine bits of hand written glue across three apps and three toolboxes collapse to three and three, and the model still never touches the wire
 - [113, a failed tool call goes back in](./notes/113-a-failed-tool-call-goes-back-in.md), a tool call that comes back wrong gets its error appended to the messages array in the slot a real result would have sat in, so the model reads the failure, drops the id it guessed, calls a second tool to find the real one and retries, with none of that recovery written in my code, and timeouts and 429s staying my codes problem
+- [114, no tool call isnt the same as done](./notes/114-no-tool-call-isnt-done.md), the loops only exit reports that the model stopped asking for functions, which it does when the job is done and equally when it just wrote a sentence saying the refund happened, so nothing errors and no counter fires, and the fix is a lookup against my own database on the way out, for the tasks that have an end state you can look up
