@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 108
+total notes: 109
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -130,3 +130,6 @@ total notes: 108
 - [106, three fixes, and they dont fix the same thing](./notes/106-three-fixes-that-fix-different-things.md), the three moves you make when a feature isnt good enough sorted by what each one actually adds, where only retrieval puts a missing fact in front of the model, prompting fixes the instructions you never gave, and fine-tuning earns its weeks only when the model already knows enough and keeps breaking the same way
 - [107, the ranking has never seen your task](./notes/107-the-ranking-hasnt-seen-your-task.md), three candidates lined up by where they sit on a public ranking against how many of my own 50 examples they passed, where the order inverts because a public rank is an average over a mixed bag my narrow task barely registers in, and once two of them tie within noise the deciding is done by cost and speed
 - [108, the questions i ask before shipping any of this](./notes/108-the-order-i-ask-them-in.md), the whole arc assembled into one ordered checklist, a rule question that ends the whole thing before it starts, then the gates and the request array and the two account settings, then where a wrong answer lands and who catches it, and only at the very end the three questions that are actually about the model
+
+## ARC 10 - agents: when output starts doing things
+- [109, when the answer stops being a suggestion](./notes/109-when-the-answer-stops-being-a-suggestion.md), the same refund question resolved into two shapes of reply, a text field a person reads and decides on, and a tool call that my own code runs before anybody reads anything, where the model and the error rate are identical and the only thing deleted is the person who used to sit in between
