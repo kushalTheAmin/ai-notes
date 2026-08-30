@@ -126,11 +126,44 @@
 - [x] model selection: picking by task, not leaderboard (107)
 - [x] CAPSTONE: the checklist i would run before shipping any llm feature (108)
 
+## ARC 10 - agents: when output starts doing things
+- [ ] answer vs action: what changes when the output executes
+- [ ] the toolbox is a prompt: tool names and descriptions are instructions
+- [ ] the schema clamp: json that cant come out wrong
+- [ ] a shared socket for toolboxes: any agent, any toolbox
+- [ ] a failed tool call goes back in: errors are context
+- [ ] "no more tool calls" isnt done: the check lives outside the model
+- [ ] what a loop costs: every round replays the whole history
+- [ ] tool results eat the window: truncate or paginate
+- [ ] when the run outlives the window: fold old rounds into a summary
+- [ ] the plan is just tokens: files are the agents real memory
+- [ ] sub-agents: a fresh window with a narrower job
+- [ ] computer use: when the tool is the screen
+- [ ] CAPSTONE: the working agent, assembled, every moving part named
+
+## ARC 11 - agents you can trust
+- [ ] read vs write: blast radius decides which calls need a gate
+- [ ] injection grows hands: when poisoned text can act
+- [ ] cap the tool, not the model: least privilege for agents
+- [ ] the gate that doesnt drown you: approving the risky few, not everything
+- [ ] a trace, not a log line: observability for a twenty step run
+- [ ] grade the end state: did the thing actually happen
+- [ ] count the steps: cost and length as a score
+- [ ] an agent reviews an agent: the judge moves in front of the gate
+- [ ] memory across runs: what it keeps, and whose data that is
+- [ ] budgets and kill switches: caps per run, not per request
+- [ ] when not an agent: if you know the steps, write the pipeline
+- [ ] CAPSTONE: the trusted agent, assembled
+
 ## THREAD
 
-baton: 108 closed arc 9 and closed the curriculum as it currently stands. it was assembly only, no new mechanism, a mermaid flowchart of ten nodes running the nine arc 9 bricks as the order you actually ask the questions in, starting at a diamond, is there a rule that decides it (099), with a yes branch that leaves the picture entirely. then the gates (100), read the whole request array (101), labels not values plus the two account settings (102, 103), a second diamond on where a wrong answer lands (104) whose nobody-sees-it branch adds a person and rejoins, then rent or own (105), which lever (106), and the golden set picking the id (107). the closing count is the point of the note, only the last three of the nine are about the model, the other six are scope, safety and privacy, and where a wrong answer lands. exit stops, no forward pointer, because there is nothing after it yet.
+baton: arcs 10 and 11 went into this file by hand on 2026-08-30, two arcs and 25 boxes, agents. the bridge from 108 is its sharpest row: 104 asked where a wrong answer lands, and the moment the loop from 082 holds tools that write, a wrong answer stops being text somebody reads and becomes an action that already ran. 109 opens arc 10 on exactly that reframe, answer vs action, building on 108 as the previous arcs capstone and pulling 104, 082 and 051 forward. its job is stakes, no new mechanism beyond the reframe itself. arc 10 is mechanics, make the loop actually work. arc 11 is trust, and its opener builds on arc 10s capstone.
 
-there is no unchecked box left. arc 9 is 10 of 10 and every arc above it is complete, so the next run has no next concept to pick up unless the curriculum grows. that growth is not something a run invents on its own, the rule has always been that splits add granularity and the capstone gap check adds at most one brick, and neither applies to an empty list. so the next run should read this baton, confirm every box is ticked, and stop rather than inventing arc 10. if a new arc is ever added to this file by hand, note 001 of it builds on 108 as the previous arcs capstone.
+for the record, what 108 established: it closed arc 9 and it was assembly only, no new mechanism, it was assembly only, no new mechanism, a mermaid flowchart of ten nodes running the nine arc 9 bricks as the order you actually ask the questions in, starting at a diamond, is there a rule that decides it (099), with a yes branch that leaves the picture entirely. then the gates (100), read the whole request array (101), labels not values plus the two account settings (102, 103), a second diamond on where a wrong answer lands (104) whose nobody-sees-it branch adds a person and rejoins, then rent or own (105), which lever (106), and the golden set picking the id (107). the closing count is the point of the note, only the last three of the nine are about the model, the other six are scope, safety and privacy, and where a wrong answer lands. exit stops, no forward pointer, because there is nothing after it yet.
+
+the growth rules are unchanged inside the new arcs: splits for granularity, capstone gap check for at most one brick, strict order within an arc, capstone written last. one sanctioned exception to the no-names line: the socket note in arc 10 may name mcp once, translated in the same sentence it appears in, a published standard is not a vendor. everything else stays shapes over names.
+
+process note on headers: every notes (n of m) was backfilled on 2026-08-30, splits had been growing arcs while old headers kept the size the arc had on their writing day. from now on any split or add that changes an arcs size also fixes the (n of m) in that arcs already-written notes, same run, committed with the split.
 
 lines the repo has held and should keep holding if it ever continues: no named vendor and no named benchmark, arc 9 held that from 099 through 108 and kept everything to shapes. caches are laid and closed, arc 8 owns them and 098 owns their assembly. bm25 scoring is still an unlaid brick on purpose. arc 7 owns measurement, and 108 pointed at the golden set in one clause without reopening it.
 
