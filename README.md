@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 137
+total notes: 138
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -163,3 +163,4 @@ total notes: 137
 - [135, the cap that stops a run](./notes/135-the-cap-that-stops-a-run.md), one run put against two caps of its own, eight rounds and twenty thousand tokens, where the token line gets crossed at round 6 with two rounds still spare and the loop breaks with nothing written, all of it a variable my own code adds to rather than anything the model gets a say in, and the awkward part being that a cap has no idea whether it lands before a write or after one
 - [136, the stop i flip by hand](./notes/136-the-stop-i-flip-by-hand.md), the other kind of stop, one row set from outside every run that each loop reads fresh at the top of a round, so a flip reaches the runs already going the way a deploy never can, and the run thats mid tool call keeps going until it comes back around, because you cant reach into a loop, it has to go looking for the stop itself
 - [137, when i didnt need the loop](./notes/137-when-i-didnt-need-the-loop.md), the support inbox from 099 written twice, once as a while loop where the model picks what runs next and how many rounds there are, and once as five lines that call the same model at the two spots needing judgment with plain code either side of them, because the order was known before i started, and the loop only earns its keep where the next step depends on what the last one found
+- [138, the trusted agent, assembled](./notes/138-the-trusted-agent-assembled.md), the whole arc as one picture, opening on the question of whether theres a loop at all, then memory read before round 1, a counter and a stop inside the run, a proposed call passing a model, a person and the tools own check before it reaches the wire, and a trace coming out the other end to be scored, where almost none of it is about the model and not one note in it changes a prompt
