@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 134
+total notes: 135
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -160,3 +160,4 @@ total notes: 134
 - [132, a bad row outlives the run that wrote it](./notes/132-a-bad-row-outlives-the-run.md), four runs of the same customer lined up by the row each one writes on its way out, where tuesdays line lands next to mondays instead of replacing it and 123s planted wiki line gets written down as a preference, so thursday opens with two contradicting rows and one poisoned one, all read back as fact because a write happens once and reads happen forever
 - [133, the key decides who reads the row back](./notes/133-the-key-decides-who-reads-it.md), the row mondays run squeezed out sitting under a key one level too wide, so tuesdays brand new loop opens with another customers summary pasted in, and even keyed right the line still carries a card tail off a chunk nobody in that run typed
 - [134, a memory row is a second copy](./notes/134-a-second-copy-nothing-deletes.md), a delete request fanning out to the orders table, the transcripts and my own request logs, with the memory row sitting off that list entirely, unreached by any cleanup path and dated by nothing, so it keeps opening round 1 long after the account it describes is closed
+- [135, the cap that stops a run](./notes/135-the-cap-that-stops-a-run.md), one run put against two caps of its own, eight rounds and twenty thousand tokens, where the token line gets crossed at round 6 with two rounds still spare and the loop breaks with nothing written, all of it a variable my own code adds to rather than anything the model gets a say in, and the awkward part being that a cap has no idea whether it lands before a write or after one
