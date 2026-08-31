@@ -1,7 +1,7 @@
 # 127: grade the end state
 
 builds on: [126](./126-a-trace-not-a-log-line.md), [114](./114-no-tool-call-isnt-done.md), [072](./072-the-same-questions-every-run.md)
-arc: agents you can trust (6 of 15), ~2 min
+arc: agents you can trust (6 of 16), ~2 min
 
 126 put a whole run on one screen. but every judgement in that block is me, reading it, and the tokens down the right side dont say whether the run worked.
 

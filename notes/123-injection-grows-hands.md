@@ -1,7 +1,7 @@
 # 123: when the poisoned line can call a tool
 
 builds on: [052](./052-when-the-text-isnt-mine.md), [122](./122-what-a-wrong-call-leaves-behind.md), [113](./113-a-failed-tool-call-goes-back-in.md)
-arc: agents you can trust (2 of 15), ~2 min
+arc: agents you can trust (2 of 16), ~2 min
 
 052 was text i never wrote landing in the array as tokens, looking exactly like my system message. same attack here, all thats different is what the model does with it next.
 

@@ -1,7 +1,7 @@
 # 122: what a wrong call leaves behind
 
 builds on: [121](./121-the-working-agent-assembled.md), [109](./109-when-the-answer-stops-being-a-suggestion.md)
-arc: agents you can trust (1 of 15), ~2 min
+arc: agents you can trust (1 of 16), ~2 min
 
 121 ended with me telling you to go find the line in your agent that says no. i went looking in mine. theres no such line, and before writing one i had to answer something smaller. which calls even need it. so i listed the toolbox out and asked one question of every row.
 

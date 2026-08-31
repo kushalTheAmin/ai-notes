@@ -1,7 +1,7 @@
 # 132: a bad row outlives the run that wrote it
 
 builds on: [131](./131-a-store-that-outlives-the-run.md), [123](./123-injection-grows-hands.md), [122](./122-what-a-wrong-call-leaves-behind.md)
-arc: agents you can trust (11 of 15), ~2 min
+arc: agents you can trust (11 of 16), ~2 min
 
 131 stopped at the write. one row squeezed out of a run, looked up before round 1 of the next one. what it never said is who checks that row later. nobody does.
 

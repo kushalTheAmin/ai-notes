@@ -1,7 +1,7 @@
 # 124: hand the tool less power
 
 builds on: [123](./123-injection-grows-hands.md), [111](./111-the-arguments-cant-come-out-malformed.md), [046](./046-system-vs-user.md)
-arc: agents you can trust (3 of 15), ~2 min
+arc: agents you can trust (3 of 16), ~2 min
 
 123 ended on keeping the dangerous thing out of reach of an instruction the model followed. the cheapest version of that is to give the tool less to work with, before the run starts.
 

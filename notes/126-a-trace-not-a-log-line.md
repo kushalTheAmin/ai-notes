@@ -1,7 +1,7 @@
 # 126: a trace, not a log line
 
 builds on: [125](./125-the-gate-that-doesnt-drown-you.md), [119](./119-a-fresh-window-with-a-narrower-job.md), [097](./097-what-your-http-log-is-missing.md)
-arc: agents you can trust (5 of 15), ~2 min
+arc: agents you can trust (5 of 16), ~2 min
 
 125 left a run full of decisions. some calls ran on their own, one got refused in code, one waited for a person. nothing i was writing down said which was which, or that they were one run.
 

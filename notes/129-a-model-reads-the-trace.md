@@ -1,7 +1,7 @@
 # 129: a model reads the trace
 
 builds on: [127](./127-grade-the-end-state.md), [126](./126-a-trace-not-a-log-line.md), [074](./074-let-a-model-grade-it.md)
-arc: agents you can trust (8 of 15), ~2 min
+arc: agents you can trust (8 of 16), ~2 min
 
 127 hands back a pass or fail, 128 puts a cost next to it. both of them need a run that ends in a row i can go look up. this one doesnt. it ends in a paragraph.
 
