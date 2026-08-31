@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 133
+total notes: 134
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -159,3 +159,4 @@ total notes: 133
 - [131, memory across runs](./notes/131-a-store-that-outlives-the-run.md), one row written after mondays loop exits and looked up by my code before thursdays first round, so the array starts with a line the agent never asked for and cant tell is old, the same fake 047 does inside a conversation moved one level up between them, and the squeeze that turns four rounds into a line worth rereading, with nothing learned and no weight moved
 - [132, a bad row outlives the run that wrote it](./notes/132-a-bad-row-outlives-the-run.md), four runs of the same customer lined up by the row each one writes on its way out, where tuesdays line lands next to mondays instead of replacing it and 123s planted wiki line gets written down as a preference, so thursday opens with two contradicting rows and one poisoned one, all read back as fact because a write happens once and reads happen forever
 - [133, the key decides who reads the row back](./notes/133-the-key-decides-who-reads-it.md), the row mondays run squeezed out sitting under a key one level too wide, so tuesdays brand new loop opens with another customers summary pasted in, and even keyed right the line still carries a card tail off a chunk nobody in that run typed
+- [134, a memory row is a second copy](./notes/134-a-second-copy-nothing-deletes.md), a delete request fanning out to the orders table, the transcripts and my own request logs, with the memory row sitting off that list entirely, unreached by any cleanup path and dated by nothing, so it keeps opening round 1 long after the account it describes is closed
