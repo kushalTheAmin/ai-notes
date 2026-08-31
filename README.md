@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 129
+total notes: 130
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -155,3 +155,4 @@ total notes: 129
 - [127, grade the end state](./notes/127-grade-the-end-state.md), twenty finished runs scored by what the refunds table looks like afterwards instead of by what the run said it did, where two runs end on the identical sentence and land on opposite scores, and a run that refunded the right order and a second one on the way fails for the row that shouldnt be there
 - [128, count the steps](./notes/128-count-the-steps.md), five saved runs of one task that all passed, lined up by rounds and tokens, where the worst one took 11 rounds and 4x the median tokens and still scores exactly the same as the four cheap ones, and pushing that number down on its own just buys you a run that quits early
 - [129, a model reads the trace](./notes/129-a-model-reads-the-trace.md), a run that ends in a paragraph instead of a row, handed to a second model as five steps in order rather than as its answer, where the rubric stops asking is this right and starts asking how it got here, and the writeup that reads perfectly fine turns out to name a reason sitting in nothing the agent read
+- [130, the judge moves in front of the gate](./notes/130-the-judge-moves-in-front-of-the-gate.md), the same judge from 129 moved out of the after-the-fact report and into the path of a call thats about to run, screening the queue in front of the human gate with three exits where refusing and asking a person are both safe, and only the clear-it-and-run branch spends any trust
