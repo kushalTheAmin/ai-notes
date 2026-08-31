@@ -1,7 +1,7 @@
 # 134: a memory row is a second copy
 
 builds on: [133](./133-the-key-decides-who-reads-it.md), [131](./131-a-store-that-outlives-the-run.md), [103](./103-every-call-makes-two-copies.md)
-arc: agents you can trust (13 of 16), ~2 min
+arc: agents you can trust (13 of 17), ~2 min
 
 133 asked who gets to read a row back. this one asks how long they get to.
 

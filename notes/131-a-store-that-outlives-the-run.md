@@ -1,7 +1,7 @@
 # 131: memory across runs
 
 builds on: [130](./130-the-judge-moves-in-front-of-the-gate.md), [118](./118-files-are-the-agents-real-memory.md), [047](./047-your-code-fakes-the-memory.md)
-arc: agents you can trust (10 of 16), ~2 min
+arc: agents you can trust (10 of 17), ~2 min
 
 every piece arc 11 has built is scoped to one run. the trace, the pass rate, 130s screen, all of it dies when the loop exits. memory is the first thing here that outlives a run.
 

@@ -1,7 +1,7 @@
 # 133: the key decides who reads the row back
 
 builds on: [132](./132-a-bad-row-outlives-the-run.md), [131](./131-a-store-that-outlives-the-run.md), [101](./101-whats-in-the-request-nobody-typed.md)
-arc: agents you can trust (12 of 16), ~2 min
+arc: agents you can trust (12 of 17), ~2 min
 
 132 asked who rechecks a row. this one is quieter. who gets to read it back.
 

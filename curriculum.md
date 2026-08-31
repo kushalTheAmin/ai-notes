@@ -155,7 +155,8 @@
 - [x] a line in memory outlives the run that wrote it, wrong ones included (132)
 - [x] the key decides who reads a memory row back (133)
 - [x] a memory row is a second copy, and how long it lives (134)
-- [ ] budgets and kill switches: caps per run, not per request
+- [ ] a counter in the loop: the cap that stops a run
+- [ ] the kill switch: stopping the runs already going
 - [ ] when not an agent: if you know the steps, write the pipeline
 - [ ] CAPSTONE: the trusted agent, assembled
 
@@ -189,7 +190,7 @@ overlap to keep an eye on for arc 11: 050 already appends a broken reply plus an
 
 the growth rules are unchanged inside the new arcs: splits for granularity, capstone gap check for at most one brick, strict order within an arc, capstone written last.
 
-process note on headers: every notes (n of m) was backfilled on 2026-08-30, splits had been growing arcs while old headers kept the size the arc had on their writing day. from now on any split or add that changes an arcs size also fixes the (n of m) in that arcs already-written notes, same run, committed with the split. arc 11 is 16 checkboxes as of the 133 run, which split "whose data memory holds, and how long" in two, so its notes carry (n of 16) until something splits again.
+process note on headers: every notes (n of m) was backfilled on 2026-08-30, splits had been growing arcs while old headers kept the size the arc had on their writing day. from now on any split or add that changes an arcs size also fixes the (n of m) in that arcs already-written notes, same run, committed with the split. arc 11 is 17 checkboxes as of the 135 run, which split "budgets and kill switches" in two, an automatic per-run counter and a flag i flip by hand, so its notes carry (n of 17) until something splits again.
 
 lines the repo has held and should keep holding: no named vendor and no named benchmark, arc 9 held that from 099 through 108 and arc 10 held it all the way through 121, issue_refund, search_docs, get_order_by_id and list_recent_orders are made-up tool names in my own examples and 121 reuses issue_refund rather than inventing a new one. caches are laid and closed, arc 8 owns them and 098 owns their assembly. bm25 scoring is still an unlaid brick on purpose. arc 7 owns measurement. 058 owns how big a chunk is, thats a different knob from how many chunks reach the model and 116 stayed off it.
 
