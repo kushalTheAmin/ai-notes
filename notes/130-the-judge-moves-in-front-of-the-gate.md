@@ -1,7 +1,7 @@
 # 130: the judge moves in front of the gate
 
 builds on: [129](./129-a-model-reads-the-trace.md), [125](./125-the-gate-that-doesnt-drown-you.md), [123](./123-injection-grows-hands.md)
-arc: agents you can trust (9 of 13), ~2 min
+arc: agents you can trust (9 of 15), ~2 min
 
 129 runs the judge after the fact, on a run thats already over. nothing it says changes what happened. put the same call before the action instead and it stops being a measurement. now its a control.
 

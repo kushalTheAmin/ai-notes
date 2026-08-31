@@ -1,7 +1,7 @@
 # 128: count the steps
 
 builds on: [127](./127-grade-the-end-state.md), [126](./126-a-trace-not-a-log-line.md), [115](./115-one-round-itemized.md)
-arc: agents you can trust (7 of 13), ~2 min
+arc: agents you can trust (7 of 15), ~2 min
 
 127 gives a finished run one bit, passed or not. a run can pass and still have been awful.
 

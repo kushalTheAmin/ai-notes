@@ -1,7 +1,7 @@
 # 125: the gate that doesnt drown you
 
 builds on: [124](./124-hand-the-tool-less-power.md), [122](./122-what-a-wrong-call-leaves-behind.md), [113](./113-a-failed-tool-call-goes-back-in.md)
-arc: agents you can trust (4 of 13), ~2 min
+arc: agents you can trust (4 of 15), ~2 min
 
 124 moved the limit into the tool body, so a bad call hits a return before anything runs. that only covers what i can write down as a rule in advance. some calls are only decidable in the moment, and thats where a person comes in.
 
