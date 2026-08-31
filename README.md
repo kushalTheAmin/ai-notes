@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 128
+total notes: 129
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -154,3 +154,4 @@ total notes: 128
 - [126, a trace, not a log line](./notes/126-a-trace-not-a-log-line.md), one agent run written down as a single indented trace instead of six unrelated log lines, a shared id on every call and each step recording which step spawned it, where the parents own numbers never top 1,850 tokens and the biggest call in the run, 5,800, sits one level down inside a sub-agent the parent knows only as 4.4 seconds
 - [127, grade the end state](./notes/127-grade-the-end-state.md), twenty finished runs scored by what the refunds table looks like afterwards instead of by what the run said it did, where two runs end on the identical sentence and land on opposite scores, and a run that refunded the right order and a second one on the way fails for the row that shouldnt be there
 - [128, count the steps](./notes/128-count-the-steps.md), five saved runs of one task that all passed, lined up by rounds and tokens, where the worst one took 11 rounds and 4x the median tokens and still scores exactly the same as the four cheap ones, and pushing that number down on its own just buys you a run that quits early
+- [129, a model reads the trace](./notes/129-a-model-reads-the-trace.md), a run that ends in a paragraph instead of a row, handed to a second model as five steps in order rather than as its answer, where the rubric stops asking is this right and starts asking how it got here, and the writeup that reads perfectly fine turns out to name a reason sitting in nothing the agent read
