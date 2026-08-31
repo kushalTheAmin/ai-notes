@@ -3,7 +3,7 @@ learning applied ai, one small note at a time
 
 start here: [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md)
 
-total notes: 131
+total notes: 132
 
 ## ARC 1 - how machines read text
 - [001, characters vs words, and why both fail](./notes/001-characters-vs-words.md), the two obvious ways to split text and why they both break
@@ -157,3 +157,4 @@ total notes: 131
 - [129, a model reads the trace](./notes/129-a-model-reads-the-trace.md), a run that ends in a paragraph instead of a row, handed to a second model as five steps in order rather than as its answer, where the rubric stops asking is this right and starts asking how it got here, and the writeup that reads perfectly fine turns out to name a reason sitting in nothing the agent read
 - [130, the judge moves in front of the gate](./notes/130-the-judge-moves-in-front-of-the-gate.md), the same judge from 129 moved out of the after-the-fact report and into the path of a call thats about to run, screening the queue in front of the human gate with three exits where refusing and asking a person are both safe, and only the clear-it-and-run branch spends any trust
 - [131, memory across runs](./notes/131-a-store-that-outlives-the-run.md), one row written after mondays loop exits and looked up by my code before thursdays first round, so the array starts with a line the agent never asked for and cant tell is old, the same fake 047 does inside a conversation moved one level up between them, and the squeeze that turns four rounds into a line worth rereading, with nothing learned and no weight moved
+- [132, a bad row outlives the run that wrote it](./notes/132-a-bad-row-outlives-the-run.md), four runs of the same customer lined up by the row each one writes on its way out, where tuesdays line lands next to mondays instead of replacing it and 123s planted wiki line gets written down as a preference, so thursday opens with two contradicting rows and one poisoned one, all read back as fact because a write happens once and reads happen forever
