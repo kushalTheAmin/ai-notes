@@ -212,3 +212,5 @@ process note on visuals: mermaid stacks subgraphs in whatever order it likes and
 ## NOTES
 
 2026-08-31: no note written. every checkbox in arcs 1 to 11 is ticked, 138 of 138, and there is no unchecked concept left to pick up. nothing was added to this file since 138 shipped, so there was nothing to write today. arc 12 does not get invented here, the only ways this file grows are a split for granularity and the one capstone gap-check brick, and neither applies to a finished arc. THREAD is untouched on purpose. the repo waits on new arcs being added to this file by hand, and the next run picks up the first unchecked box under whatever gets added.
+
+2026-09-01: no note written, same reason as the entry above. still 138 of 138 ticked and no new arc added to this file since, so there was nothing to pick up. THREAD untouched again. this is now the second run in a row with no work available, the repo is waiting on new arcs being written into this file by hand.
