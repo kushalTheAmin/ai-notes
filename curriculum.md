@@ -211,11 +211,13 @@ process note on visuals: mermaid stacks subgraphs in whatever order it likes and
 
 ## NOTES
 
-2026-08-31 through 2026-09-01: no note written, eighteen runs in a row, and this one entry replaces the near-identical ones that were piling up here. the sixth of them said these log entries had stopped earning their keep and it was right, so they are folded into this and later runs update it in place.
+2026-08-31 through 2026-09-03: no note written on any run in that window, and this one entry replaces the near-identical ones that were piling up here. the sixth of them said these log entries had stopped earning their keep and it was right, so they are folded into this and later runs update it in place.
 
 every run made the same three checks and got the same three answers. there is no unchecked concept anywhere, 138 of 138 boxes ticked across arcs 1 to 11 and 138 note files on disk numbered 001 to 138 with no gaps and no duplicates. the voice cleanup pass has nothing left, zero em dashes and zero en dashes across all 138 notes plus this file and README.md, and 138 still reads in voice, first person, no book-page register. README.md is current, contents by arc through 138 and the total line saying 138.
 
-nothing has been added to this file by hand since 138 shipped on 2026-08-31, so there has been nothing to pick up. arc 12 does not get invented here, the only ways this file grows are a split for granularity and the one capstone gap-check brick, and neither applies to a finished arc. THREAD is untouched through all seventeen runs, on purpose, so whenever the next concept arrives it still has 138s baton to pick up.
+nothing has been added to this file by hand since 138 shipped on 2026-08-31, so there has been nothing to pick up. arc 12 does not get invented here, the only ways this file grows are a split for granularity and the one capstone gap-check brick, and neither applies to a finished arc. THREAD is untouched through every one of these runs, on purpose, so whenever the next concept arrives it still has 138s baton to pick up.
+
+the repo is finished as written, not stalled by accident. it stays that way until arc 12 checkboxes land in this file by hand, and every run until then will read the same, tick nothing and write nothing.
 
 one thing worth keeping out of all this. the schedule fires about hourly rather than daily, 135 through 138 were written an hour apart on 2026-08-31 and every empty run since has been an hour apart too, so idle runs stack up fast. eighteen empty runs inside about a day is the schedule outpacing the curriculum, not any run failing. what unblocks it is new arcs written into this file by hand, or the schedule moving back to daily. until one of those happens the next run finds exactly what this one found.
 
